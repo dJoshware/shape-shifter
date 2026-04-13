@@ -156,7 +156,7 @@ const FretboardVertical = ({
                                 textAnchor='middle'
                                 dominantBaseline='central'
                                 fontSize={11}
-                                fill='#A59D84'>
+                                fill='#39434b'>
                                 {fret}
                             </text>
                         ),
