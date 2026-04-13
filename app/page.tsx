@@ -12,6 +12,20 @@ import {
     NOTES,
     shuffleArray,
 } from "@/lib/fretboardMap";
+import type { NotePosition } from "@/lib/fretboardMap";
+
+type ChordLevel = {
+    levelName?: string;
+    options?: Record<string, ChordLevel>;
+    altShapes?: ChordLevel[];
+    pattern?: Array<{
+        string: number;
+        fretOffset: number;
+        semitones: number;
+        degree: number;
+    }>;
+    rootString?: number;
+};
 import { allChordShapes, useCycleList } from "@/lib/API";
 import { spellInterval, MAJOR_SCALE_OFFSETS } from "@/lib/ChordSpelling";
 import useChordLibrary from "@/lib/hooks/useChordLibrary";
@@ -120,7 +134,7 @@ export default function Home() {
     const [selectedPosition, setSelectedPosition] = React.useState("All");
     const [selectedAltShape, setSelectedAltShape] = React.useState(0);
     const [currentRootNote, setCurrentRootNote] = React.useState("C");
-    const [displayShape, setDisplayShape] = React.useState<any[]>([]);
+    const [displayShape, setDisplayShape] = React.useState<NotePosition[]>([]);
     const [noteDeck, setNoteDeck] = React.useState<number[]>([]);
     const [shuffleChecked, setShuffleChecked] = React.useState(false);
     const [showIntervals, setShowIntervals] = React.useState(false);
@@ -160,14 +174,17 @@ export default function Home() {
         }
     };
 
-    const drillDownAndSetDefaults = (startLevel: any) => {
+    const drillDownAndSetDefaults = (
+        startLevel: ChordLevel | null | undefined,
+    ) => {
         let currentLevel = startLevel;
         if (!currentLevel) return;
         let newVoicingType = "";
         let newStringSet = "";
         let newChordQuality = "";
         while (currentLevel && currentLevel.levelName && currentLevel.options) {
-            const firstOption = Object.keys(currentLevel.options)[0];
+            const options: Record<string, ChordLevel> = currentLevel.options;
+            const firstOption: string | undefined = Object.keys(options)[0];
             if (!firstOption) break;
             if (currentLevel.levelName === "Voicing Types")
                 newVoicingType = firstOption;
@@ -190,7 +207,10 @@ export default function Home() {
             setSelectedAltShape(0);
             return;
         }
-        const difficultyData = (allChordShapes as any)[newDifficulty] || {};
+        const difficultyData =
+            (allChordShapes as Record<string, Record<string, ChordLevel>>)[
+                newDifficulty
+            ] ?? {};
         const firstCategory = Object.keys(difficultyData)[0] || "";
         setSelectedCategory(firstCategory);
         setSelectedPosition("All");
@@ -203,7 +223,9 @@ export default function Home() {
         setSelectedPosition("All");
         setSelectedAltShape(0);
         drillDownAndSetDefaults(
-            (allChordShapes as any)[difficulty]?.[newCategory],
+            (allChordShapes as Record<string, Record<string, ChordLevel>>)[
+                difficulty
+            ]?.[newCategory],
         );
     };
 
@@ -214,7 +236,7 @@ export default function Home() {
 
     // ── generate new root ──────────────────────────────────────────────────────
     const handleGenerateNewRoot = () => {
-        let deck = noteDeck.length ? [...noteDeck] : shuffleArray(SEMIS);
+        const deck = noteDeck.length ? [...noteDeck] : shuffleArray(SEMIS);
         const nextSem = deck.pop()!;
         setNoteDeck(deck);
         const candidates = NOTES[nextSem];
@@ -235,14 +257,12 @@ export default function Home() {
             position: "",
             altShape: 0,
         };
-        let cursor: any = (allChordShapes as any)[difficulty]?.[
-            selectedCategory
-        ];
-        while (
-            cursor &&
-            !(cursor.options && cursor.levelName === "Positions")
-        ) {
-            const { levelName, options } = cursor;
+        let cursor: ChordLevel | undefined = (
+            allChordShapes as Record<string, Record<string, ChordLevel>>
+        )[difficulty]?.[selectedCategory];
+        while (cursor && cursor.options && cursor.levelName !== "Positions") {
+            const levelName = cursor.levelName;
+            const options: Record<string, ChordLevel> = cursor.options;
             const keys = Object.keys(options);
             const pick = keys[Math.floor(Math.random() * keys.length)];
             if (levelName === "Voicing Types") newSelections.voicingType = pick;
@@ -253,6 +273,7 @@ export default function Home() {
             cursor = options[pick];
         }
 
+        if (!cursor?.options) return;
         const posKeys = Object.keys(cursor.options);
         newSelections.position =
             posKeys[Math.floor(Math.random() * posKeys.length)];
@@ -266,7 +287,7 @@ export default function Home() {
         const formula = Array.isArray(positionData.altShapes)
             ? positionData.altShapes[newSelections.altShape]
             : positionData;
-        const pattern = formula.pattern;
+        const pattern = formula.pattern!;
 
         function isCleanRoot(root: string) {
             if (root === "B#" || root === "E#") return false;
@@ -314,7 +335,9 @@ export default function Home() {
 
     // ── effects ────────────────────────────────────────────────────────────────
     React.useEffect(() => {
-        const difficultyData = (allChordShapes as any)[difficulty];
+        const difficultyData = (
+            allChordShapes as Record<string, Record<string, ChordLevel>>
+        )[difficulty];
         const categories = Object.keys(difficultyData || {});
         if (!categories.includes(selectedCategory)) {
             const firstCategory = categories[0] || "";
@@ -335,7 +358,7 @@ export default function Home() {
             return;
         }
 
-        const finalShapes: any[] = [];
+        const finalShapes: NotePosition[][] = [];
         if (selectedPosition === "All") {
             for (const posName in formulas) {
                 const positionData = formulas[posName];
@@ -372,6 +395,7 @@ export default function Home() {
             }
         }
     }, [
+        isDrawMode,
         currentRootNote,
         selectedPosition,
         selectedAltShape,

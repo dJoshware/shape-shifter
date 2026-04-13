@@ -77,9 +77,13 @@ function EyeIcon({ open }: { open: boolean }) {
 }
 
 export default function Header({ difficulty, onDifficultyChange }: Props) {
-    const supabase = createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    const supabase = React.useMemo(
+        () =>
+            createBrowserClient(
+                process.env.NEXT_PUBLIC_SUPABASE_URL!,
+                process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+            ),
+        [],
     );
     const { user, signOut, isLoading: authIsLoading } = useAuth();
     const router = useRouter();
@@ -126,12 +130,13 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
         ok: boolean;
     } | null>(null);
 
-    function isPro(sub: any): boolean {
-        if (!sub) return false;
+    function isPro(sub: unknown): boolean {
+        if (!sub || typeof sub !== "object") return false;
+        const s = sub as { status?: string; current_period_end?: string };
         const active = new Set(["active", "trialing", "past_due"]);
         return (
-            active.has(sub.status) &&
-            new Date(sub.current_period_end) > new Date()
+            active.has(s.status ?? "") &&
+            new Date(s.current_period_end ?? "") > new Date()
         );
     }
 
@@ -158,11 +163,11 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                         table: "subscriptions",
                         filter: `user_id=eq.${uid}`,
                     },
-                    payload => {
-                        const row =
-                            (payload as any).new ||
-                            (payload as any).old ||
-                            null;
+                    (payload: {
+                        new: Record<string, unknown>;
+                        old: Record<string, unknown>;
+                    }) => {
+                        const row = payload.new || payload.old || null;
                         setHasPro(isPro(row));
                     },
                 )
@@ -192,12 +197,12 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             if (channel) supabase.removeChannel(channel);
             authSub?.unsubscribe();
         };
-    }, []);
+    }, [supabase]);
 
     // Pre-fill email
     React.useEffect(() => {
         if (user) setEmail(user.email ?? "");
-    }, [user?.email]);
+    }, [user]);
 
     // Password mismatch hint
     React.useEffect(() => {
@@ -256,11 +261,12 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             setUpdateEmailAlert({ msg: "Email updated!", ok: true });
             await new Promise(r => setTimeout(r, 3000));
             setUpdateEmailAlert(null);
-        } catch (err: any) {
+        } catch (err) {
+            const msg = err instanceof Error ? err.message : "";
             setUpdateEmailAlert({
-                msg: err.message.includes("Invalid email")
+                msg: msg.includes("Invalid email")
                     ? "Enter a valid email"
-                    : err.message.includes("different")
+                    : msg.includes("different")
                       ? "Must be a new email address"
                       : "Could not update email.",
                 ok: false,
@@ -288,8 +294,14 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             setUpdatePasswordAlert({ msg: "Password updated!", ok: true });
             await new Promise(r => setTimeout(r, 3000));
             setUpdatePasswordAlert(null);
-        } catch (err: any) {
-            setUpdatePasswordAlert({ msg: err.message, ok: false });
+        } catch (err) {
+            setUpdatePasswordAlert({
+                msg:
+                    err instanceof Error
+                        ? err.message
+                        : "Could not update password.",
+                ok: false,
+            });
         } finally {
             setUpdatePasswordLoading(false);
         }
@@ -304,7 +316,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             await new Promise(r => setTimeout(r, 2000));
             setDeleteOpen(false);
             setDrawerOpen(false);
-        } catch (err: any) {
+        } catch {
             setDeleteAlert({
                 msg: "Could not delete account. Try again.",
                 ok: false,

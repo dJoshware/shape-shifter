@@ -12,11 +12,17 @@ type AuthContextValue = {
     signIn: (
         email: string,
         password: string,
-    ) => Promise<{ data: any; error: AuthError | null }>;
+    ) => Promise<{
+        data: { user: User | null; session: Session | null };
+        error: AuthError | null;
+    }>;
     signUp: (
         email: string,
         password: string,
-    ) => Promise<{ data: any; error: AuthError | null }>;
+    ) => Promise<{
+        data: { user: User | null; session: Session | null };
+        error: AuthError | null;
+    }>;
     signOut: () => Promise<void>;
 };
 
@@ -25,7 +31,7 @@ const AuthContext = React.createContext<AuthContextValue | undefined>(
 );
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const supabase = createClient();
+    const supabase = React.useMemo(() => createClient(), []);
     const router = useRouter();
     const [user, setUser] = React.useState<User | null>(null);
     const [session, setSession] = React.useState<Session | null>(null);
@@ -70,7 +76,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         });
 
         return () => subscription?.unsubscribe();
-    }, []);
+    }, [supabase, router]);
 
     // Listen for password reset completion flag
     React.useEffect(() => {
@@ -81,7 +87,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         };
         window.addEventListener("storage", handleStorage);
         return () => window.removeEventListener("storage", handleStorage);
-    }, [session]);
+    }, [session, router]);
 
     const signIn = async (email: string, password: string) => {
         setIsLoading(true);
