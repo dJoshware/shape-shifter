@@ -18,7 +18,7 @@ export default function NotesIntervalsToggle({
                     sm:hidden
                     w-10 h-10 flex items-center justify-center
                     bg-sand-4 border border-ink rounded text-sand-1
-                    ${showIntervals ? 'text-2xl' : 'text-sm'} font-bold leading-tight
+                    ${showIntervals ? "text-2xl" : "text-sm"} font-bold leading-tight
                     active:opacity-80 transition-opacity
                     `}
                 title={showIntervals ? "Show note names" : "Show intervals"}>
