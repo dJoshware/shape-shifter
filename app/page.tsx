@@ -632,7 +632,7 @@ export default function Home() {
                                             ? "bg-ink text-sand-1 border-ink"
                                             : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
                                     }`}>
-                                    <ShuffleIcon active={shuffleChecked} />
+                                    <ShuffleIcon />
                                 </button>
 
                                 {/* Notes/Intervals toggle */}
@@ -800,7 +800,7 @@ export default function Home() {
                                                 ? "bg-ink text-sand-1 border-ink"
                                                 : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
                                         }`}>
-                                        <ShuffleIcon active={shuffleChecked} />
+                                        <ShuffleIcon />
                                         Shuffle
                                     </button>
                                     <button
