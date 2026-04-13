@@ -321,7 +321,7 @@ export default function Home() {
             setSelectedCategory(firstCategory);
             drillDownAndSetDefaults(difficultyData?.[firstCategory]);
         }
-    }, [difficulty, selectedCategory]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [difficulty, selectedCategory]);
 
     React.useEffect(() => {
         handleDifficultyChange("Beginner");
@@ -378,7 +378,7 @@ export default function Home() {
         selectionHierarchy.finalFormulas,
         availableAlts,
         fretboardMap,
-    ]); // eslint-disable-line react-hooks/exhaustive-deps
+    ]);
 
     // ── cycle controls ─────────────────────────────────────────────────────────
     const { prev: goPrevPos, next: goNextPos } = useCycleList(
@@ -629,9 +629,9 @@ export default function Home() {
                         </div>
 
                         {/* ── DESKTOP layout (sm+) ─────────────────────────────────── */}
-                        <div className='hidden sm:flex flex-col items-center gap-4 px-4 pt-4 pb-8 max-w-5xl mx-auto w-full'>
-                            {/* Fretboard */}
-                            <div className='w-full'>
+                        <div className='hidden sm:flex flex-col items-center gap-4 pt-4 pb-8 w-full'>
+                            {/* Fretboard — full viewport width with padding */}
+                            <div className='w-full px-4 xl:px-8'>
                                 <FretboardHorizontal
                                     chordShape={displayShape}
                                     handedness={handedness}
@@ -640,145 +640,157 @@ export default function Home() {
                                 />
                             </div>
 
-                            {/* Category buttons */}
-                            <div className='flex rounded overflow-hidden border border-ink'>
-                                {selectionHierarchy.categories.map(type => (
-                                    <button
-                                        key={type}
-                                        onClick={() =>
-                                            handleCategoryChange(type)
-                                        }
-                                        className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 transition-colors ${
-                                            selectedCategory === type
-                                                ? "bg-sand-4 text-sand-1 font-semibold"
-                                                : "bg-sand-1 text-ink hover:bg-sand-2"
-                                        }`}>
-                                        {type}
-                                    </button>
-                                ))}
-                            </div>
-
-                            {/* Sub-level buttons */}
-                            {selectionHierarchy.subLevels.map(
-                                ({ levelName, options }) => {
-                                    const selectedValue =
-                                        getSubLevelValue(levelName);
-                                    const setter = getSetterForLevel(levelName);
-                                    return (
-                                        <div
-                                            key={levelName}
-                                            className='flex rounded overflow-hidden border border-ink'>
-                                            {options.map(option => (
-                                                <button
-                                                    key={option}
-                                                    onClick={() =>
-                                                        setter(option)
-                                                    }
-                                                    className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 transition-colors ${
-                                                        selectedValue === option
-                                                            ? "bg-sand-4 text-sand-1 font-semibold"
-                                                            : "bg-sand-1 text-ink hover:bg-sand-2"
-                                                    }`}>
-                                                    {option}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    );
-                                },
-                            )}
-
-                            {/* Position buttons */}
-                            {selectionHierarchy.positions.length > 0 && (
+                            {/* Controls — centered below fretboard */}
+                            <div className='flex flex-col items-center gap-4 w-full max-w-4xl mx-auto px-4'>
+                                {/* Category buttons */}
                                 <div className='flex rounded overflow-hidden border border-ink'>
-                                    <button
-                                        onClick={() =>
-                                            handlePositionChange("All")
-                                        }
-                                        className={`px-4 py-1.5 text-sm font-medium border-r border-ink transition-colors ${
-                                            selectedPosition === "All"
-                                                ? "bg-sand-4 text-sand-1 font-semibold"
-                                                : "bg-sand-1 text-ink hover:bg-sand-2"
-                                        }`}>
-                                        All
-                                    </button>
-                                    {selectionHierarchy.positions.map(pos => (
+                                    {selectionHierarchy.categories.map(type => (
                                         <button
-                                            key={pos}
+                                            key={type}
                                             onClick={() =>
-                                                handlePositionChange(pos)
+                                                handleCategoryChange(type)
                                             }
-                                            className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 leading-snug transition-colors ${
-                                                selectedPosition === pos
+                                            className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 transition-colors ${
+                                                selectedCategory === type
                                                     ? "bg-sand-4 text-sand-1 font-semibold"
                                                     : "bg-sand-1 text-ink hover:bg-sand-2"
                                             }`}>
-                                            {selectionHierarchy.finalFormulas?.[
-                                                pos
-                                            ]?.name || pos}
+                                            {type}
                                         </button>
                                     ))}
                                 </div>
-                            )}
 
-                            {/* Alternate positions */}
-                            {availableAlts.length > 1 && (
-                                <div className='flex flex-col items-center gap-1'>
-                                    <span className='text-xs font-semibold text-ink'>
-                                        Alternate Positions
-                                    </span>
-                                    <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                {/* Sub-level buttons */}
+                                {selectionHierarchy.subLevels.map(
+                                    ({ levelName, options }) => {
+                                        const selectedValue =
+                                            getSubLevelValue(levelName);
+                                        const setter =
+                                            getSetterForLevel(levelName);
+                                        return (
+                                            <div
+                                                key={levelName}
+                                                className='flex rounded overflow-hidden border border-ink'>
+                                                {options.map(option => (
+                                                    <button
+                                                        key={option}
+                                                        onClick={() =>
+                                                            setter(option)
+                                                        }
+                                                        className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 transition-colors ${
+                                                            selectedValue ===
+                                                            option
+                                                                ? "bg-sand-4 text-sand-1 font-semibold"
+                                                                : "bg-sand-1 text-ink hover:bg-sand-2"
+                                                        }`}>
+                                                        {option}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        );
+                                    },
+                                )}
+
+                                {/* Position buttons */}
+                                {selectionHierarchy.positions.length > 0 && (
+                                    <div className='flex rounded overflow-hidden border border-ink'>
                                         <button
-                                            onClick={goPrevAlt}
-                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
-                                            <ChevronLeft />
+                                            onClick={() =>
+                                                handlePositionChange("All")
+                                            }
+                                            className={`px-4 py-1.5 text-sm font-medium border-r border-ink transition-colors ${
+                                                selectedPosition === "All"
+                                                    ? "bg-sand-4 text-sand-1 font-semibold"
+                                                    : "bg-sand-1 text-ink hover:bg-sand-2"
+                                            }`}>
+                                            All
                                         </button>
-                                        <span className='px-3 text-sm font-bold text-ink'>
-                                            {selectedAltShape + 1}/
-                                            {availableAlts.length}
-                                        </span>
-                                        <button
-                                            onClick={goNextAlt}
-                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
-                                            <ChevronRight />
-                                        </button>
+                                        {selectionHierarchy.positions.map(
+                                            pos => (
+                                                <button
+                                                    key={pos}
+                                                    onClick={() =>
+                                                        handlePositionChange(
+                                                            pos,
+                                                        )
+                                                    }
+                                                    className={`px-4 py-1.5 text-sm font-medium border-r border-ink last:border-r-0 leading-snug transition-colors ${
+                                                        selectedPosition === pos
+                                                            ? "bg-sand-4 text-sand-1 font-semibold"
+                                                            : "bg-sand-1 text-ink hover:bg-sand-2"
+                                                    }`}>
+                                                    {selectionHierarchy
+                                                        .finalFormulas?.[pos]
+                                                        ?.name || pos}
+                                                </button>
+                                            ),
+                                        )}
                                     </div>
+                                )}
+
+                                {/* Alternate positions */}
+                                {availableAlts.length > 1 && (
+                                    <div className='flex flex-col items-center gap-1'>
+                                        <span className='text-xs font-semibold text-ink'>
+                                            Alternate Positions
+                                        </span>
+                                        <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                            <button
+                                                onClick={goPrevAlt}
+                                                className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
+                                                <ChevronLeft />
+                                            </button>
+                                            <span className='px-3 text-sm font-bold text-ink'>
+                                                {selectedAltShape + 1}/
+                                                {availableAlts.length}
+                                            </span>
+                                            <button
+                                                onClick={goNextAlt}
+                                                className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
+                                                <ChevronRight />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Chord label + New Chord */}
+                                <div className='flex flex-col items-center gap-3 bg-sand-4 border border-ink rounded-2xl px-10 py-4'>
+                                    <span className='text-2xl font-semibold text-sand-1'>
+                                        {chordLabel}
+                                    </span>
+                                    <button
+                                        onClick={handleGenerateNewRoot}
+                                        className='px-6 py-2 bg-ink text-sand-1 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity'>
+                                        New Chord
+                                    </button>
                                 </div>
-                            )}
 
-                            {/* Chord label + New Chord */}
-                            <div className='flex flex-col items-center gap-3 bg-sand-4 border border-ink rounded-2xl px-10 py-4'>
-                                <span className='text-2xl font-semibold text-sand-1'>
-                                    {chordLabel}
-                                </span>
-                                <button
-                                    onClick={handleGenerateNewRoot}
-                                    className='px-6 py-2 bg-ink text-sand-1 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity'>
-                                    New Chord
-                                </button>
+                                {/* Shuffle + Handedness + Notes/Intervals */}
+                                <div className='flex items-center gap-6'>
+                                    <button
+                                        onClick={() =>
+                                            setShuffleChecked(s => !s)
+                                        }
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
+                                            shuffleChecked
+                                                ? "bg-ink text-sand-1 border-ink"
+                                                : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
+                                        }`}>
+                                        <ShuffleIcon active={shuffleChecked} />
+                                        Shuffle
+                                    </button>
+                                    <button
+                                        onClick={() => setIsRight(h => !h)}
+                                        className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        {isRight ? "Right hand" : "Left hand"}
+                                    </button>
+                                    <NotesIntervalsToggle
+                                        showIntervals={showIntervals}
+                                        onToggle={setShowIntervals}
+                                    />
+                                </div>
                             </div>
-
-                            {/* Shuffle + Handedness + Notes/Intervals */}
-                            <div className='flex items-center gap-6'>
-                                <button
-                                    onClick={() => setShuffleChecked(s => !s)}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
-                                        shuffleChecked
-                                            ? "bg-ink text-sand-1 border-ink"
-                                            : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
-                                    }`}>
-                                    <ShuffleIcon active={shuffleChecked} />
-                                    Shuffle
-                                </button>
-                                <button
-                                    onClick={() => setIsRight(h => !h)}
-                                    className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                    {isRight ? "Right hand" : "Left hand"}
-                                </button>
-                                <NotesIntervalsToggle
-                                    showIntervals={showIntervals}
-                                    onToggle={setShowIntervals}
-                                />
-                            </div>
+                            {/* end controls wrapper */}
                         </div>
                     </>
                 )}
