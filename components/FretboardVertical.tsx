@@ -1,138 +1,222 @@
-import { spellInterval, spellNote } from '@/lib/ChordSpelling';
-import * as React from 'react';
-import type { NotePosition } from '@/lib/fretboardMap';
+import { spellInterval, spellNote } from "@/lib/ChordSpelling";
+import * as React from "react";
+import type { NotePosition } from "@/lib/fretboardMap";
 
 type Props = {
-  chordShape: NotePosition[];
-  rootNote: string;
-  showIntervals?: boolean;
-  numFrets?: number;
-  numStrings?: number;
-  interactive?: boolean;
-  onTogglePosition?: (pos: { string: number; fret: number }) => void;
-  handedness?: 'left' | 'right';
+    chordShape: NotePosition[];
+    rootNote: string;
+    showIntervals?: boolean;
+    numFrets?: number;
+    numStrings?: number;
+    interactive?: boolean;
+    onTogglePosition?: (pos: { string: number; fret: number }) => void;
+    handedness?: "left" | "right";
 };
 
 const FretboardVertical = ({
-  chordShape,
-  rootNote,
-  showIntervals = false,
-  numFrets = 24,
-  numStrings = 6,
-  interactive = false,
-  onTogglePosition,
-  handedness = 'right',
+    chordShape,
+    rootNote,
+    showIntervals = false,
+    numFrets = 24,
+    numStrings = 6,
+    interactive = false,
+    onTogglePosition,
+    handedness = "right",
 }: Props) => {
-  const padX = 30;
-  const padY = 40;
-  const fretHeight = 70;
-  const stringSpacing = 45;
-  const diagramWidth = stringSpacing * (numStrings - 1) + padX * 2;
-  const diagramHeight = fretHeight * numFrets + padY + 15;
+    const padX = 30;
+    const padY = 40;
+    const fretHeight = 70;
+    const stringSpacing = 45;
+    const diagramWidth = stringSpacing * (numStrings - 1) + padX * 2;
+    const diagramHeight = fretHeight * numFrets + padY + 15;
 
-  const singleDotFrets = [3, 5, 7, 9, 15, 17, 19, 21];
-  const doubleDotFrets = [12, 24];
+    const singleDotFrets = [3, 5, 7, 9, 15, 17, 19, 21];
+    const doubleDotFrets = [12, 24];
 
-  const selectedKeys = React.useMemo(
-    () => new Set(chordShape.map(p => `${p.string}:${p.fret}`)),
-    [chordShape]
-  );
+    const selectedKeys = React.useMemo(
+        () => new Set(chordShape.map(p => `${p.string}:${p.fret}`)),
+        [chordShape],
+    );
 
-  const xForString = React.useCallback(
-    (s: number) =>
-      (handedness === 'right' ? numStrings - 1 - s : s) * stringSpacing + padX,
-    [handedness, numStrings]
-  );
-  const yForFretLine = (i: number) => i * fretHeight + padY;
-  const yForFretMark = (f: number) => (f - 1) * fretHeight + padY + fretHeight / 2;
-  const openY = padY - 18;
+    const xForString = React.useCallback(
+        (s: number) =>
+            (handedness === "right" ? numStrings - 1 - s : s) * stringSpacing +
+            padX,
+        [handedness, numStrings],
+    );
+    const yForFretLine = (i: number) => i * fretHeight + padY;
+    const yForFretMark = (f: number) =>
+        (f - 1) * fretHeight + padY + fretHeight / 2;
+    const openY = padY - 18;
 
-  return (
-    <div className="h-[80dvh] w-full overflow-y-auto no-scrollbar">
-      <svg
-        style={{ display: 'block', height: diagramHeight, shapeRendering: 'crispEdges', WebkitTapHighlightColor: 'transparent', width: '100%' }}
-        viewBox={`0 0 ${diagramWidth} ${diagramHeight}`}
-      >
-        {/* Frets */}
-        {[...Array(numFrets + 1)].map((_, i) => (
-          <line key={`fret-${i}`} x1={padX} y1={yForFretLine(i)} x2={diagramWidth - padX} y2={yForFretLine(i)} stroke="#39434b" strokeWidth={i === 0 ? 5 : 1.5} />
-        ))}
+    return (
+        <div className='h-[80dvh] w-full overflow-y-auto no-scrollbar'>
+            <svg
+                style={{
+                    display: "block",
+                    height: diagramHeight,
+                    shapeRendering: "crispEdges",
+                    WebkitTapHighlightColor: "transparent",
+                    width: "100%",
+                }}
+                viewBox={`0 0 ${diagramWidth} ${diagramHeight}`}>
+                {/* Frets */}
+                {[...Array(numFrets + 1)].map((_, i) => (
+                    <line
+                        key={`fret-${i}`}
+                        x1={padX}
+                        y1={yForFretLine(i)}
+                        x2={diagramWidth - padX}
+                        y2={yForFretLine(i)}
+                        stroke='#39434b'
+                        strokeWidth={i === 0 ? 5 : 1.5}
+                    />
+                ))}
 
-        {/* Strings */}
-        {[...Array(numStrings)].map((_, i) => (
-          <line key={`string-${i}`} x1={xForString(i)} y1={padY} x2={xForString(i)} y2={diagramHeight - 15} stroke="#39434b" strokeWidth={1.5} />
-        ))}
+                {/* Strings */}
+                {[...Array(numStrings)].map((_, i) => (
+                    <line
+                        key={`string-${i}`}
+                        x1={xForString(i)}
+                        y1={padY}
+                        x2={xForString(i)}
+                        y2={diagramHeight - 15}
+                        stroke='#39434b'
+                        strokeWidth={1.5}
+                    />
+                ))}
 
-        {/* Single fret markers */}
-        {singleDotFrets.map(
-          fret => fret <= numFrets && (
-            <circle key={`marker-${fret}`} cx={diagramWidth / 2} cy={yForFretMark(fret)} r={8} fill="#A59D84" />
-          )
-        )}
+                {/* Single fret markers */}
+                {singleDotFrets.map(
+                    fret =>
+                        fret <= numFrets && (
+                            <circle
+                                key={`marker-${fret}`}
+                                cx={diagramWidth / 2}
+                                cy={yForFretMark(fret)}
+                                r={8}
+                                fill='#A59D84'
+                            />
+                        ),
+                )}
 
-        {/* Double fret markers */}
-        {doubleDotFrets.map(
-          fret => fret <= numFrets && (
-            <g key={`marker-double-${fret}`}>
-              <circle cx={diagramWidth / 3.03 + 4} cy={yForFretMark(fret)} r={8} fill="#A59D84" />
-              <circle cx={(diagramWidth * 1.97) / 3} cy={yForFretMark(fret)} r={8} fill="#A59D84" />
-            </g>
-          )
-        )}
+                {/* Double fret markers */}
+                {doubleDotFrets.map(
+                    fret =>
+                        fret <= numFrets && (
+                            <g key={`marker-double-${fret}`}>
+                                <circle
+                                    cx={diagramWidth / 3.03 + 4}
+                                    cy={yForFretMark(fret)}
+                                    r={8}
+                                    fill='#A59D84'
+                                />
+                                <circle
+                                    cx={(diagramWidth * 1.97) / 3}
+                                    cy={yForFretMark(fret)}
+                                    r={8}
+                                    fill='#A59D84'
+                                />
+                            </g>
+                        ),
+                )}
 
-        {/* Notes */}
-        {chordShape.map((pos, index) => {
-          const { string, fret, semitones, degree } = pos;
-          if (fret === null || fret === undefined || fret < 0 || fret > numFrets) return null;
-          const isRoot = semitones === 0;
-          const label = showIntervals
-            ? spellInterval(rootNote, semitones!, degree!)
-            : spellNote(rootNote, semitones!, degree!);
-          const x = xForString(string);
-          const y = yForFretMark(fret);
-          const fontSize = label.includes('bb') || label.includes('##') ? 13 : 16;
+                {/* Notes */}
+                {chordShape.map((pos, index) => {
+                    const { string, fret, semitones, degree } = pos;
+                    if (
+                        fret === null ||
+                        fret === undefined ||
+                        fret < 0 ||
+                        fret > numFrets
+                    )
+                        return null;
+                    const isRoot = semitones === 0;
+                    const label = showIntervals
+                        ? spellInterval(rootNote, semitones!, degree!)
+                        : spellNote(rootNote, semitones!, degree!);
+                    const x = xForString(string);
+                    const y = yForFretMark(fret);
+                    const fontSize =
+                        label.includes("bb") || label.includes("##") ? 13 : 16;
 
-          if (fret === 0) {
-            return (
-              <g key={`note-${index}`}>
-                <circle cx={x} cy={openY} r={14} fill="transparent" stroke={isRoot ? '#D32F2F' : '#39434b'} strokeWidth="2" />
-                <text x={x} y={openY} textAnchor="middle" dominantBaseline="central" fontSize={fontSize} fontWeight={600} fill={isRoot ? '#D32F2F' : '#39434b'}>{label}</text>
-              </g>
-            );
-          }
-          return (
-            <g key={`note-${index}`}>
-              <circle cx={x} cy={y} r={16} fill={isRoot ? '#D32F2F' : '#39434b'} />
-              <text x={x} y={y} textAnchor="middle" dominantBaseline="central" fontSize={fontSize} fontWeight={600} fill="#ECEBDE">{label}</text>
-            </g>
-          );
-        })}
+                    if (fret === 0) {
+                        return (
+                            <g key={`note-${index}`}>
+                                <circle
+                                    cx={x}
+                                    cy={openY}
+                                    r={14}
+                                    fill='transparent'
+                                    stroke={isRoot ? "#D32F2F" : "#39434b"}
+                                    strokeWidth='2'
+                                />
+                                <text
+                                    x={x}
+                                    y={openY}
+                                    textAnchor='middle'
+                                    dominantBaseline='central'
+                                    fontSize={fontSize}
+                                    fontWeight={600}
+                                    fill={isRoot ? "#D32F2F" : "#39434b"}>
+                                    {label}
+                                </text>
+                            </g>
+                        );
+                    }
+                    return (
+                        <g key={`note-${index}`}>
+                            <circle
+                                cx={x}
+                                cy={y}
+                                r={16}
+                                fill={isRoot ? "#D32F2F" : "#39434b"}
+                            />
+                            <text
+                                x={x}
+                                y={y}
+                                textAnchor='middle'
+                                dominantBaseline='central'
+                                fontSize={fontSize}
+                                fontWeight={600}
+                                fill='#ECEBDE'>
+                                {label}
+                            </text>
+                        </g>
+                    );
+                })}
 
-        {/* Interactive hit layer */}
-        {interactive && (
-          <g aria-label="note-hit-layer">
-            {[...Array(numStrings)].map((_, s) =>
-              [...Array(numFrets + 1)].map((_, f) => {
-                const x = xForString(s);
-                const y = f === 0 ? openY : yForFretMark(f);
-                return (
-                  <circle
-                    key={`hit-${s}-${f}`}
-                    cx={x} cy={y}
-                    fill="transparent"
-                    onClick={() => onTogglePosition?.({ string: s, fret: f })}
-                    r={18}
-                    role="button"
-                    style={{ cursor: 'pointer' }}
-                  />
-                );
-              })
-            )}
-          </g>
-        )}
-      </svg>
-    </div>
-  );
+                {/* Interactive hit layer */}
+                {interactive && (
+                    <g aria-label='note-hit-layer'>
+                        {[...Array(numStrings)].map((_, s) =>
+                            [...Array(numFrets + 1)].map((_, f) => {
+                                const x = xForString(s);
+                                const y = f === 0 ? openY : yForFretMark(f);
+                                return (
+                                    <circle
+                                        key={`hit-${s}-${f}`}
+                                        cx={x}
+                                        cy={y}
+                                        fill='transparent'
+                                        onClick={() =>
+                                            onTogglePosition?.({
+                                                string: s,
+                                                fret: f,
+                                            })
+                                        }
+                                        r={18}
+                                        role='button'
+                                        style={{ cursor: "pointer" }}
+                                    />
+                                );
+                            }),
+                        )}
+                    </g>
+                )}
+            </svg>
+        </div>
+    );
 };
 
 export default FretboardVertical;

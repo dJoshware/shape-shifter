@@ -2,56 +2,56 @@
 
 /* ── Brand colours ─────────────────────────────────────────── */
 @theme {
-  /* Sand palette (light → dark) */
-  --color-sand-1: #ECEBDE;
-  --color-sand-2: #D7D3BF;
-  --color-sand-3: #C1BAA1;
-  --color-sand-4: #A59D84;
+    /* Sand palette (light → dark) */
+    --color-sand-1: #ecebde;
+    --color-sand-2: #d7d3bf;
+    --color-sand-3: #c1baa1;
+    --color-sand-4: #a59d84;
 
-  /* Primary "dark blue" used for text, borders, icons */
-  --color-ink: #39434b;
+    /* Primary "dark blue" used for text, borders, icons */
+    --color-ink: #39434b;
 
-  /* Accent colours */
-  --color-root-red: #D32F2F;
-  --color-olive: #626b57;
-  --color-green: #5E6C5B;
+    /* Accent colours */
+    --color-root-red: #d32f2f;
+    --color-olive: #626b57;
+    --color-green: #5e6c5b;
 
-  /* Semantic aliases */
-  --color-bg: var(--color-sand-1);
-  --color-surface: var(--color-sand-4);
-  --color-on-surface: var(--color-sand-1);
-  --color-border: var(--color-ink);
+    /* Semantic aliases */
+    --color-bg: var(--color-sand-1);
+    --color-surface: var(--color-sand-4);
+    --color-on-surface: var(--color-sand-1);
+    --color-border: var(--color-ink);
 
-  /* Font */
-  --font-montserrat: 'Montserrat', sans-serif;
+    /* Font */
+    --font-montserrat: "Montserrat", sans-serif;
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
 html,
 body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  background-color: var(--color-sand-1);
-  color: var(--color-ink);
-  font-family: var(--font-montserrat), sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-sand-1);
+    color: var(--color-ink);
+    font-family: var(--font-montserrat), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── Autofill styling ───────────────────────────────────────── */
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px var(--color-sand-4) inset !important;
-  -webkit-text-fill-color: var(--color-ink) !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--color-sand-4) inset !important;
+    -webkit-text-fill-color: var(--color-ink) !important;
 }
 
 /* ── Scrollbar (vertical fretboard) ────────────────────────── */
 .no-scrollbar {
-  scrollbar-width: none;
+    scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
