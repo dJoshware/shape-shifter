@@ -32,11 +32,7 @@ const FretboardHorizontal = ({
 
     const singleDotFrets = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleDotFrets = [12, 24];
-
-    const selectedKeys = React.useMemo(
-        () => new Set(chordShape.map(p => `${p.string}:${p.fret}`)),
-        [chordShape],
-    );
+    const labelFrets = [1, 3, 5, 7, 9, 12, 15, 17, 19, 21, 24];
 
     const yForString = React.useCallback(
         (s: number) =>
@@ -115,6 +111,23 @@ const FretboardHorizontal = ({
                                 fill='#A59D84'
                             />
                         </g>
+                    ),
+            )}
+
+            {/* Fret number labels */}
+            {labelFrets.map(
+                fret =>
+                    fret <= numFrets && (
+                        <text
+                            key={`label-${fret}`}
+                            x={xForFretMark(fret)}
+                            y={diagramHeight - 8}
+                            textAnchor='middle'
+                            dominantBaseline='auto'
+                            fontSize={10}
+                            fill='#A59D84'>
+                            {fret}
+                        </text>
                     ),
             )}
 

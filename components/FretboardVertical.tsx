@@ -32,11 +32,35 @@ const FretboardVertical = ({
 
     const singleDotFrets = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleDotFrets = [12, 24];
+    const labelFrets = [1, 3, 5, 7, 9, 12, 15, 17, 19, 21, 24];
 
-    const selectedKeys = React.useMemo(
-        () => new Set(chordShape.map(p => `${p.string}:${p.fret}`)),
-        [chordShape],
-    );
+    const containerRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        const frets = chordShape.map(p => p.fret).filter(f => f > 0);
+        const container = containerRef.current;
+        if (!container) return;
+        if (frets.length === 0) {
+            container.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+        }
+        // Isolate the first shape — a gap of >4 frets between consecutive
+        // notes means we've crossed into a separate (octave-up) voicing.
+        const sorted = [...frets].sort((a, b) => a - b);
+        const firstShape = [sorted[0]];
+        for (let i = 1; i < sorted.length; i++) {
+            if (sorted[i] - sorted[i - 1] > 4) break;
+            firstShape.push(sorted[i]);
+        }
+        const minFret = firstShape[0];
+        const maxFret = firstShape[firstShape.length - 1];
+        const centerY =
+            ((minFret + maxFret) / 2 - 1) * fretHeight + padY + fretHeight / 2;
+        container.scrollTo({
+            top: Math.max(0, centerY - container.clientHeight / 2),
+            behavior: "smooth",
+        });
+    }, [chordShape, fretHeight, padY]);
 
     const xForString = React.useCallback(
         (s: number) =>
@@ -50,7 +74,7 @@ const FretboardVertical = ({
     const openY = padY - 18;
 
     return (
-        <div className='h-[80dvh] w-full overflow-y-auto no-scrollbar'>
+        <div ref={containerRef} className='h-[80dvh] w-full overflow-y-auto no-scrollbar'>
             <svg
                 style={{
                     display: "block",
@@ -118,6 +142,23 @@ const FretboardVertical = ({
                                     fill='#A59D84'
                                 />
                             </g>
+                        ),
+                )}
+
+                {/* Fret number labels */}
+                {labelFrets.map(
+                    fret =>
+                        fret <= numFrets && (
+                            <text
+                                key={`label-${fret}`}
+                                x={14}
+                                y={yForFretMark(fret)}
+                                textAnchor='middle'
+                                dominantBaseline='central'
+                                fontSize={11}
+                                fill='#A59D84'>
+                                {fret}
+                            </text>
                         ),
                 )}
 
