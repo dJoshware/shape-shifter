@@ -74,7 +74,7 @@ const FretboardVertical = ({
     const openY = padY - 18;
 
     return (
-        <div ref={containerRef} className='h-[80dvh] w-full overflow-y-auto no-scrollbar'>
+        <div ref={containerRef} className='h-full w-full overflow-y-auto no-scrollbar'>
             <svg
                 style={{
                     display: "block",

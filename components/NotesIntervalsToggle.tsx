@@ -16,10 +16,11 @@ export default function NotesIntervalsToggle({
                 onClick={() => onToggle(!showIntervals)}
                 className={`
                     sm:hidden
-                    w-10 h-10 flex items-center justify-center
-                    bg-sand-4 border border-ink rounded text-sand-1
-                    ${showIntervals ? "text-2xl" : "text-sm"} font-bold leading-tight
-                    active:opacity-80 transition-opacity
+                    w-9 h-9 flex items-center justify-center
+                    rounded-full border transition-colors
+                    ${showIntervals ? "bg-ink text-sand-1 border-ink" : "text-ink border-ink/40 hover:border-ink"}
+                    ${showIntervals ? "text-xl" : "text-xs"} font-bold leading-tight
+                    active:opacity-80
                     `}
                 title={showIntervals ? "Show note names" : "Show intervals"}>
                 {showIntervals ? "♩" : "ABC"}
