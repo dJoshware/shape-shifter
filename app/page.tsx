@@ -70,11 +70,11 @@ function ChevronRight() {
     );
 }
 
-function ShuffleIcon({ active }: { active: boolean }) {
+function ShuffleIcon() {
     return (
         <svg
             className='w-6 h-6'
-            fill={active ? "currentColor" : "none"}
+            fill="none"
             stroke='currentColor'
             strokeWidth={1.5}
             viewBox='0 0 24 24'>
