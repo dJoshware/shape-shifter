@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { createBrowserClient } from "@supabase/ssr";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useAuth } from "@/lib/contexts/AuthContext";
 import FormFields from "@/components/FormFields";
 import SubmitFeedback from "@/components/SubmitFeedback";
@@ -87,6 +87,8 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
     );
     const { user, signOut, isLoading: authIsLoading } = useAuth();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
 
     // Subscription
     const [hasPro, setHasPro] = React.useState(false);
@@ -134,7 +136,19 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             setDrawerOpen(false);
         }
     };
-    const [paywallOpen, setPaywallOpen] = React.useState(false);
+    const [paywallOpen, setPaywallOpen] = React.useState(
+        () => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("paywall") === "1",
+    );
+
+    // Clear ?paywall=1 from the URL once the modal is open
+    React.useEffect(() => {
+        if (searchParams.get("paywall") === "1") {
+            const params = new URLSearchParams(searchParams.toString());
+            params.delete("paywall");
+            const newUrl = pathname + (params.size ? `?${params}` : "");
+            router.replace(newUrl, { scroll: false });
+        }
+    }, [searchParams, pathname, router]);
     const [plan, setPlan] = React.useState<"monthly" | "yearly">("monthly");
     const [signoutLoading, setSignoutLoading] = React.useState(false);
     const [paywallLoading, setPaywallLoading] = React.useState(false);
@@ -897,11 +911,11 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
 
                             {/* CTA */}
                             <button
-                                disabled={paywallLoading || !user}
+                                disabled={paywallLoading}
                                 onClick={
                                     user
                                         ? handleSubscribe
-                                        : () => router.push("/signin")
+                                        : () => router.push("/signin?redirect=paywall")
                                 }
                                 className='w-full py-3.5 rounded-full bg-sand-1 text-sand-4 text-sm font-bold tracking-wide hover:opacity-90 disabled:opacity-40 transition-all active:scale-95'>
                                 {!user

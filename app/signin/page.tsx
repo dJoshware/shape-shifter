@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/lib/contexts/AuthContext";
 import FormFields from "@/components/FormFields";
 import RecoverPassword from "@/components/RecoverPassword";
@@ -81,6 +81,7 @@ function EyeIcon({ open }: { open: boolean }) {
 
 export default function LoginPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const { user, signIn, isLoading: authIsLoading } = useAuth();
 
     const [email, setEmail] = React.useState("");
@@ -128,8 +129,10 @@ export default function LoginPage() {
     };
 
     React.useEffect(() => {
-        if (user) router.push("/");
-    }, [user, router]);
+        if (!user) return;
+        const redirect = searchParams.get("redirect");
+        router.push(redirect === "paywall" ? "/?paywall=1" : "/");
+    }, [user, router, searchParams]);
 
     if (authIsLoading && !user) {
         return (
