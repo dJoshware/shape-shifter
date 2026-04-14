@@ -2,19 +2,19 @@
 
 /* ── Brand colours ─────────────────────────────────────────── */
 @theme {
-    /* Sand palette (light → dark) */
-    --color-sand-1: #ecebde;
-    --color-sand-2: #d7d3bf;
-    --color-sand-3: #c1baa1;
-    --color-sand-4: #a59d84;
+    /* Slate + Amber palette */
+    --color-sand-1: #f7f7f5;
+    --color-sand-2: #eeeeec;
+    --color-sand-3: #d1d1cc;
+    --color-sand-4: #1f2d3d;
 
-    /* Primary "dark blue" used for text, borders, icons */
-    --color-ink: #39434b;
+    /* Primary text / icons */
+    --color-ink: #1f2d3d;
 
     /* Accent colours */
-    --color-root-red: #d32f2f;
-    --color-olive: #626b57;
-    --color-green: #5e6c5b;
+    --color-root-red: #dc2626;
+    --color-olive: #d97706;
+    --color-green: #b45309;
 
     /* Semantic aliases */
     --color-bg: var(--color-sand-1);
@@ -48,7 +48,7 @@ input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px var(--color-sand-4) inset !important;
-    -webkit-text-fill-color: var(--color-ink) !important;
+    -webkit-text-fill-color: var(--color-sand-1) !important;
 }
 
 /* ── Scrollbar (vertical fretboard) ────────────────────────── */
