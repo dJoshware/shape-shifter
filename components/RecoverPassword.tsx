@@ -52,7 +52,7 @@ export default function RecoverPassword() {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className='relative text-sm font-semibold text-ink underline-offset-4 hover:underline transition-all'>
+                className='relative text-sm font-semibold text-sand-1 underline-offset-4 hover:underline transition-all'>
                 Forgot password?
             </button>
 
@@ -74,7 +74,7 @@ export default function RecoverPassword() {
                                 </label>
                                 <input
                                     autoComplete='email'
-                                    className='w-full bg-sand-3/50 border border-ink/30 rounded-lg px-3 py-2 text-sm text-ink placeholder-ink/40 outline-none focus:border-ink transition-colors'
+                                    className='w-full bg-sand-1/10 border border-sand-1/30 rounded-lg px-3 py-2 text-sm text-sand-1 placeholder-sand-1/40 outline-none focus:border-sand-1 transition-colors'
                                     onChange={e => {
                                         setFormEmail(e.target.value);
                                         setAlert(null);
@@ -107,7 +107,7 @@ export default function RecoverPassword() {
                             <button
                                 disabled={loading}
                                 onClick={handleSubmit}
-                                className='px-5 py-2 rounded-full bg-ink text-sand-1 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
+                                className='px-5 py-2 rounded-full bg-sand-1 text-sand-4 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
                                 {loading ? "Sending…" : "Send link"}
                             </button>
                         </div>

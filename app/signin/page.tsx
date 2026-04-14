@@ -240,7 +240,7 @@ function LoginForm() {
                         <button
                             disabled={loading}
                             type='submit'
-                            className='self-center px-8 py-2 bg-ink text-sand-1 font-bold rounded-full hover:opacity-90 disabled:opacity-50 transition-all'>
+                            className='self-center px-8 py-2 bg-sand-1 text-ink font-bold rounded-full hover:opacity-90 disabled:opacity-50 transition-all'>
                             {loading ? (
                                 <span className='flex items-center gap-2'>
                                     <span className='w-4 h-4 rounded-full border-2 border-sand-1 border-t-transparent animate-spin' />
@@ -255,7 +255,7 @@ function LoginForm() {
                             <RecoverPassword />
                             <Link
                                 href='/create-account'
-                                className='text-sm font-semibold text-ink underline-offset-4 hover:underline transition-all'>
+                                className='text-sm font-semibold text-sand-1 underline-offset-4 hover:underline transition-all'>
                                 Don&apos;t have an account?
                             </Link>
                         </div>

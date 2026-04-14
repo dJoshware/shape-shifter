@@ -2,27 +2,8 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/contexts/AuthContext";
-import FormFields from "@/components/FormFields";
 import createClient from "@/lib/supabaseBrowserClient";
 import { isValidPassword } from "@/lib/API";
-
-function KeyIcon() {
-    return (
-        <svg
-            className='w-4 h-4'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'>
-            <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'
-            />
-        </svg>
-    );
-}
 
 function EyeIcon({ open }: { open: boolean }) {
     return open ? (
@@ -60,88 +41,42 @@ function EyeIcon({ open }: { open: boolean }) {
     );
 }
 
-export default function PasswordResetPage() {
-    const router = useRouter();
-    const supabase = createClient();
-    const { user, isLoading: authIsLoading, session } = useAuth();
+type Stage = "verifying" | "ready" | "expired" | "done";
 
+export default function ResetPasswordPage() {
+    const router = useRouter();
+    const supabase = React.useMemo(() => createClient(), []);
+
+    const [stage, setStage] = React.useState<Stage>("verifying");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [showPassword, setShowPassword] = React.useState(false);
-    const [formError, setFormError] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+    const [formError, setFormError] = React.useState("");
     const [alertMessage, setAlertMessage] = React.useState("");
     const [alertOk, setAlertOk] = React.useState(true);
-    const [isResetComplete, setResetComplete] = React.useState(false);
 
-    const handleShowPassword = () => setShowPassword(s => !s);
-
-    const validateForm = () => {
-        setFormError("");
-        setAlertMessage("");
-        if (!password.trim()) {
-            setFormError("Please enter a password.");
-            return false;
-        }
-        if (!confirmPassword.trim()) {
-            setFormError("Please confirm your password.");
-            return false;
-        }
-        if (password !== confirmPassword) {
-            setFormError("Passwords do not match.");
-            return false;
-        }
-        if (!isValidPassword(confirmPassword)) {
-            setFormError(
-                "Password must be at least 8 characters and include uppercase, lowercase, a number, and a symbol (!@#$%^&-_.?/).",
-            );
-            return false;
-        }
-        return true;
-    };
-
-    const handlePasswordReset = async () => {
-        if (!validateForm()) return;
-        setLoading(true);
-
-        let attempts = 0;
-        while (!session && attempts < 10) {
-            await new Promise(r => setTimeout(r, 300));
-            attempts++;
-        }
-        if (!session) {
-            setLoading(false);
-            setAlertOk(false);
-            setAlertMessage(
-                "Session not found. Please refresh the page and try again.",
-            );
-            return;
-        }
-
-        const { error } = await supabase.auth.updateUser({
-            password: confirmPassword,
+    // Wait for Supabase to exchange the recovery token from the URL hash.
+    // PASSWORD_RECOVERY fires once the session is established from the link.
+    React.useEffect(() => {
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange(event => {
+            if (event === "PASSWORD_RECOVERY") {
+                setStage("ready");
+            }
         });
 
-        if (error) {
-            setLoading(false);
-            setAlertOk(false);
-            setAlertMessage(
-                error.message ||
-                    "Could not update your password. Please try again.",
-            );
-        } else {
-            localStorage.setItem("passwordResetDone", "true");
-            setLoading(false);
-            setAlertOk(true);
-            setAlertMessage(
-                "Password successfully updated! Returning to practice…",
-            );
-            setResetComplete(true);
-            setTimeout(() => {
-                if (window.opener) window.close();
-            }, 3000);
-        }
-    };
+        // If no recovery event within 10 s the link is expired or invalid
+        const timer = setTimeout(() => {
+            setStage(s => (s === "verifying" ? "expired" : s));
+        }, 10_000);
+
+        return () => {
+            subscription.unsubscribe();
+            clearTimeout(timer);
+        };
+    }, [supabase]);
 
     React.useEffect(() => {
         if (confirmPassword.length > 0) {
@@ -153,113 +88,192 @@ export default function PasswordResetPage() {
         }
     }, [password, confirmPassword]);
 
-    if (authIsLoading && !user) {
-        return (
-            <div className='flex-1 flex items-center justify-center'>
-                <div className='w-8 h-8 rounded-full border-4 border-ink border-t-transparent animate-spin' />
-            </div>
-        );
-    }
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setAlertMessage("");
 
-    if (isResetComplete) {
-        return (
-            <div className='flex-1 flex flex-col items-center justify-center gap-4'>
-                {alertMessage && (
-                    <div className='rounded-lg px-4 py-2 text-sm font-semibold bg-green/20 text-green border border-green/40'>
-                        {alertMessage}
-                    </div>
-                )}
-                <button
-                    onClick={() => {
-                        localStorage.removeItem("passwordResetDone");
-                        window.close();
-                    }}
-                    className='px-6 py-2 bg-ink text-sand-1 font-bold rounded-full hover:opacity-90 transition-opacity'>
-                    Close this window
-                </button>
-            </div>
-        );
-    }
+        if (!isValidPassword(password)) {
+            setFormError(
+                "Password must be 8+ characters with uppercase, lowercase, a number, and a special character (!@#$%^&_.?/-).",
+            );
+            return;
+        }
+        if (password !== confirmPassword) {
+            setFormError("Passwords do not match.");
+            return;
+        }
 
-    const passwordError = /password/i.test(formError);
+        setLoading(true);
+        const { error } = await supabase.auth.updateUser({ password });
+        setLoading(false);
+
+        if (error) {
+            setAlertOk(false);
+            setAlertMessage(
+                error.message ||
+                    "Could not update your password. Please try again.",
+            );
+        } else {
+            localStorage.setItem("passwordResetDone", "true");
+            setStage("done");
+            await new Promise(r => setTimeout(r, 2000));
+            localStorage.removeItem("passwordResetDone");
+            router.push("/signin");
+        }
+    };
 
     return (
         <div className='flex-1 grid place-items-center px-4 py-8'>
             <div className='w-full max-w-sm'>
                 <div className='bg-sand-4 rounded-2xl shadow-xl p-6 sm:p-8 flex flex-col gap-5 text-center'>
-                    <h3 className='text-2xl font-bold text-sand-1'>
-                        Reset your password
-                    </h3>
+                    <span className='text-2xl font-bold text-sand-1'>
+                        The Shape Shifter
+                    </span>
 
-                    <div className='flex flex-col gap-4'>
-                        <FormFields
-                            label='New password'
-                            onChange={e => {
-                                setPassword(e.target.value);
-                                setAlertMessage("");
-                            }}
-                            startAdornment={<KeyIcon />}
-                            endAdornment={
-                                <button
-                                    type='button'
-                                    onClick={handleShowPassword}
-                                    className='text-ink/50 hover:text-ink transition-colors'>
-                                    <EyeIcon open={showPassword} />
-                                </button>
-                            }
-                            type={showPassword ? "text" : "password"}
-                            value={password}
-                        />
+                    {/* Verifying */}
+                    {stage === "verifying" && (
+                        <div className='flex flex-col items-center gap-3 py-4'>
+                            <div className='w-8 h-8 rounded-full border-4 border-sand-1/20 border-t-sand-1 animate-spin' />
+                            <p className='text-sm text-sand-1/60'>
+                                Verifying your link…
+                            </p>
+                        </div>
+                    )}
 
-                        <FormFields
-                            error={passwordError}
-                            helperText={passwordError ? formError : ""}
-                            label='Confirm New Password'
-                            onChange={e => {
-                                setConfirmPassword(e.target.value);
-                                setAlertMessage("");
-                            }}
-                            startAdornment={<KeyIcon />}
-                            endAdornment={
-                                <button
-                                    type='button'
-                                    onClick={handleShowPassword}
-                                    className='text-ink/50 hover:text-ink transition-colors'>
-                                    <EyeIcon open={showPassword} />
-                                </button>
-                            }
-                            type={showPassword ? "text" : "password"}
-                            value={confirmPassword}
-                        />
-
-                        {alertMessage && (
-                            <div
-                                className={`rounded-lg px-3 py-2 text-sm font-semibold ${alertOk ? "bg-green/20 text-green border border-green/40" : "bg-red-100 text-red-700 border border-red-300"}`}>
-                                {alertMessage}
+                    {/* Expired / invalid */}
+                    {stage === "expired" && (
+                        <div className='flex flex-col gap-4'>
+                            <div className='rounded-lg px-4 py-3 bg-red-900/40 border border-red-600/30 text-red-300 text-sm'>
+                                This link has expired or is invalid. Please
+                                request a new one from the sign-in page.
                             </div>
-                        )}
-
-                        <div className='flex justify-center gap-4 mt-2'>
                             <button
-                                onClick={() => router.push("/")}
-                                className='px-6 py-2 bg-sand-2 text-ink font-bold rounded-full hover:bg-sand-3 transition-colors'>
-                                Cancel
-                            </button>
-                            <button
-                                disabled={loading}
-                                onClick={handlePasswordReset}
-                                className='px-6 py-2 bg-ink text-sand-1 font-bold rounded-full hover:opacity-90 disabled:opacity-50 transition-all'>
-                                {loading ? (
-                                    <span className='flex items-center gap-2'>
-                                        <span className='w-4 h-4 rounded-full border-2 border-sand-1 border-t-transparent animate-spin' />
-                                        Saving…
-                                    </span>
-                                ) : (
-                                    "Save"
-                                )}
+                                onClick={() => router.push("/signin")}
+                                className='self-center px-8 py-2 bg-sand-1 text-sand-4 font-bold rounded-full hover:opacity-90 transition-all'>
+                                Back to sign in
                             </button>
                         </div>
-                    </div>
+                    )}
+
+                    {/* Ready — show form */}
+                    {stage === "ready" && (
+                        <>
+                            <p className='text-sm text-sand-1/60 -mt-2'>
+                                Choose a new password for your account.
+                            </p>
+
+                            <form
+                                onSubmit={handleSubmit}
+                                className='flex flex-col gap-4 text-left'>
+                                {/* New password */}
+                                <div className='flex flex-col gap-1'>
+                                    <label className='text-xs font-semibold text-sand-1/80'>
+                                        New password
+                                    </label>
+                                    <div className='flex items-center border-b-2 border-sand-1/40 focus-within:border-sand-1 transition-colors'>
+                                        <input
+                                            autoComplete='new-password'
+                                            className='flex-1 bg-transparent text-sand-1 placeholder-sand-1/40 text-sm py-2 px-1 outline-none'
+                                            onChange={e => {
+                                                setPassword(e.target.value);
+                                                setAlertMessage("");
+                                            }}
+                                            placeholder='New password'
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            value={password}
+                                        />
+                                        <button
+                                            type='button'
+                                            onClick={() =>
+                                                setShowPassword(s => !s)
+                                            }
+                                            className='pl-1 text-sand-1/50 hover:text-sand-1 transition-colors'>
+                                            <EyeIcon open={showPassword} />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Confirm password */}
+                                <div className='flex flex-col gap-1'>
+                                    <label className='text-xs font-semibold text-sand-1/80'>
+                                        Confirm password
+                                    </label>
+                                    <div className='flex items-center border-b-2 border-sand-1/40 focus-within:border-sand-1 transition-colors duration-150'>
+                                        <input
+                                            autoComplete='new-password'
+                                            className='flex-1 bg-transparent text-sand-1 placeholder-sand-1/40 text-sm py-2 px-1 outline-none'
+                                            onChange={e => {
+                                                setConfirmPassword(
+                                                    e.target.value,
+                                                );
+                                                setAlertMessage("");
+                                            }}
+                                            placeholder='Confirm password'
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            value={confirmPassword}
+                                        />
+                                    </div>
+                                    {formError && (
+                                        <p className='text-xs mt-0.5 text-red-400'>
+                                            {formError}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {alertMessage && (
+                                    <div
+                                        className={`rounded-lg px-3 py-2 text-sm font-semibold ${alertOk ? "bg-green/20 text-green border border-green/40" : "bg-red-900/40 text-red-300 border border-red-600/30"}`}>
+                                        {alertMessage}
+                                    </div>
+                                )}
+
+                                <button
+                                    disabled={loading}
+                                    type='submit'
+                                    className='self-center px-8 py-2 bg-sand-1 text-sand-4 font-bold rounded-full hover:opacity-90 disabled:opacity-50 transition-all'>
+                                    {loading ? (
+                                        <span className='flex items-center gap-2'>
+                                            <span className='w-4 h-4 rounded-full border-2 border-sand-4 border-t-transparent animate-spin' />
+                                            Saving…
+                                        </span>
+                                    ) : (
+                                        "Set new password"
+                                    )}
+                                </button>
+                            </form>
+                        </>
+                    )}
+
+                    {/* Done */}
+                    {stage === "done" && (
+                        <div className='flex flex-col items-center gap-3 py-4'>
+                            <div className='w-10 h-10 rounded-full bg-olive/20 border border-olive/40 flex items-center justify-center'>
+                                <svg
+                                    className='w-5 h-5 text-olive'
+                                    viewBox='0 0 24 24'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    strokeWidth={2.5}>
+                                    <path
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                        d='M5 13l4 4L19 7'
+                                    />
+                                </svg>
+                            </div>
+                            <p className='text-sm text-sand-1/80'>
+                                Password updated! Redirecting to sign in…
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
