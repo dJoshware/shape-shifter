@@ -424,7 +424,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
     return (
         <>
             {/* ── AppBar ────────────────────────────────────────── */}
-            <header className='relative flex items-center px-4 sm:px-8 pt-4 sm:pt-5 pb-2 sm:pb-3'>
+            <header className='relative flex items-center px-4 sm:px-8 sm:pt-5 pb-2 sm:pb-3'>
                 {/* Left slot (mobile: level picker; desktop: spacer) */}
                 <div className='flex-1'>
                     {/* Mobile: compact dropdown button */}
