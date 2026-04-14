@@ -426,15 +426,13 @@ export default function Home() {
                 onDifficultyChange={handleDifficultyChange}
             />
 
-            <main className='flex-1'>
+            <main className='flex-1 min-h-0 flex flex-col'>
                 {isDrawMode ? (
                     <DrawMode />
                 ) : (
                     <>
                         {/* ── MOBILE layout (max-sm) ───────────────────────────────── */}
-                        <div
-                            className='sm:hidden flex flex-col'
-                            style={{ height: "calc(100dvh - 3.75rem)" }}>
+                        <div className='sm:hidden flex-1 min-h-0 flex flex-col'>
                             {/* Chord name */}
                             <div className='shrink-0 text-center pt-3 pb-2 px-4'>
                                 <span className='text-3xl font-bold text-ink tracking-tight'>
