@@ -79,7 +79,7 @@ function EyeIcon({ open }: { open: boolean }) {
     );
 }
 
-export default function LoginPage() {
+function LoginForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { user, signIn, isLoading: authIsLoading } = useAuth();
@@ -267,5 +267,13 @@ export default function LoginPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <React.Suspense>
+            <LoginForm />
+        </React.Suspense>
     );
 }

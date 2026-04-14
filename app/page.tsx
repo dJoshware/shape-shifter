@@ -421,10 +421,12 @@ export default function Home() {
     // ─────────────────────────────────────────────────────────────────────────
     return (
         <>
-            <Header
-                difficulty={difficulty}
-                onDifficultyChange={handleDifficultyChange}
-            />
+            <React.Suspense>
+                <Header
+                    difficulty={difficulty}
+                    onDifficultyChange={handleDifficultyChange}
+                />
+            </React.Suspense>
 
             <main className='flex-1 min-h-0 flex flex-col'>
                 {isDrawMode ? (
