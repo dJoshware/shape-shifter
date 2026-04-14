@@ -139,6 +139,19 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
     const [signoutLoading, setSignoutLoading] = React.useState(false);
     const [paywallLoading, setPaywallLoading] = React.useState(false);
     const [paywallAlert, setPaywallAlert] = React.useState("");
+    const [prices, setPrices] = React.useState<{
+        monthly: string | null;
+        yearly: string | null;
+    }>({ monthly: null, yearly: null });
+
+    React.useEffect(() => {
+        fetch("/api/prices")
+            .then(r => r.json())
+            .then(d => {
+                if (d.monthly || d.yearly) setPrices(d);
+            })
+            .catch(() => {});
+    }, []);
 
     // Email update
     const [email, setEmail] = React.useState("");
@@ -783,45 +796,106 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
 
             {/* ── Paywall Modal ─────────────────────────────────── */}
             {paywallOpen && (
-                <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4'>
-                    <div className='w-full max-w-md bg-sand-4 rounded-2xl shadow-2xl overflow-hidden'>
-                        <div className='px-6 py-5 border-b border-ink/20'>
-                            <h2 className='text-xl font-bold text-sand-1 text-center'>
-                                Unlock Pro Access
+                <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4'>
+                    <div className='w-full max-w-sm bg-sand-4 rounded-3xl shadow-2xl overflow-hidden'>
+                        {/* Hero */}
+                        <div className='px-6 pt-7 pb-5 flex flex-col items-center gap-2 border-b border-sand-1/10'>
+                            {/* Badge */}
+                            <span className='inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-olive/20 border border-olive/40 text-olive text-xs font-bold tracking-wide uppercase'>
+                                <svg
+                                    className='w-3 h-3'
+                                    viewBox='0 0 24 24'
+                                    fill='currentColor'>
+                                    <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
+                                </svg>
+                                Pro
+                            </span>
+
+                            <h2 className='text-2xl font-bold text-sand-1 text-center leading-tight'>
+                                Unlock your full
+                                <br />
+                                fretboard
                             </h2>
-                            <p className='text-sm text-sand-1/70 text-center mt-1'>
-                                Get Advanced voicings and Draw Mode
+                            <p className='text-sm text-sand-1/60 text-center'>
+                                Everything a serious guitarist needs
                             </p>
                         </div>
 
-                        <div className='px-6 py-5 flex flex-col gap-4'>
-                            {/* Plan toggle */}
-                            <div className='flex rounded-xl overflow-hidden border border-ink/30'>
-                                {(["monthly", "yearly"] as const).map(p => (
-                                    <button
-                                        key={p}
-                                        onClick={() => setPlan(p)}
-                                        className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${plan === p ? "bg-sand-1 text-sand-4" : "text-sand-1/60 hover:bg-sand-1/10"}`}>
-                                        {p === "monthly"
-                                            ? "Monthly"
-                                            : "Yearly (save 20%)"}
-                                    </button>
-                                ))}
+                        {/* Features */}
+                        <ul className='px-6 py-4 flex flex-col gap-2.5'>
+                            {[
+                                "Advanced chord voicings",
+                                "Draw Mode — build any shape",
+                                "All string sets & positions",
+                                "New shapes added regularly",
+                            ].map(f => (
+                                <li
+                                    key={f}
+                                    className='flex items-center gap-3'>
+                                    <span className='shrink-0 w-5 h-5 rounded-full bg-olive/20 border border-olive/40 flex items-center justify-center'>
+                                        <svg
+                                            className='w-3 h-3 text-olive'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            strokeWidth={3}>
+                                            <path
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                                d='M5 13l4 4L19 7'
+                                            />
+                                        </svg>
+                                    </span>
+                                    <span className='text-sm text-sand-1/80 font-medium'>
+                                        {f}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/* Plan toggle */}
+                        <div className='px-6 pb-4 flex flex-col gap-3'>
+                            {/* Badge sits above the toggle, not clipped by overflow-hidden */}
+                            <div className='flex'>
+                                <div className='flex-1' />
+                                <div className='flex-1 flex justify-center'>
+                                    <span className='px-2 py-0.5 rounded-full bg-olive text-sand-1 text-[9px] font-bold leading-tight whitespace-nowrap'>
+                                        SAVE 20%
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='flex rounded-xl overflow-hidden border border-sand-1/20 bg-sand-1/5'>
+                                <button
+                                    onClick={() => setPlan("monthly")}
+                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-sm font-semibold transition-colors rounded-l-xl ${plan === "monthly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
+                                    <span>Monthly</span>
+                                    {prices.monthly && (
+                                        <span
+                                            className={`text-xs font-medium ${plan === "monthly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
+                                            {prices.monthly}/mo
+                                        </span>
+                                    )}
+                                </button>
+                                <button
+                                    onClick={() => setPlan("yearly")}
+                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-sm font-semibold transition-colors rounded-r-xl ${plan === "yearly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
+                                    <span>Yearly</span>
+                                    {prices.yearly && (
+                                        <span
+                                            className={`text-xs font-medium ${plan === "yearly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
+                                            {prices.yearly}/yr
+                                        </span>
+                                    )}
+                                </button>
                             </div>
 
                             {paywallAlert && (
-                                <p className='rounded-lg px-3 py-2 text-xs font-semibold bg-red-100 text-red-700 border border-red-300'>
+                                <p className='rounded-lg px-3 py-2 text-xs font-semibold bg-red-900/40 text-red-300 border border-red-600/30'>
                                     {paywallAlert}
                                 </p>
                             )}
-                        </div>
 
-                        <div className='flex gap-3 px-6 pb-5'>
-                            <button
-                                onClick={() => setPaywallOpen(false)}
-                                className='flex-1 py-2.5 rounded-full bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                Maybe later
-                            </button>
+                            {/* CTA */}
                             <button
                                 disabled={paywallLoading || !user}
                                 onClick={
@@ -829,12 +903,20 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                         ? handleSubscribe
                                         : () => router.push("/signin")
                                 }
-                                className='flex-1 py-2.5 rounded-full bg-sand-1 text-sand-4 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
+                                className='w-full py-3.5 rounded-full bg-sand-1 text-sand-4 text-sm font-bold tracking-wide hover:opacity-90 disabled:opacity-40 transition-all active:scale-95'>
                                 {!user
-                                    ? "Sign in first"
+                                    ? "Sign in to continue"
                                     : paywallLoading
                                       ? "Loading…"
-                                      : "Subscribe"}
+                                      : plan === "yearly"
+                                        ? "Start yearly plan"
+                                        : "Start monthly plan"}
+                            </button>
+
+                            <button
+                                onClick={() => setPaywallOpen(false)}
+                                className='w-full text-center text-xs text-sand-1/40 hover:text-sand-1/70 transition-colors py-1'>
+                                Maybe later
                             </button>
                         </div>
                     </div>
