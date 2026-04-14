@@ -515,7 +515,7 @@ export default function Home() {
                             </div>
 
                             {/* Action bar */}
-                            <div className='shrink-0 border-t border-ink/20 bg-sand-1 px-4 py-3 flex items-center gap-3'>
+                            <div className='shrink-0 border-t border-ink/20 bg-sand-1 px-4 pt-2 pb-4 flex items-center gap-3'>
                                 <button
                                     onClick={() => setShuffleChecked(s => !s)}
                                     title='Shuffle'
