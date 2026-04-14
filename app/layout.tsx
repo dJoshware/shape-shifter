@@ -29,10 +29,12 @@ export default function RootLayout({
         <html
             lang='en'
             className={montserrat.variable}>
-            <body className='min-h-screen flex flex-col bg-sand-1 text-ink'>
+            <body className='min-h-dvh flex flex-col bg-sand-1 text-ink'>
                 <Providers>
                     <main className='flex flex-col flex-1'>{children}</main>
-                    <Footer />
+                    <div className='hidden sm:block'>
+                        <Footer />
+                    </div>
                 </Providers>
             </body>
         </html>
