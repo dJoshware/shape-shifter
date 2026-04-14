@@ -14,7 +14,7 @@ function PersonIcon() {
         <svg
             className='w-4 h-4'
             fill='none'
-            stroke='currentColor'
+            stroke='#f7f7f5'
             viewBox='0 0 24 24'>
             <path
                 strokeLinecap='round'
@@ -31,7 +31,7 @@ function KeyIcon() {
         <svg
             className='w-4 h-4'
             fill='none'
-            stroke='currentColor'
+            stroke='#f7f7f5'
             viewBox='0 0 24 24'>
             <path
                 strokeLinecap='round'
@@ -48,7 +48,7 @@ function EyeIcon({ open }: { open: boolean }) {
         <svg
             className='w-4 h-4'
             fill='none'
-            stroke='currentColor'
+            stroke='#f7f7f5'
             viewBox='0 0 24 24'>
             <path
                 strokeLinecap='round'
@@ -61,7 +61,7 @@ function EyeIcon({ open }: { open: boolean }) {
         <svg
             className='w-4 h-4'
             fill='none'
-            stroke='currentColor'
+            stroke='#f7f7f5'
             viewBox='0 0 24 24'>
             <path
                 strokeLinecap='round'
