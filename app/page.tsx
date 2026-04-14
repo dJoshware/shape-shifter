@@ -789,7 +789,7 @@ export default function Home() {
                                     </span>
                                     <button
                                         onClick={handleGenerateNewRoot}
-                                        className='px-6 py-2 bg-ink text-sand-1 text-sm font-semibold rounded-full hover:opacity-90 transition-opacity'>
+                                        className='px-6 py-2 bg-sand-1 text-ink text-sm font-semibold rounded-full hover:opacity-90 transition-opacity'>
                                         New Chord
                                     </button>
                                 </div>
