@@ -36,11 +36,11 @@ export default function FormFields({
     const id = `field-${label.toLowerCase().replace(/\s+/g, "-")}`;
 
     const inputBase =
-        "flex-1 bg-transparent text-ink placeholder-ink/40 text-sm py-2 px-1 outline-none min-w-0";
+        "flex-1 bg-transparent text-sand-1 placeholder-sand-1/40 text-sm py-2 px-1 outline-none min-w-0";
 
     const wrapperBase = `
     flex items-center border-b-2 transition-colors duration-150
-    ${error ? "border-red-600" : "border-ink/40 focus-within:border-ink"}
+    ${error ? "border-red-600" : "border-sand-1/40 focus-within:border-sand-1"}
   `;
 
     return (
@@ -54,7 +54,7 @@ export default function FormFields({
 
             <div className={wrapperBase}>
                 {startAdornment && (
-                    <div className='flex items-center pr-2 text-ink/70 shrink-0'>
+                    <div className='flex items-center pr-2 text-sand-1/70 shrink-0'>
                         {startAdornment}
                     </div>
                 )}
@@ -88,7 +88,7 @@ export default function FormFields({
                 )}
 
                 {endAdornment && (
-                    <div className='flex items-center pl-1 text-ink/70 shrink-0'>
+                    <div className='flex items-center pl-1 text-sand-1/70 shrink-0'>
                         {endAdornment}
                     </div>
                 )}

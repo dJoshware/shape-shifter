@@ -97,6 +97,43 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [mobileLevelOpen, setMobileLevelOpen] = React.useState(false);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
+
+    const panelRef = React.useRef<HTMLDivElement>(null);
+    const touchStartX = React.useRef(0);
+    const touchStartY = React.useRef(0);
+    const isSwiping = React.useRef(false);
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+        isSwiping.current = false;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        const deltaX = e.touches[0].clientX - touchStartX.current;
+        const deltaY = e.touches[0].clientY - touchStartY.current;
+        if (
+            !isSwiping.current &&
+            (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5)
+        ) {
+            isSwiping.current = Math.abs(deltaX) > Math.abs(deltaY);
+        }
+        if (isSwiping.current && deltaX > 0 && panelRef.current) {
+            panelRef.current.style.transition = "none";
+            panelRef.current.style.transform = `translateX(${deltaX}px)`;
+        }
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+        if (panelRef.current) {
+            panelRef.current.style.transition = "";
+            panelRef.current.style.transform = "";
+        }
+        if (isSwiping.current && deltaX > 80) {
+            setDrawerOpen(false);
+        }
+    };
     const [paywallOpen, setPaywallOpen] = React.useState(false);
     const [plan, setPlan] = React.useState<"monthly" | "yearly">("monthly");
     const [signoutLoading, setSignoutLoading] = React.useState(false);
@@ -146,6 +183,11 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
         let authSub: { unsubscribe: () => void } | null = null;
 
         async function wire(uid: string) {
+            if (channel) {
+                supabase.removeChannel(channel);
+                channel = null;
+            }
+
             const { data } = await supabase
                 .from("subscriptions")
                 .select("status,current_period_end")
@@ -154,7 +196,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             setHasPro(isPro(data));
 
             channel = supabase
-                .channel("subs")
+                .channel(`subs-${uid}`)
                 .on(
                     "postgres_changes",
                     {
@@ -520,16 +562,21 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
             </header>
 
             {/* ── Settings Drawer ───────────────────────────────── */}
-            {drawerOpen && user && (
-                <div className='fixed inset-0 z-50 flex'>
+            {user && (
+                <>
                     {/* Backdrop */}
                     <div
-                        className='flex-1 bg-black/40'
+                        className={`fixed inset-0 z-50 bg-black/40 transition-opacity duration-300 ${drawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                         onClick={() => setDrawerOpen(false)}
                     />
                     {/* Panel */}
-                    <div className='w-full max-w-sm bg-sand-4 flex flex-col overflow-y-auto shadow-2xl'>
-                        <div className='flex items-center justify-between px-5 py-4 border-b border-ink/20'>
+                    <div
+                        ref={panelRef}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                        className={`fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-sand-4 flex flex-col overflow-y-auto shadow-2xl transition-transform duration-300 ease-in-out ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}>
+                        <div className='flex items-center justify-between px-5 py-3 border-b border-ink/20'>
                             <h2 className='text-lg font-bold text-sand-1'>
                                 Settings
                             </h2>
@@ -551,14 +598,9 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                             </button>
                         </div>
 
-                        <div className='flex-1 flex flex-col gap-6 px-5 py-5'>
-                            {/* User ID */}
-                            <p className='text-xs text-sand-1/50 font-mono break-all'>
-                                {user?.id}
-                            </p>
-
+                        <div className='flex-1 flex flex-col gap-6 px-5'>
                             {/* Feedback */}
-                            <SubmitFeedback />
+                            <SubmitFeedback className='text-sand-1' />
 
                             {/* Change email */}
                             <div className='flex flex-col gap-2'>
@@ -592,7 +634,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                             email === user?.email
                                         }
                                         onClick={handleUpdateEmail}
-                                        className={`px-3 py-1.5 rounded-full bg-ink text-sand-1 text-xs font-semibold transition-all shrink-0 ${
+                                        className={`px-3 py-1.5 rounded-full bg-sand-1 text-sand-4 text-xs font-semibold transition-all shrink-0 ${
                                             email === user?.email
                                                 ? "opacity-0 pointer-events-none"
                                                 : "opacity-100 hover:opacity-90"
@@ -668,7 +710,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                         <button
                                             disabled={updatePasswordLoading}
                                             onClick={handleUpdatePassword}
-                                            className='px-3 py-1.5 rounded-full bg-ink text-sand-1 text-xs font-semibold hover:opacity-90 disabled:opacity-50 transition-all shrink-0'>
+                                            className='px-3 py-1.5 rounded-full bg-sand-1 text-sand-4 text-xs font-semibold hover:opacity-90 disabled:opacity-50 transition-all shrink-0'>
                                             {updatePasswordLoading
                                                 ? "…"
                                                 : "Save"}
@@ -691,7 +733,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                     href='https://billing.stripe.com/p/login/test_00waEW7qCfxn9JW60Y3ks00'
                                     target='_blank'
                                     rel='noreferrer'
-                                    className='flex items-center gap-2 px-4 py-2.5 rounded-full bg-ink text-sand-1 text-sm font-semibold hover:opacity-90 transition-opacity w-fit'>
+                                    className='flex items-center gap-2 px-4 py-2.5 rounded-full bg-sand-1 text-sand-4 text-sm font-semibold hover:opacity-90 transition-opacity w-fit'>
                                     <svg
                                         className='w-4 h-4'
                                         fill='none'
@@ -714,7 +756,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                             <button
                                 disabled={signoutLoading}
                                 onClick={handleDrawerSignout}
-                                className='flex items-center gap-2 px-4 py-2 rounded-full bg-ink text-sand-1 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
+                                className='flex items-center gap-2 px-4 py-2 rounded-full bg-sand-1 text-sand-4 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
                                 <svg
                                     className='w-4 h-4'
                                     fill='none'
@@ -736,7 +778,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                             </button>
                         </div>
                     </div>
-                </div>
+                </>
             )}
 
             {/* ── Paywall Modal ─────────────────────────────────── */}
@@ -759,7 +801,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                     <button
                                         key={p}
                                         onClick={() => setPlan(p)}
-                                        className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${plan === p ? "bg-ink text-sand-1" : "text-ink hover:bg-sand-3"}`}>
+                                        className={`flex-1 py-2.5 text-sm font-semibold transition-colors ${plan === p ? "bg-sand-1 text-sand-4" : "text-sand-1/60 hover:bg-sand-1/10"}`}>
                                         {p === "monthly"
                                             ? "Monthly"
                                             : "Yearly (save 20%)"}
@@ -787,7 +829,7 @@ export default function Header({ difficulty, onDifficultyChange }: Props) {
                                         ? handleSubscribe
                                         : () => router.push("/signin")
                                 }
-                                className='flex-1 py-2.5 rounded-full bg-ink text-sand-1 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
+                                className='flex-1 py-2.5 rounded-full bg-sand-1 text-sand-4 text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-all'>
                                 {!user
                                     ? "Sign in first"
                                     : paywallLoading

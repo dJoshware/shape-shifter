@@ -94,7 +94,7 @@ const FretboardHorizontal = ({
                             y1={padY}
                             x2={xForFretLine(i)}
                             y2={diagramHeight - padY}
-                            stroke='#39434b'
+                            stroke='#1f2d3d'
                             strokeWidth={i === 0 ? 5 : 1.5}
                         />
                     ))}
@@ -107,7 +107,7 @@ const FretboardHorizontal = ({
                             y1={yForString(i)}
                             x2={diagramWidth - padX}
                             y2={yForString(i)}
-                            stroke='#39434b'
+                            stroke='#1f2d3d'
                             strokeWidth={1.5}
                         />
                     ))}
@@ -121,7 +121,7 @@ const FretboardHorizontal = ({
                                     cx={xForFretMark(fret)}
                                     cy={diagramHeight / 1.99}
                                     r={6}
-                                    fill='#A59D84'
+                                    fill='#d1d1cc'
                                 />
                             ),
                     )}
@@ -135,13 +135,13 @@ const FretboardHorizontal = ({
                                         cx={xForFretMark(fret)}
                                         cy={diagramHeight / 3 + 4}
                                         r={6}
-                                        fill='#A59D84'
+                                        fill='#d1d1cc'
                                     />
                                     <circle
                                         cx={xForFretMark(fret)}
                                         cy={(diagramHeight * 1.96) / 3}
                                         r={6}
-                                        fill='#A59D84'
+                                        fill='#d1d1cc'
                                     />
                                 </g>
                             ),
@@ -154,11 +154,12 @@ const FretboardHorizontal = ({
                                 <text
                                     key={`label-${fret}`}
                                     x={xForFretMark(fret)}
-                                    y={diagramHeight - 8}
+                                    y={diagramHeight - 6}
                                     textAnchor='middle'
                                     dominantBaseline='auto'
-                                    fontSize={10}
-                                    fill='#39434b'>
+                                    fontSize={11}
+                                    fontWeight='bold'
+                                    fill='#1f2d3d'>
                                     {fret}
                                 </text>
                             ),
@@ -193,7 +194,7 @@ const FretboardHorizontal = ({
                                         cy={y}
                                         r={10}
                                         fill='transparent'
-                                        stroke={isRoot ? "#D32F2F" : "#39434b"}
+                                        stroke={isRoot ? "#dc2626" : "#1f2d3d"}
                                         strokeWidth='2'
                                     />
                                     <text
@@ -203,7 +204,7 @@ const FretboardHorizontal = ({
                                         dominantBaseline='central'
                                         fontSize={fontSize}
                                         fontWeight={600}
-                                        fill={isRoot ? "#D32F2F" : "#39434b"}>
+                                        fill={isRoot ? "#dc2626" : "#1f2d3d"}>
                                         {label}
                                     </text>
                                 </g>
@@ -215,7 +216,7 @@ const FretboardHorizontal = ({
                                     cx={x}
                                     cy={y}
                                     r={12}
-                                    fill={isRoot ? "#D32F2F" : "#39434b"}
+                                    fill={isRoot ? "#dc2626" : "#1f2d3d"}
                                 />
                                 <text
                                     x={x}
@@ -224,7 +225,7 @@ const FretboardHorizontal = ({
                                     dominantBaseline='central'
                                     fontSize={fontSize}
                                     fontWeight={600}
-                                    fill='#ECEBDE'>
+                                    fill='#f7f7f5'>
                                     {label}
                                 </text>
                             </g>

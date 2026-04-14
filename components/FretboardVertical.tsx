@@ -92,7 +92,7 @@ const FretboardVertical = ({
                         y1={yForFretLine(i)}
                         x2={diagramWidth - padX}
                         y2={yForFretLine(i)}
-                        stroke='#39434b'
+                        stroke='#1f2d3d'
                         strokeWidth={i === 0 ? 5 : 1.5}
                     />
                 ))}
@@ -105,7 +105,7 @@ const FretboardVertical = ({
                         y1={padY}
                         x2={xForString(i)}
                         y2={diagramHeight - 15}
-                        stroke='#39434b'
+                        stroke='#1f2d3d'
                         strokeWidth={1.5}
                     />
                 ))}
@@ -119,7 +119,7 @@ const FretboardVertical = ({
                                 cx={diagramWidth / 2}
                                 cy={yForFretMark(fret)}
                                 r={8}
-                                fill='#A59D84'
+                                fill='#d1d1cc'
                             />
                         ),
                 )}
@@ -133,13 +133,13 @@ const FretboardVertical = ({
                                     cx={diagramWidth / 3.03 + 4}
                                     cy={yForFretMark(fret)}
                                     r={8}
-                                    fill='#A59D84'
+                                    fill='#d1d1cc'
                                 />
                                 <circle
                                     cx={(diagramWidth * 1.97) / 3}
                                     cy={yForFretMark(fret)}
                                     r={8}
-                                    fill='#A59D84'
+                                    fill='#d1d1cc'
                                 />
                             </g>
                         ),
@@ -151,12 +151,13 @@ const FretboardVertical = ({
                         fret <= numFrets && (
                             <text
                                 key={`label-${fret}`}
-                                x={14}
+                                x={12}
                                 y={yForFretMark(fret)}
                                 textAnchor='middle'
                                 dominantBaseline='central'
-                                fontSize={11}
-                                fill='#39434b'>
+                                fontSize={12}
+                                fontWeight='bold'
+                                fill='#1f2d3d'>
                                 {fret}
                             </text>
                         ),
@@ -189,7 +190,7 @@ const FretboardVertical = ({
                                     cy={openY}
                                     r={14}
                                     fill='transparent'
-                                    stroke={isRoot ? "#D32F2F" : "#39434b"}
+                                    stroke={isRoot ? "#dc2626" : "#1f2d3d"}
                                     strokeWidth='2'
                                 />
                                 <text
@@ -199,7 +200,7 @@ const FretboardVertical = ({
                                     dominantBaseline='central'
                                     fontSize={fontSize}
                                     fontWeight={600}
-                                    fill={isRoot ? "#D32F2F" : "#39434b"}>
+                                    fill={isRoot ? "#dc2626" : "#1f2d3d"}>
                                     {label}
                                 </text>
                             </g>
@@ -211,7 +212,7 @@ const FretboardVertical = ({
                                 cx={x}
                                 cy={y}
                                 r={16}
-                                fill={isRoot ? "#D32F2F" : "#39434b"}
+                                fill={isRoot ? "#dc2626" : "#1f2d3d"}
                             />
                             <text
                                 x={x}
@@ -220,7 +221,7 @@ const FretboardVertical = ({
                                 dominantBaseline='central'
                                 fontSize={fontSize}
                                 fontWeight={600}
-                                fill='#ECEBDE'>
+                                fill='#f7f7f5'>
                                 {label}
                             </text>
                         </g>

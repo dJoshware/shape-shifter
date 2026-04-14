@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-export default function SubmitFeedback() {
+export default function SubmitFeedback({ className }: { className?: string }) {
     const [open, setOpen] = React.useState(false);
     const [email, setEmail] = React.useState("");
     const [message, setMessage] = React.useState("");
@@ -82,7 +82,7 @@ export default function SubmitFeedback() {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className='relative text-sm font-semibold text-ink underline-offset-4 hover:underline transition-all'>
+                className={`relative text-sm font-semibold underline-offset-4 hover:underline transition-all ${className ?? "text-ink"}`}>
                 Submit Feedback
             </button>
 
@@ -106,7 +106,7 @@ export default function SubmitFeedback() {
                                     Your email
                                 </label>
                                 <input
-                                    className='w-full bg-sand-3/50 border border-ink/30 rounded-lg px-3 py-2 text-sm text-ink placeholder-ink/40 outline-none focus:border-ink transition-colors'
+                                    className='w-full bg-sand-1/10 border border-sand-1/30 rounded-lg px-3 py-2 text-sm text-sand-1 placeholder-sand-1/40 outline-none focus:border-sand-1 transition-colors'
                                     onChange={e => {
                                         setEmail(e.target.value);
                                         setAlert(null);
@@ -123,7 +123,7 @@ export default function SubmitFeedback() {
                                     Description
                                 </label>
                                 <textarea
-                                    className='w-full bg-sand-3/50 border border-ink/30 rounded-lg px-3 py-2 text-sm text-ink placeholder-ink/40 outline-none focus:border-ink transition-colors resize-none'
+                                    className='w-full bg-sand-1/10 border border-sand-1/30 rounded-lg px-3 py-2 text-sm text-sand-1 placeholder-sand-1/40 outline-none focus:border-sand-1 transition-colors resize-none'
                                     onChange={e => {
                                         setMessage(e.target.value);
                                         setAlert(null);
@@ -166,7 +166,7 @@ export default function SubmitFeedback() {
                                         {files.map(f => (
                                             <li
                                                 key={`${f.name}-${f.lastModified}`}
-                                                className='flex items-center gap-2 text-xs text-ink/80'>
+                                                className='flex items-center gap-2 text-xs text-sand-1/80'>
                                                 <span className='truncate'>
                                                     {f.name}
                                                 </span>
