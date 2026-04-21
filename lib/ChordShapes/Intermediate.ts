@@ -1505,6 +1505,37 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                 ],
                                             },
                                             {
+                                                rootString: 3,
+                                                pattern: [
+                                                    {
+                                                        string: 0,
+                                                        fretOffset: -3,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                    {
+                                                        string: 1,
+                                                        fretOffset: -5,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                    // 3rd-string not played
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    {
+                                                        string: 4,
+                                                        fretOffset: 0,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    // 6th-string not played
+                                                ],
+                                            },
+                                            {
                                                 rootString: 2,
                                                 pattern: [
                                                     {
@@ -1567,6 +1598,70 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                 degree: 7,
                                             },
                                             // 6th-string not played
+                                        ],
+                                        altShapes: [
+                                            {
+                                                rootString: 0,
+                                                pattern: [
+                                                    {
+                                                        string: 0,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    // 2nd-string not played
+                                                    {
+                                                        string: 2,
+                                                        fretOffset: 4,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 6,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                    {
+                                                        string: 4,
+                                                        fretOffset: 6,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                    // 6th-string not played
+                                                ],
+                                            },
+                                            {
+                                                rootString: 0,
+                                                pattern: [
+                                                    {
+                                                        string: 0,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    {
+                                                        string: 1,
+                                                        fretOffset: 0,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    // 3rd-string not played
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 6,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                    {
+                                                        string: 4,
+                                                        fretOffset: 6,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                    // 6th-string not played
+                                                ],
+                                            },
                                         ],
                                     },
                                 },
@@ -7047,6 +7142,37 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                     },
                                                 ],
                                             },
+                                            {
+                                                rootString: 5,
+                                                pattern: [
+                                                    {
+                                                        string: 0,
+                                                        fretOffset: -5,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    {
+                                                        string: 1,
+                                                        fretOffset: -3,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                    // 3rd-string not played
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 1,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                    // 5th-string not played
+                                                    {
+                                                        string: 5,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                ],
+                                            },
                                         ],
                                     },
                                     '1st Inv.': {
@@ -7090,13 +7216,44 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                         semitones: 11,
                                                         degree: 7,
                                                     },
-                                                    // 1st-string not played
+                                                    // 2nd-string not played
                                                     {
                                                         string: 2,
                                                         fretOffset: 2,
                                                         semitones: 7,
                                                         degree: 5,
                                                     },
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    // 5th-string not played
+                                                    {
+                                                        string: 5,
+                                                        fretOffset: 2,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                ],
+                                            },
+                                            {
+                                                rootString: 3,
+                                                pattern: [
+                                                    {
+                                                        string: 0,
+                                                        fretOffset: -3,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                    {
+                                                        string: 1,
+                                                        fretOffset: -2,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    // 3rd-string not played
                                                     {
                                                         string: 3,
                                                         fretOffset: 0,
@@ -7154,6 +7311,37 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                         degree: 7,
                                                     },
                                                     // 3rd-string not played
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 2,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    {
+                                                        string: 4,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    {
+                                                        string: 5,
+                                                        fretOffset: -3,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
+                                                ],
+                                            },
+                                            {
+                                                rootString: 4,
+                                                pattern: [
+                                                    // 1st-string not played
+                                                    // 2nd-string not played
+                                                    {
+                                                        string: 2,
+                                                        fretOffset: 1,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
                                                     {
                                                         string: 3,
                                                         fretOffset: 2,
@@ -7346,6 +7534,37 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                         degree: 3,
                                                     },
                                                     // 3rd-string not played
+                                                    {
+                                                        string: 3,
+                                                        fretOffset: 0,
+                                                        semitones: 0,
+                                                        degree: 1,
+                                                    },
+                                                    {
+                                                        string: 4,
+                                                        fretOffset: 0,
+                                                        semitones: 7,
+                                                        degree: 5,
+                                                    },
+                                                    {
+                                                        string: 5,
+                                                        fretOffset: -3,
+                                                        semitones: 11,
+                                                        degree: 7,
+                                                    },
+                                                ],
+                                            },
+                                            {
+                                                rootString: 3,
+                                                pattern: [
+                                                    // 1st-string not played
+                                                    // 2nd-string not played
+                                                    {
+                                                        string: 2,
+                                                        fretOffset: -1,
+                                                        semitones: 4,
+                                                        degree: 3,
+                                                    },
                                                     {
                                                         string: 3,
                                                         fretOffset: 0,
@@ -9056,13 +9275,13 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                                 pattern: [
                                                     // 1st-string not played
                                                     {
-                                                        string: 0,
+                                                        string: 1,
                                                         fretOffset: 5,
                                                         semitones: 7,
                                                         degree: 5,
                                                     },
                                                     {
-                                                        string: 1,
+                                                        string: 2,
                                                         fretOffset: 1,
                                                         semitones: 11,
                                                         degree: 7,
@@ -20662,6 +20881,37 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             {
                                                 string: 5,
                                                 fretOffset: -1,
+                                                semitones: 11,
+                                                degree: 7,
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            {
+                                                string: 1,
+                                                fretOffset: 0,
+                                                semitones: 0,
+                                                degree: 1,
+                                            },
+                                            {
+                                                string: 2,
+                                                fretOffset: -4,
+                                                semitones: 4,
+                                                degree: 3,
+                                            },
+                                            // 4th-string not played
+                                            {
+                                                string: 4,
+                                                fretOffset: -3,
+                                                semitones: 7,
+                                                degree: 5,
+                                            },
+                                            {
+                                                string: 5,
+                                                fretOffset: -6,
                                                 semitones: 11,
                                                 degree: 7,
                                             },
