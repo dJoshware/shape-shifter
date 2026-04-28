@@ -71,7 +71,7 @@ export const BEGINNER_CHORD_SHAPES = {
             },
         },
     },
-    Triads: { // make 'Shells' in Intermediate.ts
+    Triads: {
         levelName: 'String Sets',
         options: {
             '1st String Set': {
