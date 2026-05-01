@@ -9729,19 +9729,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 5th-string not played
                                     // 6th-string not played
                                 ],
-                                altShapes: [
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: -5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                ],
                             },
                             '2nd Inv.': {
                                 name: '2nd Inv.',
@@ -9832,24 +9819,11 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 rootString: 2,
                                 pattern: [
                                     { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                                    { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
+                                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
                                     { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
                                     // 4th-string not played
                                     // 5th-string not played
                                     // 6th-string not played
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: 6, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 7, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                 ],
                             },
                             '1st Inv.': {
@@ -9858,30 +9832,17 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 pattern: [
                                     { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                    { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                    { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
                                     // 4th-string not played
                                     // 5th-string not played
                                     // 6th-string not played
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: -5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                 ],
                             },
                             '2nd Inv.': {
                                 name: '2nd Inv.',
                                 rootString: 1,
                                 pattern: [
-                                    { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
                                     { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
                                     // 4th-string not played
@@ -9893,7 +9854,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
                                             { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
                                             // 4th-string not played
                                             // 5th-string not played
@@ -9943,19 +9904,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 5th-string not played
                                     // 6th-string not played
                                 ],
-                                altShapes: [
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 4, semitones: 9, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: -5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                ],
                             },
                             '2nd Inv.': {
                                 name: '2nd Inv.',
@@ -9967,6 +9915,19 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 4th-string not played
                                     // 5th-string not played
                                     // 6th-string not played
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: -6, semitones: 9, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
                                 ],
                             },
                         },
@@ -10162,6 +10123,28 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 3,
                                         pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: -6, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
                                             { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
                                             { string: 1, fretOffset: 1, semitones: 10, degree: 7 },
                                             // 3rd-string not played
@@ -10250,17 +10233,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 6th-string not played
                                         ],
                                     },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 6, semitones: 10, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                 ],
                             },
                             '2nd Inv.': {
@@ -10275,28 +10247,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 6th-string not played
                                 ],
                                 altShapes: [
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: -6, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                     {
                                         rootString: 0,
                                         pattern: [
@@ -10315,6 +10265,28 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
                                             { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: -5, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -10338,6 +10310,28 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 6th-string not played
                                 ],
                                 altShapes: [
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
                                     {
                                         rootString: 3,
                                         pattern: [
@@ -10389,17 +10383,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
                                             { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
@@ -10429,28 +10412,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 6th-string not played
                                         ],
                                     },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 6, semitones: 10, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                 ],
                             },
                             '2nd Inv.': {
@@ -10465,28 +10426,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 6th-string not played
                                 ],
                                 altShapes: [
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: -5, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
                                     {
                                         rootString: 0,
                                         pattern: [
@@ -10509,6 +10448,28 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 6th-string not played
                                         ],
                                     },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
                                 ],
                             },
                         },
@@ -10522,7 +10483,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 pattern: [
                                     // 1st-string not played
                                     { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                                    { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
                                     { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
                                     // 5th-string not played
                                     // 6th-string not played
@@ -10531,7 +10492,29 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 3,
                                         pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
                                             { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
@@ -10542,19 +10525,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 3,
                                         pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 2nd-string not played
-                                            { string: 2, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 6, semitones: 3, degree: 3 },
                                             { string: 2, fretOffset: 6, semitones: 11, degree: 7 },
                                             { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 5th-string not played
@@ -10570,7 +10542,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 1st-string not played
                                     { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                                    { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
+                                    { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
                                     // 5th-string not played
                                     // 6th-string not played
                                 ],
@@ -10579,20 +10551,9 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
                                             { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -10603,7 +10564,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 0, fretOffset: 6, semitones: 11, degree: 7 },
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -10614,18 +10575,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 7, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -10637,7 +10587,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 rootString: 2,
                                 pattern: [
                                     // 1st-string not played
-                                    { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
+                                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
                                     { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
                                     // 5th-string not played
@@ -10645,12 +10595,23 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 ],
                                 altShapes: [
                                     {
-                                        rootString: 2,
+                                        rootString: 0,
                                         pattern: [
-                                            { string: 0, fretOffset: -6, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -10658,32 +10619,21 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 1,
                                         pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: -4, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            { string: 3, fretOffset: -4, semitones: 11, degree: 7 },
                                             // 5th-string not played
                                             // 6th-string not played
                                         ],
@@ -11272,8 +11222,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 4,
                                         pattern: [
                                             { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
                                             { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -11286,17 +11236,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
                                             // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 10, degree: 7 },
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
                                         ],
@@ -11348,17 +11287,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
                                             { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
                                             { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
                                             // 3rd-string not played
@@ -11372,17 +11300,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
                                             // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 8, semitones: 10, degree: 7 },
                                             { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
@@ -11408,8 +11325,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
                                             { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
                                             // 6th-string not played
                                         ],
@@ -11470,17 +11387,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         ],
                                     },
                                     {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
@@ -11503,13 +11409,13 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         ],
                                     },
                                     {
-                                        rootString: 0,
+                                        rootString: 1,
                                         pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            { string: 4, fretOffset: -7, semitones: 3, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -11527,39 +11433,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 6th-string not played
                                 ],
                                 altShapes: [
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -6, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
                                     {
                                         rootString: 0,
                                         pattern: [
@@ -11648,6 +11521,39 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 6th-string not played
                                         ],
                                     },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            { string: 0, fretOffset: -6, semitones: 3, degree: 3 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -7, semitones: 10, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
                                 ],
                             },
                         },
@@ -11670,9 +11576,31 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            { string: 2, fretOffset: -6, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
                                             { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -11683,8 +11611,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
                                             // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
                                         ],
@@ -11747,10 +11675,10 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 6, semitones: 4, degree: 3 },
+                                            // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
                                         ],
@@ -11774,8 +11702,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
                                             { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
@@ -11836,17 +11764,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         ],
                                     },
                                     {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
@@ -11869,23 +11786,12 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         ],
                                     },
                                     {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
                                         rootString: 1,
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
-                                            // 4th-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
                                             { string: 4, fretOffset: -6, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
@@ -11904,39 +11810,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 6th-string not played
                                 ],
                                 altShapes: [
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
                                     {
                                         rootString: 0,
                                         pattern: [
@@ -12004,17 +11877,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         ],
                                     },
                                     {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 7, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
                                         rootString: 1,
                                         pattern: [
                                             { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
@@ -12047,6 +11909,17 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 6th-string not played
                                         ],
                                     },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -7, semitones: 10, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
                                 ],
                             },
                         },
@@ -12061,7 +11934,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 1st-string not played
                                     // 2nd-string not played
                                     { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
-                                    { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
                                     { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                     // 6th-string not played
                                 ],
@@ -12072,7 +11945,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 1st-string not played
                                             { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
                                         ],
@@ -12082,7 +11955,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: -7, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: -6, semitones: 4, degree: 3 },
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -12091,9 +11964,9 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
+                                            { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
                                             { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -12102,7 +11975,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
                                             // 4th-string not played
@@ -12113,19 +11986,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 4,
                                         pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
                                             // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
                                             { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
@@ -12136,7 +11998,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 4,
                                         pattern: [
                                             // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 6, semitones: 11, degree: 7 },
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
@@ -12148,7 +12010,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: 6, semitones: 4, degree: 3 },
                                             { string: 3, fretOffset: 6, semitones: 11, degree: 7 },
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -12160,18 +12022,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 0, fretOffset: 4, semitones: 11, degree: 7 },
                                             // 2nd-string not played
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 9, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
                                         ],
@@ -12180,7 +12031,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         rootString: 4,
                                         pattern: [
                                             { string: 0, fretOffset: 4, semitones: 11, degree: 7 },
-                                            { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 3rd-string not played
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
@@ -12192,18 +12043,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             { string: 0, fretOffset: 4, semitones: 11, degree: 7 },
                                             // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 9, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: 6, semitones: 4, degree: 3 },
                                             // 4th-string not played
                                             { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 6th-string not played
@@ -12219,7 +12059,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     // 2nd-string not played
                                     { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
-                                    { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
+                                    { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
                                     // 6th-string not played
                                 ],
                                 altShapes: [
@@ -12228,9 +12068,9 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 8, semitones: 11, degree: 7 },
-                                            { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12241,7 +12081,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 3rd-string not played
                                             // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12252,7 +12092,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 4th-string not played
-                                            { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12263,7 +12103,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 2nd-string not played
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12274,7 +12114,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 1, fretOffset: 7, semitones: 11, degree: 7 },
                                             { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 4th-string not played
-                                            { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12285,18 +12125,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12307,7 +12136,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 2nd-string not played
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12318,18 +12147,18 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
                                             // 3rd-string not played
                                             // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
                                     {
-                                        rootString: 0,
+                                        rootString: 1,
                                         pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -4, semitones: 11, degree: 7 },
+                                            { string: 4, fretOffset: -6, semitones: 4, degree: 3 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12341,63 +12170,19 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                 pattern: [
                                     // 1st-string not played
                                     // 2nd-string not played
-                                    { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
                                     { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
                                     { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
                                     // 6th-string not played
                                 ],
                                 altShapes: [
                                     {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -6, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 9, semitones: 11, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
                                         rootString: 0,
                                         pattern: [
                                             { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 2nd-string not played
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
                                             { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
                                             // 6th-string not played
                                         ],
@@ -12407,7 +12192,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                         pattern: [
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: -5, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
                                             // 4th-string not played
                                             { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
                                             // 6th-string not played
@@ -12419,7 +12204,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 1st-string not played
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
                                             { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
                                             // 6th-string not played
                                         ],
@@ -12430,7 +12215,7 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 1st-string not played
                                             // 2nd-string not played
                                             { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
                                             { string: 4, fretOffset: -3, semitones: 11, degree: 7 },
                                             // 6th-string not played
                                         ],
@@ -12438,19 +12223,8 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 3,
                                         pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
                                             // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 6th-string not played
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 6, semitones: 3, degree: 3 },
                                             // 3rd-string not played
                                             { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
                                             { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
@@ -12460,11 +12234,44 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                     {
                                         rootString: 1,
                                         pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
                                             { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
                                             // 3rd-string not played
                                             // 4th-string not played
                                             { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            { string: 0, fretOffset: -5, semitones: 4, degree: 3 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 6th-string not played
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -6, semitones: 11, degree: 7 },
                                             // 6th-string not played
                                         ],
                                     },
@@ -12833,6 +12640,1456 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                 levelName: 'Chord Qualities',
                 options: {
                     Maj7: {
+                        levelName: 'Positions',
+                        options: {
+                            Root: {
+                                name: 'Root',
+                                rootString: 5,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                    { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
+                                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
+                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
+                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '1st Inv.': {
+                                name: '1st Inv.',
+                                rootString: 3,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
+                                    { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -4, semitones: 11, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -3, semitones: 11, degree: 7 },
+                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 6, semitones: 11, degree: 7 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -5, semitones: 11, degree: 7 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '2nd Inv.': {
+                                name: '2nd Inv.',
+                                rootString: 4,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
+                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 6, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 6, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: -3, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -3, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -3, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -3, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -6, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -6, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: -6, semitones: 11, degree: 7 },
+                                        ],
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                    Min7: {
+                        levelName: 'Positions',
+                        options: {
+                            Root: {
+                                name: 'Root',
+                                rootString: 5,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                    { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '1st Inv.': {
+                                name: '1st Inv.',
+                                rootString: 3,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
+                                    { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -4, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: -6, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 1, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            { string: 0, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '2nd Inv.': {
+                                name: '2nd Inv.',
+                                rootString: 4,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
+                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -6, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                    Dom7: {
+                        levelName: 'Positions',
+                        options: {
+                            Root: {
+                                name: 'Root',
+                                rootString: 5,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                    { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -5, semitones: 10, degree: 7 },
+                                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            { string: 2, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
+                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 5,
+                                        pattern: [
+                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '1st Inv.': {
+                                name: '1st Inv.',
+                                rootString: 3,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
+                                    { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: -5, semitones: 10, degree: 7 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -4, semitones: 10, degree: 7 },
+                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 1, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -6, semitones: 10, degree: 7 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 4,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
+                                        ],
+                                    },
+                                ],
+                            },
+                            '2nd Inv.': {
+                                name: '2nd Inv.',
+                                rootString: 4,
+                                pattern: [
+                                    // 1st-string not played
+                                    // 2nd-string not played
+                                    // 3rd-string not played
+                                    { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
+                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                    { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
+                                ],
+                                altShapes: [
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 1,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 2,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            // 1st-string not played
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 3,
+                                        pattern: [
+                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                            // 4th-string not played
+                                            // 5th-string not played
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                    {
+                                        rootString: 0,
+                                        pattern: [
+                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                            // 2nd-string not played
+                                            // 3rd-string not played
+                                            // 4th-string not played
+                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
+                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
+                                        ],
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                    mMaj7: {
                         levelName: 'Positions',
                         options: {
                             Root: {
@@ -13313,1874 +14570,6 @@ export const INTERMEDIATE_CHORD_SHAPES = {
                                             // 4th-string not played
                                             { string: 4, fretOffset: -6, semitones: 4, degree: 3 },
                                             { string: 5, fretOffset: -6, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                ],
-                            },
-                        },
-                    },
-                    Min7: {
-                        levelName: 'Positions',
-                        options: {
-                            Root: {
-                                name: 'Root',
-                                rootString: 5,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                    { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 4th-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '1st Inv.': {
-                                name: '1st Inv.',
-                                rootString: 3,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
-                                    { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 8, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 6, semitones: 10, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '2nd Inv.': {
-                                name: '2nd Inv.',
-                                rootString: 4,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
-                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: -7, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 8, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 8, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: -6, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -7, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                ],
-                            },
-                        },
-                    },
-                    Dom7: {
-                        levelName: 'Positions',
-                        options: {
-                            Root: {
-                                name: 'Root',
-                                rootString: 5,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                    { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                                            { string: 3, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 4, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            // 4th-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '1st Inv.': {
-                                name: '1st Inv.',
-                                rootString: 3,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 4, fretOffset: 3, semitones: 10, degree: 7 },
-                                    { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 4, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -4, semitones: 10, degree: 7 },
-                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 10, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: 2, semitones: 10, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 7, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 8, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 5, semitones: 10, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -1, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -5, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 10, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -3, semitones: 4, degree: 3 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '2nd Inv.': {
-                                name: '2nd Inv.',
-                                rootString: 4,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
-                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: -6, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 8, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: -5, semitones: 4, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 6, semitones: 4, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 3, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: 5, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -3, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -5, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -4, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -3, semitones: 4, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -1, semitones: 4, degree: 3 },
-                                            { string: 5, fretOffset: -2, semitones: 10, degree: 7 },
-                                        ],
-                                    },
-                                ],
-                            },
-                        },
-                    },
-                    mMaj7: {
-                        levelName: 'Positions',
-                        options: {
-                            Root: {
-                                name: 'Root',
-                                rootString: 5,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                    { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                    { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: -1, semitones: 11, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            { string: 3, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 5,
-                                        pattern: [
-                                            { string: 0, fretOffset: 3, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 4th-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '1st Inv.': {
-                                name: '1st Inv.',
-                                rootString: 3,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
-                                    { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 9, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 7, semitones: 11, degree: 7 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 3, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 8, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 9, semitones: 11, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 1, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: 6, semitones: 11, degree: 7 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -2, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -6, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: 4, semitones: 11, degree: 7 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: -4, semitones: 3, degree: 3 },
-                                        ],
-                                    },
-                                ],
-                            },
-                            '2nd Inv.': {
-                                name: '2nd Inv.',
-                                rootString: 4,
-                                pattern: [
-                                    // 1st-string not played
-                                    // 2nd-string not played
-                                    // 3rd-string not played
-                                    { string: 3, fretOffset: -2, semitones: 3, degree: 3 },
-                                    { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                    { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
-                                ],
-                                altShapes: [
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: -7, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 9, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            { string: 0, fretOffset: 1, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 9, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            { string: 0, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            { string: 0, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            { string: 0, fretOffset: -6, semitones: 3, degree: 3 },
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 1, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 4,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 5, semitones: 3, degree: 3 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 5, fretOffset: 4, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 6, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 1,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 5, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 6, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 3, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: 1, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 3,
-                                        pattern: [
-                                            // 1st-string not played
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 4, fretOffset: -4, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: -3, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 2,
-                                        pattern: [
-                                            // 1st-string not played
-                                            { string: 1, fretOffset: -1, semitones: 3, degree: 3 },
-                                            { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            { string: 3, fretOffset: -7, semitones: 3, degree: 3 },
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            { string: 1, fretOffset: -4, semitones: 3, degree: 3 },
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            // 5th-string not played
-                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
-                                        ],
-                                    },
-                                    {
-                                        rootString: 0,
-                                        pattern: [
-                                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                                            // 2nd-string not played
-                                            // 3rd-string not played
-                                            // 4th-string not played
-                                            { string: 4, fretOffset: -2, semitones: 3, degree: 3 },
-                                            { string: 5, fretOffset: -1, semitones: 11, degree: 7 },
                                         ],
                                     },
                                 ],
