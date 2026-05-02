@@ -47,47 +47,8 @@ const FretboardVertical = ({
             return;
         }
 
-        // Root notes (semitones === 0) repeat every 12 frets. Each voicing's
-        // notes lie within ±6 of its root, so windowing ±6 around the chosen
-        // root fret isolates exactly one voicing.
-        //
-        // Default: lowest root fret (first octave position).
-        // Exception: if the shape has open-string notes (fret 0), use the root
-        // nearest to the current scroll centre so alt-shape navigation stays
-        // near where the user is already looking.
-        const rootFrets = chordShape
-            .filter(p => p.semitones === 0)
-            .map(p => p.fret)
-            .filter((f): f is number => typeof f === "number" && f >= 0)
-            .sort((a, b) => a - b);
-
-        const hasOpenStrings = chordShape.some(p => p.fret === 0);
-
-        const visibleCenterY = container.scrollTop + container.clientHeight / 2;
-        const currentCenterFret =
-            (visibleCenterY - padY - fretHeight / 2) / fretHeight + 1;
-
-        const anchorFret = (() => {
-            if (rootFrets.length === 0)
-                return frets.reduce((best, f) =>
-                    Math.abs(f - currentCenterFret) <
-                    Math.abs(best - currentCenterFret)
-                        ? f
-                        : best,
-                );
-            if (hasOpenStrings)
-                return rootFrets.reduce((best, r) =>
-                    Math.abs(r - currentCenterFret) <
-                    Math.abs(best - currentCenterFret)
-                        ? r
-                        : best,
-                );
-            return rootFrets[0]; // lowest root — default
-        })();
-
-        const voicingFrets = frets.filter(f => Math.abs(f - anchorFret) <= 6);
-        const minFret = Math.min(...voicingFrets);
-        const maxFret = Math.max(...voicingFrets);
+        const minFret = Math.min(...frets);
+        const maxFret = Math.max(...frets);
 
         const centerY =
             ((minFret + maxFret) / 2 - 1) * fretHeight + padY + fretHeight / 2;

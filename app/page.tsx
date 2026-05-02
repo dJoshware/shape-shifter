@@ -87,6 +87,12 @@ function FilterIcon() {
     );
 }
 
+function voicingFretRange(v: NotePosition[]) {
+    const frets = v.map(n => n.fret).filter((f): f is number => f != null && f >= 0);
+    if (!frets.length) return null;
+    return { min: Math.min(...frets), max: Math.max(...frets) };
+}
+
 function ShuffleIcon() {
     return (
         <svg
@@ -124,6 +130,7 @@ export default function Home() {
     const [shuffleChecked, setShuffleChecked] = React.useState(false);
     const [showIntervals, setShowIntervals] = React.useState(false);
     const [isRight, setIsRight] = React.useState(true);
+    const [octaveUp, setOctaveUp] = React.useState(false);
     const handedness = isRight ? "right" : "left";
 
     const [filtersOpen, setFiltersOpen] = React.useState(false);
@@ -216,6 +223,7 @@ export default function Home() {
     const handlePositionChange = (newPosition: string) => {
         setSelectedPosition(newPosition);
         setSelectedAltShape(0);
+        setOctaveUp(false);
     };
 
     // ── generate new root ──────────────────────────────────────────────────────
@@ -334,6 +342,24 @@ export default function Home() {
         handleDifficultyChange("Beginner");
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    const voicingInfo = React.useMemo(() => {
+        if (isDrawMode || selectedPosition === "All" || !currentRootNote) return null;
+        const formula = availableAlts[selectedAltShape];
+        if (!formula) return null;
+        const all = generateAllVoicingsForShape(currentRootNote, formula, fretboardMap);
+        const low: NotePosition[][] = [];
+        const crossing: NotePosition[][] = [];
+        const high: NotePosition[][] = [];
+        for (const v of all) {
+            const range = voicingFretRange(v);
+            if (!range) continue;
+            if (range.max <= 12) low.push(v);
+            else if (range.min >= 12) high.push(v);
+            else crossing.push(v);
+        }
+        return { low, crossing, high, hasOctave: low.length > 0 && high.length > 0 };
+    }, [isDrawMode, selectedPosition, currentRootNote, selectedAltShape, availableAlts, fretboardMap]);
+
     React.useEffect(() => {
         if (isDrawMode) return;
         const formulas = selectionHierarchy.finalFormulas;
@@ -367,25 +393,19 @@ export default function Home() {
             }
             setDisplayShape(finalShapes.flat());
         } else {
-            if (availableAlts.length > 0 && availableAlts[selectedAltShape]) {
-                const voicings = generateAllVoicingsForShape(
-                    currentRootNote,
-                    availableAlts[selectedAltShape],
-                    fretboardMap,
-                );
-                setDisplayShape(voicings.flat());
-            } else {
-                setDisplayShape([]);
-            }
+            if (!voicingInfo) { setDisplayShape([]); return; }
+            const { low, crossing, high, hasOctave } = voicingInfo;
+            const active = octaveUp && hasOctave ? high : [...low, ...crossing];
+            setDisplayShape(active.flat());
         }
     }, [
         isDrawMode,
         currentRootNote,
         selectedPosition,
-        selectedAltShape,
         selectionHierarchy.finalFormulas,
-        availableAlts,
         fretboardMap,
+        voicingInfo,
+        octaveUp,
     ]);
 
     // ── cycle controls ─────────────────────────────────────────────────────────
@@ -399,7 +419,7 @@ export default function Home() {
     const { prev: goPrevAlt, next: goNextAlt } = useCycleList(
         availableAlts,
         selectedAltShape,
-        (i: number) => setSelectedAltShape(i),
+        (i: number) => { setSelectedAltShape(i); setOctaveUp(false); },
     );
 
     // ── chord label ─────────────────────────────────────────────────────────────
@@ -460,6 +480,14 @@ export default function Home() {
                                     <FilterIcon />
                                     Filters
                                 </button>
+
+                                {voicingInfo?.hasOctave && (
+                                    <button
+                                        onClick={() => setOctaveUp(o => !o)}
+                                        className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors ${octaveUp ? "bg-ink text-sand-1 border-ink" : "border-ink/40 text-ink hover:border-ink"}`}>
+                                        {octaveUp ? "-12" : "+12"}
+                                    </button>
+                                )}
 
                                 <div className='flex-1' />
 
@@ -760,27 +788,38 @@ export default function Home() {
                                 )}
 
                                 {/* Alternate positions */}
-                                {availableAlts.length > 1 && (
-                                    <div className='flex flex-col items-center gap-1'>
-                                        <span className='text-xs font-semibold text-ink'>
-                                            Alternate Positions
-                                        </span>
-                                        <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                {(availableAlts.length > 1 || voicingInfo?.hasOctave) && (
+                                    <div className='flex items-center gap-3'>
+                                        {availableAlts.length > 1 && (
+                                            <div className='flex flex-col items-center gap-1'>
+                                                <span className='text-xs font-semibold text-ink'>
+                                                    Alternate Positions
+                                                </span>
+                                                <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                                    <button
+                                                        onClick={goPrevAlt}
+                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
+                                                        <ChevronLeft />
+                                                    </button>
+                                                    <span className='px-3 text-sm font-bold text-ink'>
+                                                        {selectedAltShape + 1}/
+                                                        {availableAlts.length}
+                                                    </span>
+                                                    <button
+                                                        onClick={goNextAlt}
+                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
+                                                        <ChevronRight />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                        {voicingInfo?.hasOctave && (
                                             <button
-                                                onClick={goPrevAlt}
-                                                className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
-                                                <ChevronLeft />
+                                                onClick={() => setOctaveUp(o => !o)}
+                                                className={`px-4 py-1.5 rounded border text-sm font-semibold transition-colors ${octaveUp ? "bg-ink text-sand-1 border-ink" : "bg-sand-1 text-ink border-ink hover:bg-sand-2"}`}>
+                                                {octaveUp ? "-12" : "+12"}
                                             </button>
-                                            <span className='px-3 text-sm font-bold text-ink'>
-                                                {selectedAltShape + 1}/
-                                                {availableAlts.length}
-                                            </span>
-                                            <button
-                                                onClick={goNextAlt}
-                                                className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
-                                                <ChevronRight />
-                                            </button>
-                                        </div>
+                                        )}
                                     </div>
                                 )}
 
