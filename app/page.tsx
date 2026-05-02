@@ -152,14 +152,14 @@ export default function Home() {
     });
 
     // ── hierarchy helpers ──────────────────────────────────────────────────────
-    const getSetterForLevel = (levelName: string) => {
+    const getSetterForLevel = (levelName: string): ((v: string) => void) => {
         switch (levelName) {
             case "Voicing Types":
-                return setSelectedVoicingType;
+                return (v: string) => { setSelectedVoicingType(v); setOctaveUp(false); };
             case "String Sets":
-                return setSelectedStringSet;
+                return (v: string) => { setSelectedStringSet(v); setOctaveUp(false); };
             case "Chord Qualities":
-                return setSelectedChordQuality;
+                return (v: string) => { setSelectedChordQuality(v); setOctaveUp(false); };
             default:
                 return () => {};
         }
@@ -196,6 +196,7 @@ export default function Home() {
             setSelectedCategory("");
             setSelectedPosition("All");
             setSelectedAltShape(0);
+            setOctaveUp(false);
             return;
         }
         const difficultyData =
@@ -206,6 +207,7 @@ export default function Home() {
         setSelectedCategory(firstCategory);
         setSelectedPosition("All");
         setSelectedAltShape(0);
+        setOctaveUp(false);
         drillDownAndSetDefaults(difficultyData[firstCategory]);
     };
 
@@ -213,6 +215,7 @@ export default function Home() {
         setSelectedCategory(newCategory);
         setSelectedPosition("All");
         setSelectedAltShape(0);
+        setOctaveUp(false);
         drillDownAndSetDefaults(
             (allChordShapes as Record<string, Record<string, ChordLevel>>)[
                 difficulty
@@ -220,10 +223,18 @@ export default function Home() {
         );
     };
 
+    const octaveFromDisplay = React.useCallback(() => {
+        const frets = displayShape
+            .map(n => n.fret)
+            .filter((f): f is number => f != null && f >= 0);
+        if (!frets.length) return false;
+        return (Math.min(...frets) + Math.max(...frets)) / 2 >= 12;
+    }, [displayShape]);
+
     const handlePositionChange = (newPosition: string) => {
         setSelectedPosition(newPosition);
         setSelectedAltShape(0);
-        setOctaveUp(false);
+        setOctaveUp(octaveFromDisplay());
     };
 
     // ── generate new root ──────────────────────────────────────────────────────
@@ -419,7 +430,7 @@ export default function Home() {
     const { prev: goPrevAlt, next: goNextAlt } = useCycleList(
         availableAlts,
         selectedAltShape,
-        (i: number) => { setSelectedAltShape(i); setOctaveUp(false); },
+        (i: number) => { setSelectedAltShape(i); setOctaveUp(octaveFromDisplay()); },
     );
 
     // ── chord label ─────────────────────────────────────────────────────────────
