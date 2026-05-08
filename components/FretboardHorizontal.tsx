@@ -50,13 +50,15 @@ const FretboardHorizontal = ({
         const minFret = Math.min(...frets);
         const maxFret = Math.max(...frets);
 
-        const centerX =
+        const centerXRight =
             ((minFret + maxFret) / 2 - 1) * fretWidth + padX + fretWidth / 2;
+        const centerX =
+            handedness === "right" ? centerXRight : diagramWidth - centerXRight;
         container.scrollTo({
             left: Math.max(0, centerX - container.clientWidth / 2),
             behavior: "smooth",
         });
-    }, [chordShape, fretWidth, padX]);
+    }, [chordShape, fretWidth, padX, handedness, diagramWidth]);
 
     const yForString = React.useCallback(
         (s: number) =>
@@ -64,10 +66,21 @@ const FretboardHorizontal = ({
             padY,
         [handedness, numStrings],
     );
-    const xForFretLine = (i: number) => i * fretWidth + padX;
-    const xForFretMark = (f: number) =>
-        (f - 1) * fretWidth + padX + fretWidth / 2;
-    const openX = padX - 13;
+    const xForFretLine = React.useCallback(
+        (i: number) =>
+            handedness === "right"
+                ? i * fretWidth + padX
+                : diagramWidth - i * fretWidth - padX,
+        [handedness, diagramWidth, fretWidth, padX],
+    );
+    const xForFretMark = React.useCallback(
+        (f: number) =>
+            handedness === "right"
+                ? (f - 1) * fretWidth + padX + fretWidth / 2
+                : diagramWidth - (f - 1) * fretWidth - padX - fretWidth / 2,
+        [handedness, diagramWidth, fretWidth, padX],
+    );
+    const openX = handedness === "right" ? padX - 13 : diagramWidth - padX + 13;
 
     return (
         <div

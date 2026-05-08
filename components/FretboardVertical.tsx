@@ -70,7 +70,9 @@ const FretboardVertical = ({
     const openY = padY - 18;
 
     return (
-        <div ref={containerRef} className='h-full w-full overflow-y-auto no-scrollbar'>
+        <div
+            ref={containerRef}
+            className='h-full w-full overflow-y-auto no-scrollbar'>
             <svg
                 style={{
                     display: "block",
@@ -147,7 +149,11 @@ const FretboardVertical = ({
                         fret <= numFrets && (
                             <text
                                 key={`label-${fret}`}
-                                x={12}
+                                x={
+                                    handedness === "right"
+                                        ? 12
+                                        : diagramWidth - 12
+                                }
                                 y={yForFretMark(fret)}
                                 textAnchor='middle'
                                 dominantBaseline='central'
