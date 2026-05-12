@@ -4,7 +4,7 @@ import * as React from "react";
 import FretboardHorizontal from "@/components/FretboardHorizontal";
 import FretboardVertical from "@/components/FretboardVertical";
 import NotesIntervalsToggle from "@/components/NotesIntervalsToggle";
-import { noteNameToSemitone } from "@/lib/MusicTheory";
+import { noteNameToSemitone, spellNote } from "@/lib/MusicTheory";
 import {
     useDrawModeIndex,
     keyFromSelection,
@@ -16,6 +16,88 @@ import {
 } from "@/lib/API";
 import { generateAllVoicingsForShape } from "@/lib/fretboardMap";
 import type { NotePosition } from "@/lib/fretboardMap";
+import { SCALE_SHAPES } from "@/lib/Shapes/Scales";
+import { CHORD_SHAPES } from "@/lib/Shapes/Chords";
+
+const QUALITY_DISPLAY: Record<string, string> = {
+    Maj: "Major",
+    Min: "Minor",
+    Aug: "Augmented",
+    Dim: "Diminished",
+    Maj7: "Maj 7",
+    Dom7: "Dom 7",
+    Min7: "Min 7",
+    mMaj7: "Min/Maj 7",
+    Min7b5: "Half Dim",
+    Dim7: "Dim 7",
+};
+
+type ChordNode = {
+    levelName?: string;
+    options?: Record<string, ChordNode>;
+    pattern?: { semitones: number }[];
+    altShapes?: ChordNode[];
+};
+
+function getPatternSemitones(formula: ChordNode): number[] | null {
+    if (!Array.isArray(formula.pattern)) return null;
+    const semis = [...new Set(formula.pattern.map(n => n.semitones))].sort(
+        (a, b) => a - b,
+    );
+    return semis.length >= 2 ? semis : null;
+}
+
+function registerFormula(
+    formula: ChordNode,
+    displayName: string,
+    map: Map<string, string>,
+) {
+    const semis = getPatternSemitones(formula);
+    if (semis) {
+        const key = semis.join(",");
+        if (!map.has(key)) map.set(key, displayName);
+    }
+    if (Array.isArray(formula.altShapes)) {
+        for (const alt of formula.altShapes) {
+            const altSemis = getPatternSemitones(alt);
+            if (altSemis) {
+                const key = altSemis.join(",");
+                if (!map.has(key)) map.set(key, displayName);
+            }
+        }
+    }
+}
+
+function buildChordQualityMap(shapes: ChordNode): Map<string, string> {
+    const map = new Map<string, string>();
+
+    function crawl(node: ChordNode) {
+        if (!node || typeof node !== "object") return;
+        if (node.levelName === "Chord Qualities" && node.options) {
+            for (const [qualityKey, qualityNode] of Object.entries(
+                node.options,
+            )) {
+                const displayName = QUALITY_DISPLAY[qualityKey] ?? qualityKey;
+                if (qualityNode.levelName === "Positions" && qualityNode.options) {
+                    for (const formula of Object.values(qualityNode.options)) {
+                        registerFormula(formula, displayName, map);
+                    }
+                }
+            }
+            return;
+        }
+        if (node.options) {
+            for (const child of Object.values(node.options)) crawl(child);
+        }
+    }
+
+    for (const topLevel of Object.values(shapes)) {
+        if (topLevel && typeof topLevel === "object") crawl(topLevel as ChordNode);
+    }
+    return map;
+}
+
+const CHORD_QUALITY_MAP = buildChordQualityMap(CHORD_SHAPES as unknown as ChordNode);
 
 const STANDARD_TUNING = ["E", "B", "G", "D", "A", "E"];
 const NUM_FRETS = 24;
@@ -59,7 +141,25 @@ function semitonesToDegreeNumber(semi: number): number {
     return idx === 0 ? 1 : idx + 1;
 }
 
+const NATURAL_SEMITONES = [0, 2, 4, 5, 7, 9, 11];
+
+function spellDegree(semitone: number, degreeNum: number): string {
+    const natural = NATURAL_SEMITONES[degreeNum - 1];
+    const diff = semitone - natural;
+    const base = String(degreeNum);
+    if (diff === 0) return base;
+    if (diff === -1) return `b${base}`;
+    if (diff === 1) return `#${base}`;
+    if (diff === -2) return `bb${base}`;
+    if (diff === 2) return `##${base}`;
+    return base;
+}
+
 const wrap12 = (n: number) => ((n % 12) + 12) % 12;
+
+const CHROMATIC_INTERVALS = [
+    "1","b2","2","b3","3","4","b5","5","b6","6","b7","7",
+];
 
 function intervalSemitones(rootName: string, targetName: string): number {
     return wrap12(
@@ -122,7 +222,8 @@ export default function DrawMode() {
     const [showIntervals, setShowIntervals] = React.useState(true);
     const [rootMenuOpen, setRootMenuOpen] = React.useState(false);
     const [isRight, setIsRight] = React.useState(true);
-    const [selected, setSelected] = React.useState(new Map<number, number>());
+    // Set of "string:fret" keys — allows multiple notes per string for scale drawing
+    const [selected, setSelected] = React.useState(new Set<string>());
     const [matchInfo, setMatchInfo] = React.useState<any>(null);
     const [selectedPosition, setSelectedPosition] = React.useState("");
     const [selectedAltShape, setSelectedAltShape] = React.useState(0);
@@ -144,17 +245,27 @@ export default function DrawMode() {
         [matchInfo],
     );
 
+    // One-note-per-string map derived from selected — used for chord matching only
+    const selectedAsMap = React.useMemo(() => {
+        const map = new Map<number, number>();
+        for (const key of selected) {
+            const [s, f] = key.split(":").map(Number);
+            if (!map.has(s) || f < map.get(s)!) map.set(s, f);
+        }
+        return map;
+    }, [selected]);
+
     const toggle = React.useCallback((string: number, fret: number) => {
         setSelected(prev => {
-            const next = new Map(prev);
-            if (next.has(string) && next.get(string) === fret)
-                next.delete(string);
-            else next.set(string, fret);
+            const next = new Set(prev);
+            const key = `${string}:${fret}`;
+            if (next.has(key)) next.delete(key);
+            else next.add(key);
             return next;
         });
     }, []);
 
-    const clearAll = () => setSelected(new Map());
+    const clearAll = () => setSelected(new Set());
 
     const pickVoicingFor = React.useCallback(
         (posKeyToUse: string, altIdxToUse: number): NotePosition[] | null => {
@@ -168,8 +279,8 @@ export default function DrawMode() {
             const raw =
                 generateAllVoicingsForShape(root, formula, fretboardMap) || [];
             const voicings = Array.isArray(raw[0]) ? raw : [raw];
-            const targetSize = selected.size;
-            const drawStrings = new Set(Array.from(selected.keys()));
+            const targetSize = selectedAsMap.size;
+            const drawStrings = new Set(Array.from(selectedAsMap.keys()));
             const best =
                 voicings.find(
                     v =>
@@ -185,13 +296,14 @@ export default function DrawMode() {
                         a.string - b.string || (a.fret ?? 0) - (b.fret ?? 0),
                 );
         },
-        [finalFormulas, root, fretboardMap, selected],
+        [finalFormulas, root, fretboardMap, selectedAsMap],
     );
 
     const chordShape: NotePosition[] = React.useMemo(() => {
         if (browsedVoicing?.length) return browsedVoicing;
         const shape: NotePosition[] = [];
-        for (const [string, fret] of selected.entries()) {
+        for (const key of selected) {
+            const [string, fret] = key.split(":").map(Number);
             const cell = fretboardMap[string]?.[fret];
             if (!cell) continue;
             const name = firstEnharmonic(cell);
@@ -208,14 +320,110 @@ export default function DrawMode() {
         );
     }, [selected, fretboardMap, root, browsedVoicing]);
 
+    // Unique note names and intervals for the freeform label
+    type ScaleMatch = {
+        scaleName: string;
+        modeName?: string;
+        exact: boolean;
+        degreeMap: Map<number, number> | null;
+    };
+    const scaleMatches = React.useMemo((): ScaleMatch[] => {
+        const drawnSemis = [
+            ...new Set(chordShape.map(n => n.semitones ?? 0)),
+        ].sort((a, b) => a - b);
+        if (drawnSemis.length < 3) return [];
+
+        const results: ScaleMatch[] = [];
+        for (const scales of Object.values(SCALE_SHAPES)) {
+            for (const entry of Object.values(scales)) {
+                for (let d = 0; d < entry.intervals.length; d++) {
+                    const pivot = entry.intervals[d];
+                    const rotatedArr = entry.intervals
+                        .map(i => (i - pivot + 12) % 12)
+                        .sort((a, b) => a - b);
+                    const rotated = new Set(rotatedArr);
+                    if (!drawnSemis.every(s => rotated.has(s))) continue;
+                    // Only build a degree map for 7-note scales — positional
+                    // index = scale degree only holds when all 7 degrees are present.
+                    const degreeMap =
+                        rotatedArr.length === 7
+                            ? new Map<number, number>(
+                                  rotatedArr.map((s, idx) => [s, idx + 1]),
+                              )
+                            : null;
+                    results.push({
+                        scaleName: entry.name,
+                        modeName: entry.positions[d]?.modeName,
+                        exact: drawnSemis.length === rotated.size,
+                        degreeMap,
+                    });
+                }
+            }
+        }
+
+        const seen = new Set<string>();
+        return results
+            .sort((a, b) => Number(b.exact) - Number(a.exact))
+            .filter(r => {
+                const key = `${r.scaleName}|${r.modeName ?? ""}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+    }, [chordShape]);
+
+    // First scale match that has a valid 7-note degree map for correct spelling
+    const spellDegreeMap = React.useMemo(
+        () => scaleMatches.find(m => m.degreeMap != null)?.degreeMap ?? null,
+        [scaleMatches],
+    );
+
+    const drawnNotes = React.useMemo(() => {
+        const semis = [...new Set(chordShape.map(n => n.semitones ?? 0))].sort(
+            (a, b) => a - b,
+        );
+        return semis
+            .map(s => {
+                const deg = spellDegreeMap?.get(s) ?? semitonesToDegreeNumber(s);
+                return spellNote(root, s, deg);
+            })
+            .join("  ");
+    }, [chordShape, root, spellDegreeMap]);
+
+    const drawnIntervals = React.useMemo(() => {
+        const semis = [...new Set(chordShape.map(n => n.semitones ?? 0))].sort(
+            (a, b) => a - b,
+        );
+        return semis
+            .map(s => {
+                if (spellDegreeMap) {
+                    const deg = spellDegreeMap.get(s);
+                    if (deg != null) return spellDegree(s, deg);
+                }
+                return CHROMATIC_INTERVALS[s] ?? "?";
+            })
+            .join("  ");
+    }, [chordShape, spellDegreeMap]);
+
+    const freeformLabel = showIntervals ? drawnIntervals : drawnNotes;
+
+    const correctedChordShape = React.useMemo(() => {
+        if (!spellDegreeMap) return chordShape;
+        return chordShape.map(pos => {
+            const deg = spellDegreeMap.get(pos.semitones ?? 0);
+            return deg != null ? { ...pos, degree: deg } : pos;
+        });
+    }, [chordShape, spellDegreeMap]);
+
     React.useEffect(() => {
-        if (!selected?.size) {
+        if (!selectedAsMap.size) {
             setMatchInfo(null);
             return;
         }
-        const hit = index.get(`${root}::${keyFromSelection(selected)}`) || null;
+        const hit =
+            index.get(`${root}::${keyFromSelection(selectedAsMap)}`) || null;
         setMatchInfo(hit);
-    }, [selected, index, root]);
+    }, [selectedAsMap, index, root]);
 
     const positions = React.useMemo(
         () => (finalFormulas ? Object.keys(finalFormulas) : []),
@@ -240,6 +448,16 @@ export default function DrawMode() {
         const altCount = 1 + (posData?.altShapes?.length || 0);
         if (selectedAltShape >= altCount) setSelectedAltShape(0);
     }, [matchInfo, finalFormulas, posKey, selectedPosition, selectedAltShape]);
+
+    const chordIntervalMatch = React.useMemo(() => {
+        if (!chordShape.length) return null;
+        const semis = [...new Set(chordShape.map(n => n.semitones ?? 0))].sort(
+            (a, b) => a - b,
+        );
+        return CHORD_QUALITY_MAP.get(semis.join(",")) ?? null;
+    }, [chordShape]);
+
+    const chordIntervalLabel = chordIntervalMatch ? `${root} ${chordIntervalMatch}` : "";
 
     const lastFamilyRef = React.useRef("");
     const familyKey = matchInfo
@@ -321,17 +539,31 @@ export default function DrawMode() {
         <div className='flex-1 min-h-0 flex flex-col text-ink'>
             {/* ── MOBILE (max-sm) ─────────────────────────────────────── */}
             <div className='sm:hidden flex-1 min-h-0 flex flex-col'>
-                {/* Chord label */}
+                {/* Chord / scale label */}
                 <div className='text-center px-4 pt-1 shrink-0'>
                     <span className='text-2xl font-bold tracking-tight'>
-                        {chordLabel || root}
+                        {chordLabel || chordIntervalLabel ||
+                            (chordShape.length > 0 ? freeformLabel : root)}
                     </span>
+                    {!chordLabel && scaleMatches.length > 0 && (
+                        <p className='text-xs font-semibold text-ink/50 mt-0.5 leading-relaxed'>
+                            {scaleMatches.map((m, i) => (
+                                <React.Fragment key={`${m.scaleName}|${m.modeName ?? ""}`}>
+                                    {i > 0 && <span className='mx-1'>·</span>}
+                                    <span className={m.exact ? "" : "opacity-60"}>
+                                        {m.modeName ?? m.scaleName}
+                                        {!m.exact && scaleMatches.length > 1 && " *"}
+                                    </span>
+                                </React.Fragment>
+                            ))}
+                        </p>
+                    )}
                 </div>
 
                 {/* Fretboard */}
                 <div className='flex-1 min-h-0'>
                     <FretboardVertical
-                        chordShape={chordShape}
+                        chordShape={correctedChordShape}
                         handedness={handedness}
                         interactive
                         onTogglePosition={({ string, fret }) =>
@@ -394,7 +626,7 @@ export default function DrawMode() {
 
                     {rootMenuOpen && (
                         <div
-                            className='fixed inset-0 z-50 flex items-end justify-start bg-black/30 pb-28 pl-4'
+                            className='fixed inset-0 z-50 flex items-end justify-start bg-black/30 pb-17 pl-4'
                             onClick={() => setRootMenuOpen(false)}>
                             <div
                                 className='bg-sand-2 rounded-xl shadow-xl p-2 max-h-56 overflow-y-auto grid grid-cols-3 gap-1'
@@ -441,14 +673,28 @@ export default function DrawMode() {
                 {/* Chord label */}
                 <div className='text-center px-4 w-full shrink-0'>
                     <span className='text-3xl font-bold tracking-tight'>
-                        {chordLabel || root}
+                        {chordLabel || chordIntervalLabel ||
+                            (chordShape.length > 0 ? freeformLabel : root)}
                     </span>
+                    {!chordLabel && scaleMatches.length > 0 && (
+                        <p className='text-xs font-semibold text-ink/50 mt-0.5 leading-relaxed'>
+                            {scaleMatches.map((m, i) => (
+                                <React.Fragment key={`${m.scaleName}|${m.modeName ?? ""}`}>
+                                    {i > 0 && <span className='mx-1'>·</span>}
+                                    <span className={m.exact ? "" : "opacity-60"}>
+                                        {m.modeName ?? m.scaleName}
+                                        {!m.exact && scaleMatches.length > 1 && " *"}
+                                    </span>
+                                </React.Fragment>
+                            ))}
+                        </p>
+                    )}
                 </div>
 
                 {/* Fretboard */}
                 <div className='w-full px-4 shrink-0'>
                     <FretboardHorizontal
-                        chordShape={chordShape}
+                        chordShape={correctedChordShape}
                         handedness={handedness}
                         interactive
                         onTogglePosition={({ string, fret }) =>
@@ -505,7 +751,7 @@ export default function DrawMode() {
                                                 ? "bg-sand-4 text-sand-1 font-semibold"
                                                 : "bg-sand-1 text-ink hover:bg-sand-2"
                                         }`}>
-                                        {(finalFormulas as any)?.[pos]?.name ||
+                                        {(finalFormulas?.[pos] as { name?: string } | null)?.name ||
                                             pos}
                                     </button>
                                 ))}
@@ -537,17 +783,12 @@ export default function DrawMode() {
                         </div>
                     )}
 
-                    <div className='flex flex-col items-center gap-1.5'>
-                        <span className='text-xs font-semibold text-ink/60'>
-                            Hand
-                        </span>
-                        <button
-                            onClick={() => setIsRight(h => !h)}
-                            title={isRight ? "Right hand" : "Left hand"}
-                            className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
-                            <HandIcon flipped={!isRight} />
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => setIsRight(h => !h)}
+                        className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                        <HandIcon flipped={!isRight} />
+                        {isRight ? "Right hand" : "Left hand"}
+                    </button>
 
                     <NotesIntervalsToggle
                         showIntervals={showIntervals}
