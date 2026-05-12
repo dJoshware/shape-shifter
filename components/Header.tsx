@@ -616,15 +616,15 @@ export default function Header() {
                                 fretboard
                             </h2>
                             <p className='text-sm text-sand-1/60 text-center'>
-                                Everything a serious guitarist needs
+                                For the curious and the committed
                             </p>
                         </div>
 
                         <ul className='px-6 py-4 flex flex-col gap-2.5'>
                             {[
-                                "All alternate voicings",
+                                "Alternate chord voicings",
+                                "Additional scale patterns & variants",
                                 "Draw Mode — build any shape",
-                                "Scales (coming soon)",
                                 "New content added regularly",
                             ].map(f => (
                                 <li
@@ -655,33 +655,37 @@ export default function Header() {
                             <div className='flex'>
                                 <div className='flex-1' />
                                 <div className='flex-1 flex justify-center'>
-                                    <span className='px-2 py-0.5 rounded-full bg-olive text-sand-1 text-[9px] font-bold leading-tight whitespace-nowrap'>
-                                        SAVE 20%
+                                    <span className='px-2 py-0.5 rounded-full bg-olive text-sand-1 text-[10px] font-bold leading-tight whitespace-nowrap'>
+                                        SAVE 50%
                                     </span>
                                 </div>
                             </div>
                             <div className='flex rounded-xl overflow-hidden border border-sand-1/20 bg-sand-1/5'>
                                 <button
                                     onClick={() => setPlan("monthly")}
-                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-sm font-semibold transition-colors rounded-l-xl ${plan === "monthly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
-                                    <span>Monthly</span>
+                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-lg font-semibold transition-colors rounded-l-xl ${plan === "monthly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
                                     {prices.monthly && (
-                                        <span
-                                            className={`text-xs font-medium ${plan === "monthly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
-                                            {prices.monthly}/mo
+                                        <span>
+                                            {prices.monthly}
                                         </span>
                                     )}
+                                    <span
+                                        className={`text-xs font-medium ${plan === "monthly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
+                                        Monthly
+                                    </span>
                                 </button>
                                 <button
                                     onClick={() => setPlan("yearly")}
-                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-sm font-semibold transition-colors rounded-r-xl ${plan === "yearly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
-                                    <span>Yearly</span>
+                                    className={`flex-1 py-3 flex flex-col items-center gap-0.5 text-lg font-semibold transition-colors rounded-r-xl ${plan === "yearly" ? "bg-sand-1 text-sand-4" : "text-sand-1/50 hover:text-sand-1/80"}`}>
                                     {prices.yearly && (
-                                        <span
-                                            className={`text-xs font-medium ${plan === "yearly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
-                                            {prices.yearly}/yr
+                                        <span>
+                                            {prices.yearly}
                                         </span>
                                     )}
+                                    <span
+                                        className={`text-xs font-medium ${plan === "yearly" ? "text-sand-4/60" : "text-sand-1/30"}`}>
+                                        Yearly
+                                    </span>
                                 </button>
                             </div>
 

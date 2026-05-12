@@ -95,18 +95,14 @@ function MenuIcon() {
 
 function LockIcon() {
     return (
-        <svg
-            className='w-3.5 h-3.5'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'>
-            <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2.5}
-                d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
-            />
-        </svg>
+        <span className='inline-flex items-center justify-center px-1.5 py-0.5 rounded-full bg-olive/20 border border-olive/40 text-olive'>
+            <svg
+                className='w-3 h-3'
+                viewBox='0 0 24 24'
+                fill='currentColor'>
+                <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
+            </svg>
+        </span>
     );
 }
 
