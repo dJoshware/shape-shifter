@@ -72,7 +72,7 @@ const FretboardVertical = ({
     return (
         <div
             ref={containerRef}
-            className='h-full w-full overflow-y-auto no-scrollbar'>
+            className='h-full w-full mt-2 overflow-y-auto no-scrollbar'>
             <svg
                 style={{
                     display: "block",
@@ -167,7 +167,7 @@ const FretboardVertical = ({
 
                 {/* Notes */}
                 {chordShape.map((pos, index) => {
-                    const { string, fret, semitones, degree } = pos;
+                    const { string, fret, semitones, degree, isTonic } = pos;
                     if (
                         fret === null ||
                         fret === undefined ||
@@ -176,6 +176,7 @@ const FretboardVertical = ({
                     )
                         return null;
                     const isRoot = semitones === 0;
+                    const isHollowTonic = isTonic && !isRoot;
                     const label = showIntervals
                         ? spellInterval(rootNote, semitones!, degree!)
                         : spellNote(rootNote, semitones!, degree!);
@@ -214,7 +215,15 @@ const FretboardVertical = ({
                                 cx={x}
                                 cy={y}
                                 r={16}
-                                fill={isRoot ? "#dc2626" : "#1f2d3d"}
+                                fill={
+                                    isRoot
+                                        ? "#dc2626"
+                                        : isHollowTonic
+                                          ? "transparent"
+                                          : "#1f2d3d"
+                                }
+                                stroke={isHollowTonic ? "#1f2d3d" : "none"}
+                                strokeWidth={isHollowTonic ? 2 : 0}
                             />
                             <text
                                 x={x}
@@ -223,7 +232,13 @@ const FretboardVertical = ({
                                 dominantBaseline='central'
                                 fontSize={fontSize}
                                 fontWeight={600}
-                                fill='#f7f7f5'>
+                                fill={
+                                    isRoot || isHollowTonic
+                                        ? isRoot
+                                            ? "#f7f7f5"
+                                            : "#1f2d3d"
+                                        : "#f7f7f5"
+                                }>
                                 {label}
                             </text>
                         </g>

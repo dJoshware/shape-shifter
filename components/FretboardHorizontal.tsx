@@ -185,6 +185,7 @@ const FretboardHorizontal = ({
                         )
                             return null;
                         const isRoot = semitones === 0;
+                        const isHollowTonic = pos.isTonic && !isRoot;
                         const label = showIntervals
                             ? spellInterval(rootNote, semitones!, degree!)
                             : spellNote(rootNote, semitones!, degree!);
@@ -225,7 +226,15 @@ const FretboardHorizontal = ({
                                     cx={x}
                                     cy={y}
                                     r={12}
-                                    fill={isRoot ? "#dc2626" : "#1f2d3d"}
+                                    fill={
+                                        isRoot
+                                            ? "#dc2626"
+                                            : isHollowTonic
+                                              ? "transparent"
+                                              : "#1f2d3d"
+                                    }
+                                    stroke={isHollowTonic ? "#1f2d3d" : "none"}
+                                    strokeWidth={isHollowTonic ? 2 : 0}
                                 />
                                 <text
                                     x={x}
@@ -234,7 +243,9 @@ const FretboardHorizontal = ({
                                     dominantBaseline='central'
                                     fontSize={fontSize}
                                     fontWeight={600}
-                                    fill='#f7f7f5'>
+                                    fill={
+                                        isHollowTonic ? "#1f2d3d" : "#f7f7f5"
+                                    }>
                                     {label}
                                 </text>
                             </g>

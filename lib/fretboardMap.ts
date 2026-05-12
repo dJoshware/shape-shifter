@@ -3,6 +3,7 @@ export type NotePosition = {
     fret: number;
     semitones: number | null;
     degree: number | null;
+    isTonic?: boolean;
 };
 
 export type ShapeFormula = {

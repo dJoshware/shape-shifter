@@ -28,6 +28,7 @@ export function generateNpsPositions(
     notesPerString: number,
     tuning: number[] = STANDARD_TUNING_SEMITONES,
     numStrings: number = 6,
+    stringOverlap: number = 0,
 ): ScalePosition[] {
     const numNotes = intervals.length;
     const lowestString = numStrings - 1;
@@ -40,6 +41,10 @@ export function generateNpsPositions(
 
         // Iterate from lowest string to highest
         for (let s = lowestString; s >= 0; s--) {
+            // stringOverlap shifts the starting degree at each string boundary:
+            //   > 0  go back (shared/pivot notes, e.g. 1 = pivot, 2 = back-two)
+            //   < 0  skip ahead (e.g. -1 = skip one, starting on the 5th)
+            if (stringOverlap !== 0 && s < lowestString) totalDegIdx -= stringOverlap;
             const stringDiff = lowestTuning - tuning[s];
 
             for (let n = 0; n < notesPerString; n++) {
@@ -58,3 +63,4 @@ export function generateNpsPositions(
 
     return positions;
 }
+
