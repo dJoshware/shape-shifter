@@ -185,6 +185,7 @@ export default function Home() {
     const [selectedAltShape, setSelectedAltShape] = React.useState(0);
     const [currentRootNote, setCurrentRootNote] = React.useState("C");
     const [displayShape, setDisplayShape] = React.useState<NotePosition[]>([]);
+    const [displayGroups, setDisplayGroups] = React.useState<NotePosition[][]>([]);
     const [noteDeck, setNoteDeck] = React.useState<number[]>([]);
     const [shuffleChecked, setShuffleChecked] = React.useState(false);
     const [showIntervals, setShowIntervals] = React.useState(false);
@@ -324,7 +325,7 @@ export default function Home() {
         setNoteDeck(deck);
         const candidates = NOTES[nextSem];
 
-        if (!shuffleChecked) {
+        if (!shuffleChecked || selectedMode === "scales") {
             const simple =
                 candidates.find(r => !r.includes("#") && !r.includes("b")) ||
                 candidates[1] ||
@@ -557,38 +558,29 @@ export default function Home() {
             return;
         }
 
-        const finalShapes: NotePosition[][] = [];
+        const primaryShapes: NotePosition[][] = [];
         if (selectedPosition === "All") {
             for (const posName in formulas) {
-                const positionData = formulas[posName];
-                finalShapes.push(
+                primaryShapes.push(
                     ...generateAllVoicingsForShape(
                         currentRootNote,
-                        positionData,
+                        formulas[posName],
                         fretboardMap,
                     ),
                 );
-                if (positionData.altShapes) {
-                    for (const altFormula of positionData.altShapes) {
-                        finalShapes.push(
-                            ...generateAllVoicingsForShape(
-                                currentRootNote,
-                                altFormula,
-                                fretboardMap,
-                            ),
-                        );
-                    }
-                }
             }
-            setDisplayShape(finalShapes.flat());
+            setDisplayShape(primaryShapes.flat());
+            setDisplayGroups(primaryShapes);
         } else {
             if (!voicingInfo) {
                 setDisplayShape([]);
+                setDisplayGroups([]);
                 return;
             }
             const { low, crossing, high, hasOctave } = voicingInfo;
             const active = octaveUp && hasOctave ? high : [...low, ...crossing];
             setDisplayShape(active.flat());
+            setDisplayGroups([]);
         }
     }, [
         isDrawMode,
@@ -782,6 +774,8 @@ export default function Home() {
                                     handedness={handedness}
                                     rootNote={modeRootNote}
                                     showIntervals={showIntervals}
+                                    showConnector={selectedMode === "chords"}
+                                    chordGroups={displayGroups.length > 0 ? displayGroups : undefined}
                                 />
                             </div>
 

@@ -12,7 +12,7 @@ function isPro(sub: unknown): boolean {
 }
 
 export function useSubscription(): boolean {
-    return true; // TODO: remove before release
+    if (process.env.NODE_ENV === 'development') return true;
 
     const supabase = React.useMemo(
         () =>

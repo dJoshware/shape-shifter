@@ -11,6 +11,8 @@ type Props = {
     interactive?: boolean;
     onTogglePosition?: (pos: { string: number; fret: number }) => void;
     handedness?: "left" | "right";
+    showConnector?: boolean;
+    chordGroups?: NotePosition[][];
 };
 
 const FretboardVertical = ({
@@ -22,6 +24,8 @@ const FretboardVertical = ({
     interactive = false,
     onTogglePosition,
     handedness = "right",
+    showConnector = false,
+    chordGroups,
 }: Props) => {
     const padX = 30;
     const padY = 40;
@@ -164,6 +168,29 @@ const FretboardVertical = ({
                             </text>
                         ),
                 )}
+
+                {/* Connector line(s) */}
+                {showConnector && (chordGroups && chordGroups.length > 0 ? chordGroups : [chordShape]).map((group, gi) => {
+                    const pts = group
+                        .filter(p => p.fret != null && p.fret >= 0 && p.fret <= numFrets)
+                        .sort((a, b) => b.string - a.string)
+                        .map(p => {
+                            const x = xForString(p.string);
+                            const y = p.fret === 0 ? openY : yForFretMark(p.fret!);
+                            return `${x},${y}`;
+                        });
+                    return pts.length > 1 ? (
+                        <polyline
+                            key={`connector-${gi}`}
+                            points={pts.join(" ")}
+                            fill='none'
+                            stroke='#1f2d3d'
+                            strokeWidth={2.5}
+                            strokeLinejoin='round'
+                            strokeLinecap='round'
+                        />
+                    ) : null;
+                })}
 
                 {/* Notes */}
                 {chordShape.map((pos, index) => {
