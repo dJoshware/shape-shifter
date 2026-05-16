@@ -106,6 +106,17 @@ function LockIcon() {
     );
 }
 
+function StarIcon() {
+    return (
+        <svg
+            className='w-3 h-3'
+            viewBox='0 0 24 24'
+            fill='currentColor'>
+            <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
+        </svg>
+    );
+}
+
 function PencilIcon() {
     return (
         <svg
@@ -157,9 +168,15 @@ function ShuffleIcon() {
 }
 
 function wrapAtParen(text: string): React.ReactNode {
-    const idx = text.indexOf(' (');
+    const idx = text.indexOf(" (");
     if (idx === -1) return text;
-    return <>{text.slice(0, idx)}<br />{text.slice(idx + 1)}</>;
+    return (
+        <>
+            {text.slice(0, idx)}
+            <br />
+            {text.slice(idx + 1)}
+        </>
+    );
 }
 
 // ─── main page ────────────────────────────────────────────────────────────────
@@ -181,7 +198,9 @@ export default function Home() {
     const [selectedAltShape, setSelectedAltShape] = React.useState(0);
     const [currentRootNote, setCurrentRootNote] = React.useState("C");
     const [displayShape, setDisplayShape] = React.useState<NotePosition[]>([]);
-    const [displayGroups, setDisplayGroups] = React.useState<NotePosition[][]>([]);
+    const [displayGroups, setDisplayGroups] = React.useState<NotePosition[][]>(
+        [],
+    );
     const [noteDeck, setNoteDeck] = React.useState<number[]>([]);
     const [shuffleChecked, setShuffleChecked] = React.useState(false);
     const [showIntervals, setShowIntervals] = React.useState(false);
@@ -195,6 +214,21 @@ export default function Home() {
         setMenuOpen(false);
         router.replace("?paywall=1", { scroll: false });
     }, [router]);
+
+    const [showWelcome, setShowWelcome] = React.useState(false);
+
+    React.useEffect(() => {
+        if (
+            typeof window !== "undefined" &&
+            new URLSearchParams(window.location.search).get("subscribed") ===
+                "true"
+        ) {
+            setShowWelcome(true);
+            const url = new URL(window.location.href);
+            url.searchParams.delete("subscribed");
+            window.history.replaceState({}, "", url.toString());
+        }
+    }, []);
 
     const [selectedMode, setSelectedMode] = React.useState<"chords" | "scales">(
         "chords",
@@ -618,7 +652,11 @@ export default function Home() {
     );
 
     const handleScalePatternChange = (pattern: string) => {
-        if (!hasPro && pattern !== SCALE_SHAPES[selectedNoteGroup]?.[selectedScale]?.defaultPattern) {
+        if (
+            !hasPro &&
+            pattern !==
+                SCALE_SHAPES[selectedNoteGroup]?.[selectedScale]?.defaultPattern
+        ) {
             openPaywall();
             return;
         }
@@ -776,7 +814,11 @@ export default function Home() {
                                     rootNote={modeRootNote}
                                     showIntervals={showIntervals}
                                     showConnector={selectedMode === "chords"}
-                                    chordGroups={displayGroups.length > 0 ? displayGroups : undefined}
+                                    chordGroups={
+                                        displayGroups.length > 0
+                                            ? displayGroups
+                                            : undefined
+                                    }
                                 />
                             </div>
 
@@ -906,15 +948,34 @@ export default function Home() {
                                                         1 && (
                                                         <div className='flex items-center gap-1 ml-1'>
                                                             <button
-                                                                onClick={() => handleScalePatternChange(scalePatternKeys[(patIdx - 1 + scalePatternKeys.length) % scalePatternKeys.length])}
+                                                                onClick={() =>
+                                                                    handleScalePatternChange(
+                                                                        scalePatternKeys[
+                                                                            (patIdx -
+                                                                                1 +
+                                                                                scalePatternKeys.length) %
+                                                                                scalePatternKeys.length
+                                                                        ],
+                                                                    )
+                                                                }
                                                                 className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                                                 <ChevronLeft />
                                                             </button>
                                                             <span className='text-xs font-semibold text-ink w-8 text-center'>
-                                                                {selectedScalePattern}
+                                                                {
+                                                                    selectedScalePattern
+                                                                }
                                                             </span>
                                                             <button
-                                                                onClick={() => handleScalePatternChange(scalePatternKeys[(patIdx + 1) % scalePatternKeys.length])}
+                                                                onClick={() =>
+                                                                    handleScalePatternChange(
+                                                                        scalePatternKeys[
+                                                                            (patIdx +
+                                                                                1) %
+                                                                                scalePatternKeys.length
+                                                                        ],
+                                                                    )
+                                                                }
                                                                 className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                                                 <ChevronRight />
                                                             </button>
@@ -923,15 +984,33 @@ export default function Home() {
                                                     {scaleNumVariants > 1 && (
                                                         <div className='flex items-center gap-1 ml-1'>
                                                             <button
-                                                                onClick={() => handleScaleVariantChange((selectedScaleVariant - 1 + scaleNumVariants) % scaleNumVariants)}
+                                                                onClick={() =>
+                                                                    handleScaleVariantChange(
+                                                                        (selectedScaleVariant -
+                                                                            1 +
+                                                                            scaleNumVariants) %
+                                                                            scaleNumVariants,
+                                                                    )
+                                                                }
                                                                 className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                                                 <ChevronLeft />
                                                             </button>
-                                                            <span className={`text-xs font-semibold text-ink w-6 text-center flex items-center justify-center ${scaleVariantLocked ? "opacity-50" : ""}`}>
-                                                                {scaleVariantLocked ? <LockIcon /> : `${selectedScaleVariant + 1}/${scaleNumVariants}`}
+                                                            <span
+                                                                className={`text-xs font-semibold text-ink w-6 text-center flex items-center justify-center ${scaleVariantLocked ? "opacity-50" : ""}`}>
+                                                                {scaleVariantLocked ? (
+                                                                    <LockIcon />
+                                                                ) : (
+                                                                    `${selectedScaleVariant + 1}/${scaleNumVariants}`
+                                                                )}
                                                             </span>
                                                             <button
-                                                                onClick={() => handleScaleVariantChange((selectedScaleVariant + 1) % scaleNumVariants)}
+                                                                onClick={() =>
+                                                                    handleScaleVariantChange(
+                                                                        (selectedScaleVariant +
+                                                                            1) %
+                                                                            scaleNumVariants,
+                                                                    )
+                                                                }
                                                                 className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                                                 <ChevronRight />
                                                             </button>
@@ -940,30 +1019,29 @@ export default function Home() {
                                                 </>
                                             );
                                         })()}
-
-                                    {selectedMode === "chords" && hasAlts && (
-                                        <div className='flex items-center gap-1 ml-1'>
-                                            <button
-                                                onClick={goPrevAlt}
-                                                className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
-                                                <ChevronLeft />
-                                            </button>
-                                            <span
-                                                className={`text-xs font-semibold text-ink w-8 text-center flex items-center justify-center gap-0.5 ${altsLocked ? "opacity-50" : ""}`}>
-                                                {altsLocked ? (
-                                                    <LockIcon />
-                                                ) : (
-                                                    `${selectedAltShape + 1}/${availableAlts.length}`
-                                                )}
-                                            </span>
-                                            <button
-                                                onClick={goNextAlt}
-                                                className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
-                                                <ChevronRight />
-                                            </button>
-                                        </div>
-                                    )}
                                 </div>
+                                {selectedMode === "chords" && hasAlts && (
+                                    <div className='flex items-center gap-1 shrink-0'>
+                                        <button
+                                            onClick={goPrevAlt}
+                                            className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
+                                            <ChevronLeft />
+                                        </button>
+                                        <span className='relative text-xs font-semibold text-ink w-8 text-center flex items-center justify-center'>
+                                            {altsLocked && (
+                                                <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                    <StarIcon />
+                                                </span>
+                                            )}
+                                            {`${selectedAltShape + 1}/${availableAlts.length}`}
+                                        </span>
+                                        <button
+                                            onClick={goNextAlt}
+                                            className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
+                                            <ChevronRight />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
 
                             {/* Action bar */}
@@ -994,7 +1072,12 @@ export default function Home() {
                                 <button
                                     onClick={handleToggleDrawMode}
                                     title='Draw Mode'
-                                    className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
+                                    className='relative w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
+                                    {!hasPro && (
+                                        <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                            <StarIcon />
+                                        </span>
+                                    )}
                                     <PencilIcon />
                                 </button>
 
@@ -1245,7 +1328,13 @@ export default function Home() {
 
                                                 <div>
                                                     <p className='text-[10px] font-bold text-ink/50 uppercase tracking-widest mb-2'>
-                                                        {(scaleVariants?.[selectedScaleVariant] ?? scaleVariants?.[0])?.[0]?.modeName ? "Mode" : "Position"}
+                                                        {(scaleVariants?.[
+                                                            selectedScaleVariant
+                                                        ] ??
+                                                            scaleVariants?.[0])?.[0]
+                                                            ?.modeName
+                                                            ? "Mode"
+                                                            : "Position"}
                                                     </p>
                                                     <div className='flex flex-wrap gap-2'>
                                                         {(
@@ -1269,7 +1358,9 @@ export default function Home() {
                                                                         : "text-ink border-ink/40 hover:border-ink"
                                                                 }`}>
                                                                 {pos.modeName
-                                                                    ? wrapAtParen(pos.modeName)
+                                                                    ? wrapAtParen(
+                                                                          pos.modeName,
+                                                                      )
                                                                     : `${i + 1}`}
                                                             </button>
                                                         ))}
@@ -1285,18 +1376,32 @@ export default function Home() {
                                                         <div className='flex flex-wrap gap-2'>
                                                             {scalePatternKeys.map(
                                                                 k => {
-                                                                    const locked = !hasPro && k !== scaleEntry?.defaultPattern;
+                                                                    const locked =
+                                                                        !hasPro &&
+                                                                        k !==
+                                                                            scaleEntry?.defaultPattern;
                                                                     return (
                                                                         <button
-                                                                            key={k}
-                                                                            onClick={() => handleScalePatternChange(k)}
-                                                                            className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors flex items-center gap-1 ${
-                                                                                selectedScalePattern === k
+                                                                            key={
+                                                                                k
+                                                                            }
+                                                                            onClick={() =>
+                                                                                handleScalePatternChange(
+                                                                                    k,
+                                                                                )
+                                                                            }
+                                                                            className={`relative px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
+                                                                                selectedScalePattern ===
+                                                                                k
                                                                                     ? "bg-sand-4 text-sand-1 border-ink"
                                                                                     : "text-ink border-ink/40 hover:border-ink"
                                                                             } ${locked ? "opacity-60" : ""}`}>
+                                                                            {locked && (
+                                                                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                                                                    <StarIcon />
+                                                                                </span>
+                                                                            )}
                                                                             {k}
-                                                                            {locked && <LockIcon />}
                                                                         </button>
                                                                     );
                                                                 },
@@ -1322,15 +1427,17 @@ export default function Home() {
                             {/* Name label */}
                             <div className='text-center px-4 xl:px-8 w-full'>
                                 <span className='text-3xl font-bold text-ink tracking-tight'>
-                                    {selectedMode === "scales" && !scalePosition?.modeName
+                                    {selectedMode === "scales" &&
+                                    !scalePosition?.modeName
                                         ? `${modeRootNote} ${selectedScale}`
                                         : wrapAtParen(displayLabel)}
                                 </span>
-                                {selectedMode === "scales" && !scalePosition?.modeName && (
-                                    <p className='text-sm font-semibold text-ink/60 mt-0.5'>
-                                        {`Position ${selectedScalePosition + 1}`}
-                                    </p>
-                                )}
+                                {selectedMode === "scales" &&
+                                    !scalePosition?.modeName && (
+                                        <p className='text-sm font-semibold text-ink/60 mt-0.5'>
+                                            {`Position ${selectedScalePosition + 1}`}
+                                        </p>
+                                    )}
                             </div>
 
                             {/* Fretboard */}
@@ -1340,6 +1447,12 @@ export default function Home() {
                                     handedness={handedness}
                                     rootNote={modeRootNote}
                                     showIntervals={showIntervals}
+                                    showConnector={selectedMode === "chords"}
+                                    chordGroups={
+                                        displayGroups.length > 0
+                                            ? displayGroups
+                                            : undefined
+                                    }
                                 />
                             </div>
 
@@ -1566,7 +1679,9 @@ export default function Home() {
                                                                 : "bg-sand-1 text-ink hover:bg-sand-2"
                                                         }`}>
                                                         {pos.modeName
-                                                            ? wrapAtParen(pos.modeName)
+                                                            ? wrapAtParen(
+                                                                  pos.modeName,
+                                                              )
                                                             : `Pos. ${i + 1}`}
                                                     </button>
                                                 ))}
@@ -1589,18 +1704,44 @@ export default function Home() {
                                                                 <span className='text-xs font-semibold text-ink'>
                                                                     Pattern
                                                                 </span>
-                                                                <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                                                <div className='flex items-center gap-2 border border-ink rounded'>
                                                                     <button
-                                                                        onClick={() => handleScalePatternChange(scalePatternKeys[(patIdx - 1 + scalePatternKeys.length) % scalePatternKeys.length])}
-                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
+                                                                        onClick={() =>
+                                                                            handleScalePatternChange(
+                                                                                scalePatternKeys[
+                                                                                    (patIdx -
+                                                                                        1 +
+                                                                                        scalePatternKeys.length) %
+                                                                                        scalePatternKeys.length
+                                                                                ],
+                                                                            )
+                                                                        }
+                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink rounded-l'>
                                                                         <ChevronLeft />
                                                                     </button>
-                                                                    <span className='px-3 text-sm font-medium text-ink'>
-                                                                        {selectedScalePattern}
+                                                                    <span className='relative px-3 text-sm font-medium text-ink'>
+                                                                        {!hasPro &&
+                                                                            scalePatternKeys.length >
+                                                                                1 && (
+                                                                                <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                                    <StarIcon />
+                                                                                </span>
+                                                                            )}
+                                                                        {
+                                                                            selectedScalePattern
+                                                                        }
                                                                     </span>
                                                                     <button
-                                                                        onClick={() => handleScalePatternChange(scalePatternKeys[(patIdx + 1) % scalePatternKeys.length])}
-                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
+                                                                        onClick={() =>
+                                                                            handleScalePatternChange(
+                                                                                scalePatternKeys[
+                                                                                    (patIdx +
+                                                                                        1) %
+                                                                                        scalePatternKeys.length
+                                                                                ],
+                                                                            )
+                                                                        }
+                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink rounded-r'>
                                                                         <ChevronRight />
                                                                     </button>
                                                                 </div>
@@ -1612,18 +1753,43 @@ export default function Home() {
                                                                 <span className='text-xs font-semibold text-ink'>
                                                                     Variant
                                                                 </span>
-                                                                <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                                                <div className='flex items-center gap-2 border border-ink rounded'>
                                                                     <button
-                                                                        onClick={() => handleScaleVariantChange((selectedScaleVariant - 1 + scaleNumVariants) % scaleNumVariants)}
-                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
+                                                                        onClick={() =>
+                                                                            handleScaleVariantChange(
+                                                                                (selectedScaleVariant -
+                                                                                    1 +
+                                                                                    scaleNumVariants) %
+                                                                                    scaleNumVariants,
+                                                                            )
+                                                                        }
+                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink rounded-l'>
                                                                         <ChevronLeft />
                                                                     </button>
-                                                                    <span className={`px-3 text-sm font-medium text-ink flex items-center gap-1 ${scaleVariantLocked ? "opacity-50" : ""}`}>
-                                                                        {scaleVariantLocked ? <LockIcon /> : `${selectedScaleVariant + 1}/${scaleNumVariants}`}
+                                                                    <span className='relative px-3 text-sm font-medium text-ink'>
+                                                                        {scaleVariantLocked && (
+                                                                            <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                                <StarIcon />
+                                                                            </span>
+                                                                        )}
+                                                                        <span
+                                                                            className={
+                                                                                scaleVariantLocked
+                                                                                    ? "opacity-50"
+                                                                                    : ""
+                                                                            }>
+                                                                            {`${selectedScaleVariant + 1}/${scaleNumVariants}`}
+                                                                        </span>
                                                                     </span>
                                                                     <button
-                                                                        onClick={() => handleScaleVariantChange((selectedScaleVariant + 1) % scaleNumVariants)}
-                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
+                                                                        onClick={() =>
+                                                                            handleScaleVariantChange(
+                                                                                (selectedScaleVariant +
+                                                                                    1) %
+                                                                                    scaleNumVariants,
+                                                                            )
+                                                                        }
+                                                                        className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink rounded-r'>
                                                                         <ChevronRight />
                                                                     </button>
                                                                 </div>
@@ -1653,25 +1819,32 @@ export default function Home() {
                                             {hasAlts && (
                                                 <div className='flex flex-col items-center gap-1'>
                                                     <span className='text-xs font-semibold text-ink'>
-                                                        Alternate Positions
+                                                        Alternate Shapes
                                                     </span>
-                                                    <div className='flex items-center gap-2 border border-ink rounded overflow-hidden'>
+                                                    <div className='flex items-center gap-2 border border-ink rounded'>
                                                         <button
                                                             onClick={goPrevAlt}
-                                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink'>
+                                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink rounded-l'>
                                                             <ChevronLeft />
                                                         </button>
-                                                        <span
-                                                            className={`px-3 text-sm font-medium text-ink flex items-center gap-1 ${altsLocked ? "opacity-50" : ""}`}>
-                                                            {altsLocked ? (
-                                                                <LockIcon />
-                                                            ) : (
-                                                                `${selectedAltShape + 1}/${availableAlts.length}`
+                                                        <span className='relative px-3 text-sm font-medium text-ink'>
+                                                            {altsLocked && (
+                                                                <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                    <StarIcon />
+                                                                </span>
                                                             )}
+                                                            <span
+                                                                className={
+                                                                    altsLocked
+                                                                        ? "opacity-50"
+                                                                        : ""
+                                                                }>
+                                                                {`${selectedAltShape + 1}/${availableAlts.length}`}
+                                                            </span>
                                                         </span>
                                                         <button
                                                             onClick={goNextAlt}
-                                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink'>
+                                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink rounded-r'>
                                                             <ChevronRight />
                                                         </button>
                                                     </div>
@@ -1724,7 +1897,12 @@ export default function Home() {
                                     </button>
                                     <button
                                         onClick={handleToggleDrawMode}
-                                        className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        className='relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        {!hasPro && (
+                                            <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                                <StarIcon />
+                                            </span>
+                                        )}
                                         <PencilIcon />
                                         Draw Mode
                                     </button>
@@ -1734,6 +1912,63 @@ export default function Home() {
                     </>
                 )}
             </main>
+
+            {/* ── Welcome Modal (post-subscribe) ────────────────── */}
+            {showWelcome && (
+                <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4'>
+                    <div className='w-full max-w-sm bg-sand-4 rounded-3xl shadow-2xl overflow-hidden'>
+                        <div className='px-6 pt-7 pb-5 flex flex-col items-center gap-2 border-b border-sand-1/10'>
+                            <span className='inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-olive/20 border border-olive/40 text-olive text-xs font-bold tracking-wide uppercase'>
+                                <StarIcon />
+                                Pro
+                            </span>
+                            <h2 className='text-2xl font-bold text-sand-1 text-center leading-tight'>
+                                You&rsquo;re in. Welcome to Pro.
+                            </h2>
+                            <p className='text-sm text-sand-1/60 text-center'>
+                                Here&rsquo;s what&rsquo;s now unlocked for you
+                            </p>
+                        </div>
+                        <ul className='px-6 py-4 flex flex-col gap-2.5'>
+                            {[
+                                "Alternate chord voicings",
+                                "Additional scale patterns & variants",
+                                "Draw Mode — build any shape",
+                                "New content added regularly",
+                            ].map(f => (
+                                <li
+                                    key={f}
+                                    className='flex items-center gap-3'>
+                                    <span className='shrink-0 w-5 h-5 rounded-full bg-olive/20 border border-olive/40 flex items-center justify-center'>
+                                        <svg
+                                            className='w-3 h-3 text-olive'
+                                            viewBox='0 0 24 24'
+                                            fill='none'
+                                            stroke='currentColor'
+                                            strokeWidth={3}>
+                                            <path
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
+                                                d='M5 13l4 4L19 7'
+                                            />
+                                        </svg>
+                                    </span>
+                                    <span className='text-sm text-sand-1/80 font-medium'>
+                                        {f}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className='px-6 pb-6'>
+                            <button
+                                onClick={() => setShowWelcome(false)}
+                                className='w-full py-3.5 rounded-full bg-sand-1 text-sand-4 text-sm font-bold tracking-wide hover:opacity-90 transition-all active:scale-95'>
+                                Start exploring
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

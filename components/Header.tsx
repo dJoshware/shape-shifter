@@ -205,12 +205,25 @@ export default function Header() {
                             <div className='w-6 h-6 border-2 border-ink border-t-transparent rounded-full animate-spin' />
                         </div>
                     ) : user ? (
-                        <button
-                            onClick={() => setDrawerOpen(true)}
-                            title='Open settings'
-                            className='w-10 h-10 rounded-full bg-ink text-sand-1 text-sm font-bold flex items-center justify-center hover:opacity-90 transition-opacity'>
-                            {userInitial}
-                        </button>
+                        <div className='flex flex-col items-end gap-1'>
+                            <button
+                                onClick={() => setDrawerOpen(true)}
+                                title='Open settings'
+                                className='w-10 h-10 rounded-full bg-ink text-sand-1 text-sm font-bold flex items-center justify-center hover:opacity-90 transition-opacity'>
+                                {userInitial}
+                            </button>
+                            {!hasPro && (
+                                <button
+                                    onClick={() =>
+                                        router.replace("?paywall=1", {
+                                            scroll: false,
+                                        })
+                                    }
+                                    className='flex items-center gap-1 px-2 py-0.5 rounded-full bg-olive text-sand-1 text-[10px] font-bold leading-tight hover:opacity-90 transition-opacity'>
+                                    ★ Pro
+                                </button>
+                            )}
+                        </div>
                     ) : (
                         <button
                             onClick={() => router.push("/signin")}
