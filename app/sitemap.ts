@@ -16,11 +16,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "monthly",
             priority: 0.3,
         },
-        {
-            url: `${BASE_URL}/create-account`,
-            lastModified: new Date(),
-            changeFrequency: "monthly",
-            priority: 0.3,
-        },
     ];
 }

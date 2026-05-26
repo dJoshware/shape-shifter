@@ -18,11 +18,11 @@ const BASE_URL = "https://shapeshifter.djoshware.com";
 export const metadata: Metadata = {
     metadataBase: new URL(BASE_URL),
     title: {
-        default: "Shape Shifter — Guitar Chords & Scales",
+        default: "Shape Shifter — Interactive Guitar Chords & Scales",
         template: "%s | Shape Shifter",
     },
     description:
-        "Explore guitar chords and scales across every key and position. Interactive fretboard diagrams for chord voicings, scale patterns, and modes.",
+        "Explore guitar chords and scales in every key and position. Interactive fretboard with chord voicings, scale patterns, modes, Draw Mode, and chord progressions.",
     keywords: [
         "guitar chords",
         "guitar scales",
@@ -32,6 +32,10 @@ export const metadata: Metadata = {
         "guitar modes",
         "music theory",
         "interactive guitar",
+        "chord diagrams",
+        "guitar learning",
+        "chord progressions",
+        "draw mode guitar",
     ],
     authors: [{ name: "dJoshware", url: BASE_URL }],
     creator: "dJoshware",
@@ -43,15 +47,15 @@ export const metadata: Metadata = {
         type: "website",
         url: BASE_URL,
         siteName: "Shape Shifter",
-        title: "Shape Shifter — Guitar Chords & Scales",
+        title: "Shape Shifter — Interactive Guitar Chords & Scales",
         description:
-            "Explore guitar chords and scales across every key and position. Interactive fretboard diagrams for chord voicings, scale patterns, and modes.",
+            "Explore guitar chords and scales in every key and position. Interactive fretboard with chord voicings, scale patterns, modes, Draw Mode, and chord progressions.",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Shape Shifter — Guitar Chords & Scales",
+        title: "Shape Shifter — Interactive Guitar Chords & Scales",
         description:
-            "Explore guitar chords and scales across every key and position. Interactive fretboard diagrams for chord voicings, scale patterns, and modes.",
+            "Explore guitar chords and scales in every key and position. Interactive fretboard with chord voicings, scale patterns, modes, Draw Mode, and chord progressions.",
     },
     icons: {
         icon: "/favicon.ico",

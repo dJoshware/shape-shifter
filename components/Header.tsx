@@ -484,10 +484,10 @@ export default function Header() {
 
                         <ul className='px-6 py-4 flex flex-col gap-2.5'>
                             {[
-                                "Alternate chord voicings",
-                                "Additional scale patterns & variants",
-                                "Draw Mode — build any shape",
-                                "New content added regularly",
+                                "Alternate chord voicings & shapes",
+                                "All scale patterns & variants",
+                                "Draw Mode — build custom chord shapes",
+                                "Save & manage chord progressions",
                             ].map(f => (
                                 <li
                                     key={f}
