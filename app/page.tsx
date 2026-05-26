@@ -1489,7 +1489,7 @@ export default function Home() {
                                         </button>
                                     )}
 
-                                <div className='flex-1 min-w-0 overflow-x-auto no-scrollbar flex items-center justify-end gap-1'>
+                                <div className='flex-1 min-w-0 overflow-x-auto no-scrollbar flex items-center justify-end gap-1 h-8'>
                                     {selectedMode === "chords" &&
                                         selectionHierarchy.positions.length >
                                             0 && (
@@ -1644,11 +1644,16 @@ export default function Home() {
                                                             </button>
                                                             <span className='relative text-xs font-semibold text-ink w-6 text-center flex items-center justify-center'>
                                                                 {scaleVariantLocked && (
-                                                                    <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                    <span className='absolute -top-2 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
                                                                         <StarIcon />
                                                                     </span>
                                                                 )}
-                                                                <span className={scaleVariantLocked ? "opacity-50" : ""}>
+                                                                <span
+                                                                    className={
+                                                                        scaleVariantLocked
+                                                                            ? "opacity-50"
+                                                                            : ""
+                                                                    }>
                                                                     {`${selectedScaleVariant + 1}/${scaleNumVariants}`}
                                                                 </span>
                                                             </span>
@@ -1678,19 +1683,23 @@ export default function Home() {
                                             className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                             <ChevronLeft />
                                         </button>
-                                        <span
-                                            className={`text-xs font-semibold text-ink w-8 text-center flex items-center justify-center ${altsLocked ? "opacity-50" : ""}`}>
-                                            {`${selectedAltShape + 1}/${availableAlts.length}`}
+                                        <span className='relative text-xs font-semibold text-ink w-8 text-center flex items-center justify-center'>
+                                            {altsLocked && (
+                                                <span className='absolute -top-2 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                    <StarIcon />
+                                                </span>
+                                            )}
+                                            <span
+                                                className={
+                                                    altsLocked
+                                                        ? "opacity-50"
+                                                        : ""
+                                                }>{`${selectedAltShape + 1}/${availableAlts.length}`}</span>
                                         </span>
                                         <button
                                             onClick={goNextAlt}
                                             title='Next shape'
-                                            className='relative w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
-                                            {altsLocked && (
-                                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
-                                                    <StarIcon />
-                                                </span>
-                                            )}
+                                            className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                             <ChevronRight />
                                         </button>
                                     </div>
@@ -1704,10 +1713,16 @@ export default function Home() {
                                     <div className='flex items-center gap-3 px-4 w-max py-2.5'>
                                         <button
                                             onClick={() => {
-                                                if (randomizeOn) setRandomizeOn(false);
-                                                else setRandomizeSheetOpen(true);
+                                                if (randomizeOn)
+                                                    setRandomizeOn(false);
+                                                else
+                                                    setRandomizeSheetOpen(true);
                                             }}
-                                            title={randomizeOn ? "Turn off randomize" : "Randomize"}
+                                            title={
+                                                randomizeOn
+                                                    ? "Turn off randomize"
+                                                    : "Randomize"
+                                            }
                                             className={`shrink-0 w-9 h-9 flex items-center justify-center rounded-full border transition-colors ${
                                                 randomizeOn
                                                     ? "bg-ink text-sand-1 border-ink"
@@ -1772,7 +1787,7 @@ export default function Home() {
                                             title='Progressions'
                                             className='shrink-0 relative w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                             {!hasPro && (
-                                                <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                     <StarIcon />
                                                 </span>
                                             )}
@@ -1903,10 +1918,12 @@ export default function Home() {
                                     className='flex-1 bg-black/40'
                                     onClick={() => setMenuOpen(false)}
                                 />
-                                <div className='bg-sand-1 rounded-t-2xl shadow-2xl px-4 pt-3 pb-8'>
-                                    <div className='w-10 h-1 bg-ink/20 rounded-full mx-auto mb-4' />
+                                <div className='bg-sand-1 rounded-t-2xl shadow-2xl flex flex-col max-h-[85dvh]'>
+                                    <div className='shrink-0 pt-3'>
+                                        <div className='w-10 h-1 bg-ink/20 rounded-full mx-auto' />
+                                    </div>
 
-                                    <div className='flex flex-col gap-5'>
+                                    <div className='flex-1 overflow-y-auto px-4 pt-4 pb-8 flex flex-col gap-5'>
                                         {/* Mode toggle */}
                                         <div className='flex rounded-xl overflow-hidden border border-ink'>
                                             <button
@@ -2200,7 +2217,7 @@ export default function Home() {
                                                                                     : "text-ink border-ink/40 hover:border-ink"
                                                                             } ${locked ? "opacity-60" : ""}`}>
                                                                             {locked && (
-                                                                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                                                                <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                                                     <StarIcon />
                                                                                 </span>
                                                                             )}
@@ -2562,7 +2579,7 @@ export default function Home() {
                                                                         {!hasPro &&
                                                                             scalePatternKeys.length >
                                                                                 1 && (
-                                                                                <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                                <span className='absolute -top-1.5 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                                                     <StarIcon />
                                                                                 </span>
                                                                             )}
@@ -2609,11 +2626,16 @@ export default function Home() {
                                                                     </button>
                                                                     <span className='relative px-3 text-sm font-medium text-ink'>
                                                                         {scaleVariantLocked && (
-                                                                            <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                            <span className='absolute -top-1.5 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                                                 <StarIcon />
                                                                             </span>
                                                                         )}
-                                                                        <span className={scaleVariantLocked ? "opacity-50" : ""}>
+                                                                        <span
+                                                                            className={
+                                                                                scaleVariantLocked
+                                                                                    ? "opacity-50"
+                                                                                    : ""
+                                                                            }>
                                                                             {`${selectedScaleVariant + 1}/${scaleNumVariants}`}
                                                                         </span>
                                                                     </span>
@@ -2665,19 +2687,23 @@ export default function Home() {
                                                             className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-r border-ink rounded-l'>
                                                             <ChevronLeft />
                                                         </button>
-                                                        <span
-                                                            className={`px-3 text-sm font-medium text-ink ${altsLocked ? "opacity-50" : ""}`}>
-                                                            {`${selectedAltShape + 1}/${availableAlts.length}`}
+                                                        <span className='relative px-3 text-sm font-medium text-ink'>
+                                                            {altsLocked && (
+                                                                <span className='absolute -top-1.5 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                                                    <StarIcon />
+                                                                </span>
+                                                            )}
+                                                            <span
+                                                                className={
+                                                                    altsLocked
+                                                                        ? "opacity-50"
+                                                                        : ""
+                                                                }>{`${selectedAltShape + 1}/${availableAlts.length}`}</span>
                                                         </span>
                                                         <button
                                                             onClick={goNextAlt}
                                                             title='Next shape'
-                                                            className='relative px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink rounded-r'>
-                                                            {altsLocked && (
-                                                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
-                                                                    <StarIcon />
-                                                                </span>
-                                                            )}
+                                                            className='px-2 py-1.5 bg-sand-2 text-ink hover:bg-sand-3 transition-colors border-l border-ink rounded-r'>
                                                             <ChevronRight />
                                                         </button>
                                                     </div>
@@ -2823,7 +2849,8 @@ export default function Home() {
                                     />
                                     <button
                                         onClick={() => {
-                                            if (randomizeOn) setRandomizeOn(false);
+                                            if (randomizeOn)
+                                                setRandomizeOn(false);
                                             else setRandomizeSheetOpen(true);
                                         }}
                                         className={`whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
@@ -2853,7 +2880,7 @@ export default function Home() {
                                         onClick={handleToggleDrawMode}
                                         className='whitespace-nowrap relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
                                         {!hasPro && (
-                                            <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                            <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                 <StarIcon />
                                             </span>
                                         )}
@@ -2876,7 +2903,7 @@ export default function Home() {
                                         title='Progressions'
                                         className='whitespace-nowrap relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
                                         {!hasPro && (
-                                            <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                            <span className='absolute -top-1 -right-1 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
                                                 <StarIcon />
                                             </span>
                                         )}
