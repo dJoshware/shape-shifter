@@ -12,7 +12,7 @@ function isPro(sub: unknown): boolean {
 }
 
 export function useSubscription(): boolean {
-    if (process.env.NODE_ENV === 'development') return true;
+    // if (process.env.NODE_ENV === 'development') return true;
 
     const supabase = React.useMemo(
         () =>
@@ -59,23 +59,19 @@ export function useSubscription(): boolean {
                 .subscribe();
         }
 
-        (async () => {
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
-            const uid = session?.user?.id;
-            if (uid) await wire(uid);
-            authSub = supabase.auth.onAuthStateChange((_evt, newSession) => {
-                const newUid = newSession?.user?.id;
-                if (!newUid) {
-                    setHasPro(false);
-                    if (channel) supabase.removeChannel(channel);
-                    return;
-                }
+        // onAuthStateChange fires INITIAL_SESSION immediately with the current
+        // user, so we don't need a separate getSession() call — that caused wire()
+        // to be called twice concurrently for the same uid, producing the
+        // "cannot add postgres_changes callbacks after subscribe()" error.
+        authSub = supabase.auth.onAuthStateChange((_evt, newSession) => {
+            const newUid = newSession?.user?.id;
+            if (!newUid) {
+                setHasPro(false);
                 if (channel) supabase.removeChannel(channel);
-                wire(newUid);
-            }).data.subscription;
-        })();
+                return;
+            }
+            wire(newUid);
+        }).data.subscription;
 
         return () => {
             if (channel) supabase.removeChannel(channel);

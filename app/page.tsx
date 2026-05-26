@@ -107,18 +107,6 @@ function MenuIcon() {
     );
 }
 
-function LockIcon() {
-    return (
-        <span className='inline-flex items-center justify-center px-1.5 py-0.5 rounded-full bg-olive/20 border border-olive/40 text-olive'>
-            <svg
-                className='w-3 h-3'
-                viewBox='0 0 24 24'
-                fill='currentColor'>
-                <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
-            </svg>
-        </span>
-    );
-}
 
 function StarIcon() {
     return (
@@ -630,10 +618,14 @@ export default function Home() {
                 setAuthGateOpen(true);
                 return;
             }
+            if (!hasPro) {
+                openPaywall();
+                return;
+            }
             setSaveLabel(label);
             setSaveDialog({ label, notes, context });
         },
-        [userId],
+        [userId, hasPro, openPaywall],
     );
 
     const stopScale = React.useCallback(() => {
@@ -1295,13 +1287,11 @@ export default function Home() {
                             onCapoChange={setCapo}
                             preloadNotes={drawPreloadNotes}
                             onPreloadConsumed={() => setDrawPreloadNotes(null)}
-                            onSaveRequest={(notes, label) =>
-                                openSave(notes, label, {
-                                    source: "draw",
-                                    tuningName: selectedTuning.name,
-                                    capo,
-                                })
-                            }
+                            onSaveRequest={(notes, label) => {
+                                if (!userId) { setAuthGateOpen(true); return; }
+                                setSaveLabel(label);
+                                setSaveDialog({ label, notes, context: { source: "draw", tuningName: selectedTuning.name, capo } });
+                            }}
                             onProgressionRequest={(notes, label) => {
                                 setProgressionPendingChord({
                                     label,
@@ -1533,13 +1523,15 @@ export default function Home() {
                                                                 className='w-7 h-7 flex items-center justify-center rounded-full border border-ink/40 hover:border-ink transition-colors'>
                                                                 <ChevronLeft />
                                                             </button>
-                                                            <span
-                                                                className={`text-xs font-semibold text-ink w-6 text-center flex items-center justify-center ${scaleVariantLocked ? "opacity-50" : ""}`}>
-                                                                {scaleVariantLocked ? (
-                                                                    <LockIcon />
-                                                                ) : (
-                                                                    `${selectedScaleVariant + 1}/${scaleNumVariants}`
+                                                            <span className='relative text-xs font-semibold text-ink w-6 text-center flex items-center justify-center'>
+                                                                {scaleVariantLocked && (
+                                                                    <span className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                                        <StarIcon />
+                                                                    </span>
                                                                 )}
+                                                                <span className={scaleVariantLocked ? "opacity-50" : ""}>
+                                                                    {`${selectedScaleVariant + 1}/${scaleNumVariants}`}
+                                                                </span>
                                                             </span>
                                                             <button
                                                                 onClick={() =>
@@ -1589,7 +1581,7 @@ export default function Home() {
                             <div className='shrink-0 border-t border-ink/20 bg-sand-1 pt-2 pb-4 flex items-center gap-3 pr-4'>
                                 {/* Scrollable controls */}
                                 <div className='flex-1 overflow-x-auto no-scrollbar'>
-                                    <div className='flex items-center gap-3 px-4 w-max'>
+                                    <div className='flex items-center gap-3 px-4 py-1 w-max'>
                                         <button
                                             onClick={() =>
                                                 setShuffleChecked(s => !s)
@@ -1719,7 +1711,12 @@ export default function Home() {
                                                     )
                                                 }
                                                 title='Save chord'
-                                                className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
+                                                className='relative w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
+                                                {!hasPro && (
+                                                    <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                        <StarIcon />
+                                                    </span>
+                                                )}
                                                 <BookmarkIcon />
                                             </button>
                                             <button
@@ -2629,7 +2626,12 @@ export default function Home() {
                                                     )
                                                 }
                                                 title='Save chord'
-                                                className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink/40 text-ink text-sm font-semibold hover:border-ink transition-colors'>
+                                                className='relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink/40 text-ink text-sm font-semibold hover:border-ink transition-colors'>
+                                                {!hasPro && (
+                                                    <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                                        <StarIcon />
+                                                    </span>
+                                                )}
                                                 <BookmarkIcon />
                                                 Save
                                             </button>
@@ -2769,9 +2771,14 @@ export default function Home() {
                 onClose={() => setProgressionPanelOpen(false)}
                 currentChord={currentChordForProgression}
                 userId={userId}
+                hasPro={hasPro}
                 onAuthRequired={() => {
                     setProgressionPanelOpen(false);
                     setAuthGateOpen(true);
+                }}
+                onProRequired={() => {
+                    setProgressionPanelOpen(false);
+                    openPaywall();
                 }}
                 onRequestOpen={() => setProgressionPanelOpen(true)}
                 pendingChord={progressionPendingChord}

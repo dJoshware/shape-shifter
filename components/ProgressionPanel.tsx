@@ -34,7 +34,9 @@ type Props = {
     onClose: () => void;
     currentChord: CurrentChord | null;
     userId: string | null;
+    hasPro: boolean;
     onAuthRequired: () => void;
+    onProRequired: () => void;
     onRequestOpen?: () => void;
     pendingChord?: CurrentChord | null;
     onPendingConsumed?: () => void;
@@ -218,7 +220,9 @@ export default function ProgressionPanel({
     onClose,
     currentChord,
     userId,
+    hasPro,
     onAuthRequired,
+    onProRequired,
     onRequestOpen,
     pendingChord,
     onPendingConsumed,
@@ -362,6 +366,10 @@ export default function ProgressionPanel({
     async function handleSave() {
         if (!userId) {
             persistDraftAndPromptAuth();
+            return;
+        }
+        if (!hasPro) {
+            onProRequired();
             return;
         }
         setSaving(true);
@@ -643,7 +651,7 @@ export default function ProgressionPanel({
 
                     {/* Save row */}
                     <div className='flex gap-2'>
-                        {activeId && (
+                        {activeId && hasPro && (
                             <button
                                 onClick={() => handleDelete(activeId)}
                                 className='px-4 py-2 rounded-full border border-red-500 text-red-500 text-sm font-semibold hover:bg-red-50 transition-colors'>
@@ -652,8 +660,15 @@ export default function ProgressionPanel({
                         )}
                         <button
                             onClick={handleSave}
-                            disabled={saving || !dirty}
-                            className='flex-1 py-2 bg-ink text-sand-1 rounded-full text-sm font-bold hover:opacity-90 disabled:opacity-40 transition-opacity'>
+                            disabled={saving || (!hasPro ? false : !dirty)}
+                            className='relative flex-1 py-2 bg-ink text-sand-1 rounded-full text-sm font-bold hover:opacity-90 disabled:opacity-40 transition-opacity'>
+                            {!hasPro && (
+                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1 z-10'>
+                                    <svg className='w-2.5 h-2.5' viewBox='0 0 24 24' fill='currentColor'>
+                                        <path d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' />
+                                    </svg>
+                                </span>
+                            )}
                             {saving ? "Saving…" : "Save Progression"}
                         </button>
                     </div>
