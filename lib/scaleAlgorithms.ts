@@ -1,15 +1,15 @@
 import { STANDARD_TUNING_SEMITONES } from '@/lib/chordQualities';
 
 export type ScaleNote = {
-    string: number;     // 0 = high e, 5 = low E
+    string: number; // 0 = high e, 5 = low E
     fretOffset: number; // relative to root at fret 0 on the lowest string
-    semitones: number;  // 0–11 interval from root
-    degree: number;     // 0-based index into the scale's intervals array
+    semitones: number; // 0–11 interval from root
+    degree: number; // 0-based index into the scale's intervals array
 };
 
 export type ScalePosition = {
     startDegree: number; // which scale degree begins on the lowest string
-    modeName?: string;   // e.g. 'Ionian', 'Dorian' — set in Scales.ts, not by the algorithm
+    modeName?: string; // e.g. 'Ionian', 'Dorian' — set in Scales.ts, not by the algorithm
     notes: ScaleNote[];
 };
 
@@ -44,7 +44,8 @@ export function generateNpsPositions(
             // stringOverlap shifts the starting degree at each string boundary:
             //   > 0  go back (shared/pivot notes, e.g. 1 = pivot, 2 = back-two)
             //   < 0  skip ahead (e.g. -1 = skip one, starting on the 5th)
-            if (stringOverlap !== 0 && s < lowestString) totalDegIdx -= stringOverlap;
+            if (stringOverlap !== 0 && s < lowestString)
+                totalDegIdx -= stringOverlap;
             const stringDiff = lowestTuning - tuning[s];
 
             for (let n = 0; n < notesPerString; n++) {
@@ -63,4 +64,3 @@ export function generateNpsPositions(
 
     return positions;
 }
-

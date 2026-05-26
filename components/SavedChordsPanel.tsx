@@ -2,11 +2,7 @@
 
 import * as React from "react";
 import type { SavedChord } from "@/lib/savedChords";
-import {
-    fetchSavedChords,
-    deleteChord,
-    renameChord,
-} from "@/lib/savedChords";
+import { fetchSavedChords, deleteChord, renameChord } from "@/lib/savedChords";
 
 type Props = {
     open: boolean;
@@ -45,9 +41,7 @@ export default function SavedChordsPanel({
         const label = editLabel.trim();
         if (!label) return;
         await renameChord(id, label).catch(console.error);
-        setChords(prev =>
-            prev.map(c => (c.id === id ? { ...c, label } : c)),
-        );
+        setChords(prev => prev.map(c => (c.id === id ? { ...c, label } : c)));
         setEditingId(null);
     }
 
@@ -77,7 +71,6 @@ export default function SavedChordsPanel({
                     /* desktop: right drawer */
                     sm:bottom-0 sm:top-0 sm:left-auto sm:right-0 sm:w-80 sm:rounded-none sm:max-h-full
                     ${open ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-y-0 sm:translate-x-full"}`}>
-
                 {/* Header */}
                 <div className='flex items-center justify-between px-5 pt-5 pb-3 border-b border-ink/10 shrink-0'>
                     <h2 className='text-base font-bold text-ink'>

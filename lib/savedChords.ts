@@ -91,9 +91,6 @@ export async function renameChord(id: string, label: string): Promise<void> {
 
 export async function deleteChord(id: string): Promise<void> {
     const supabase = client();
-    const { error } = await supabase
-        .from('saved_chords')
-        .delete()
-        .eq('id', id);
+    const { error } = await supabase.from('saved_chords').delete().eq('id', id);
     if (error) throw error;
 }

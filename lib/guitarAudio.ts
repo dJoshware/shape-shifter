@@ -3,10 +3,10 @@
 let audioCtx: AudioContext | null = null;
 
 function getAudioContext(): AudioContext {
-    if (!audioCtx || audioCtx.state === "closed") {
+    if (!audioCtx || audioCtx.state === 'closed') {
         audioCtx = new AudioContext();
     }
-    if (audioCtx.state === "suspended") {
+    if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
     return audioCtx;
@@ -15,12 +15,21 @@ function getAudioContext(): AudioContext {
 // Open-string frequencies for standard EADGBE tuning, index 0 = string 0 (high e)
 const OPEN_STRING_FREQS = [329.63, 246.94, 196.0, 146.83, 110.0, 82.41];
 
-export function noteFrequency(stringIndex: number, fret: number, tuning = OPEN_STRING_FREQS): number {
+export function noteFrequency(
+    stringIndex: number,
+    fret: number,
+    tuning = OPEN_STRING_FREQS,
+): number {
     const open = tuning[stringIndex] ?? 329.63;
     return open * Math.pow(2, fret / 12);
 }
 
-function pluck(ctx: AudioContext, frequency: number, gainValue = 0.6, startTime = 0): void {
+function pluck(
+    ctx: AudioContext,
+    frequency: number,
+    gainValue = 0.6,
+    startTime = 0,
+): void {
     const sampleRate = ctx.sampleRate;
     const N = Math.max(2, Math.round(sampleRate / frequency));
     const duration = 3; // seconds of buffer
@@ -52,7 +61,7 @@ function pluck(ctx: AudioContext, frequency: number, gainValue = 0.6, startTime 
 
     // Light high-shelf cut to soften the attack edge
     const eq = ctx.createBiquadFilter();
-    eq.type = "highshelf";
+    eq.type = 'highshelf';
     eq.frequency.value = 4000;
     eq.gain.value = -6;
 
@@ -74,17 +83,29 @@ function pluck(ctx: AudioContext, frequency: number, gainValue = 0.6, startTime 
     source.start(startTime);
 }
 
-export function playNote(stringIndex: number, fret: number, tuningFreqs?: number[]): void {
+export function playNote(
+    stringIndex: number,
+    fret: number,
+    tuningFreqs?: number[],
+): void {
     const ctx = getAudioContext();
     const freq = noteFrequency(stringIndex, fret, tuningFreqs);
     pluck(ctx, freq);
 }
 
-export function playChord(notes: { string: number; fret: number }[], tuningFreqs?: number[]): void {
+export function playChord(
+    notes: { string: number; fret: number }[],
+    tuningFreqs?: number[],
+): void {
     if (!notes.length) return;
     const ctx = getAudioContext();
     const now = ctx.currentTime;
     notes.forEach(note => {
-        pluck(ctx, noteFrequency(note.string, note.fret, tuningFreqs), 0.55, now);
+        pluck(
+            ctx,
+            noteFrequency(note.string, note.fret, tuningFreqs),
+            0.55,
+            now,
+        );
     });
 }

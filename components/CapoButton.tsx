@@ -23,7 +23,10 @@ export default function CapoButton({
         if (!open) return;
         const handler = (e: MouseEvent) => {
             const t = e.target as Node;
-            if (!wrapperRef.current?.contains(t) && !popupRef.current?.contains(t))
+            if (
+                !wrapperRef.current?.contains(t) &&
+                !popupRef.current?.contains(t)
+            )
                 setOpen(false);
         };
         document.addEventListener("mousedown", handler);
@@ -38,13 +41,23 @@ export default function CapoButton({
 
     const fretGrid = (
         <>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 2rem)", gap: "0.25rem" }}>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(4, 2rem)",
+                    gap: "0.25rem",
+                }}>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(f => (
                     <button
                         key={f}
-                        onClick={() => { setCapo(f); setOpen(false); }}
+                        onClick={() => {
+                            setCapo(f);
+                            setOpen(false);
+                        }}
                         className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
-                            capo === f ? "bg-ink text-sand-1" : "text-ink hover:bg-ink/10"
+                            capo === f
+                                ? "bg-ink text-sand-1"
+                                : "text-ink hover:bg-ink/10"
                         }`}>
                         {f}
                     </button>
@@ -52,7 +65,10 @@ export default function CapoButton({
             </div>
             {isActive && (
                 <button
-                    onClick={() => { setCapo(0); setOpen(false); }}
+                    onClick={() => {
+                        setCapo(0);
+                        setOpen(false);
+                    }}
                     className='mt-1 w-full text-[11px] font-semibold text-ink/50 hover:text-ink py-1 transition-colors'>
                     Remove Capo
                 </button>
@@ -86,7 +102,9 @@ export default function CapoButton({
             : null;
 
     return (
-        <div className='relative' ref={wrapperRef}>
+        <div
+            className='relative'
+            ref={wrapperRef}>
             {size === "md" ? (
                 <>
                     <button
@@ -102,7 +120,9 @@ export default function CapoButton({
                         <img
                             src='/capo.png'
                             className='w-5 h-5'
-                            style={isActive ? { filter: "invert(1)" } : undefined}
+                            style={
+                                isActive ? { filter: "invert(1)" } : undefined
+                            }
                             alt='Capo'
                         />
                         {isActive ? `Capo ${capo}` : "Capo"}
@@ -128,7 +148,9 @@ export default function CapoButton({
                         <img
                             src='/capo.png'
                             className='w-5 h-5'
-                            style={isActive ? { filter: "invert(1)" } : undefined}
+                            style={
+                                isActive ? { filter: "invert(1)" } : undefined
+                            }
                             alt='Capo'
                         />
                     </button>

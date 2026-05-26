@@ -166,23 +166,87 @@ function voicingFretRange(v: NotePosition[]) {
 
 function ListIcon() {
     return (
-        <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round'>
-            <line x1='8' y1='6' x2='21' y2='6' />
-            <line x1='8' y1='12' x2='21' y2='12' />
-            <line x1='8' y1='18' x2='21' y2='18' />
-            <line x1='3' y1='6' x2='3.01' y2='6' strokeWidth={3} />
-            <line x1='3' y1='12' x2='3.01' y2='12' strokeWidth={3} />
-            <line x1='3' y1='18' x2='3.01' y2='18' strokeWidth={3} />
+        <svg
+            className='w-4 h-4'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth={2}
+            strokeLinecap='round'>
+            <line
+                x1='8'
+                y1='6'
+                x2='21'
+                y2='6'
+            />
+            <line
+                x1='8'
+                y1='12'
+                x2='21'
+                y2='12'
+            />
+            <line
+                x1='8'
+                y1='18'
+                x2='21'
+                y2='18'
+            />
+            <line
+                x1='3'
+                y1='6'
+                x2='3.01'
+                y2='6'
+                strokeWidth={3}
+            />
+            <line
+                x1='3'
+                y1='12'
+                x2='3.01'
+                y2='12'
+                strokeWidth={3}
+            />
+            <line
+                x1='3'
+                y1='18'
+                x2='3.01'
+                y2='18'
+                strokeWidth={3}
+            />
         </svg>
     );
 }
 
 function ProgressionIcon() {
     return (
-        <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
-            <rect x='2' y='7' width='4' height='10' rx='1' />
-            <rect x='9' y='4' width='4' height='13' rx='1' />
-            <rect x='16' y='9' width='4' height='8' rx='1' />
+        <svg
+            className='w-4 h-4'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth={2}
+            strokeLinecap='round'
+            strokeLinejoin='round'>
+            <rect
+                x='2'
+                y='7'
+                width='4'
+                height='10'
+                rx='1'
+            />
+            <rect
+                x='9'
+                y='4'
+                width='4'
+                height='13'
+                rx='1'
+            />
+            <rect
+                x='16'
+                y='9'
+                width='4'
+                height='8'
+                rx='1'
+            />
         </svg>
     );
 }
@@ -232,19 +296,42 @@ function ShuffleIcon() {
 
 function StopIcon({ className = "w-4 h-4" }: { className?: string }) {
     return (
-        <svg className={className} viewBox='0 0 24 24' fill='currentColor'>
-            <rect x='5' y='5' width='14' height='14' rx='2' />
+        <svg
+            className={className}
+            viewBox='0 0 24 24'
+            fill='currentColor'>
+            <rect
+                x='5'
+                y='5'
+                width='14'
+                height='14'
+                rx='2'
+            />
         </svg>
     );
 }
 
 function SpeakerIcon() {
     return (
-        <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
-            <polygon points='11 5 6 9 2 9 2 15 6 15 11 19 11 5' fill='currentColor' stroke='none' />
+        <svg
+            className='w-4 h-4'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth={2}
+            strokeLinecap='round'
+            strokeLinejoin='round'>
+            <polygon
+                points='11 5 6 9 2 9 2 15 6 15 11 19 11 5'
+                fill='currentColor'
+                stroke='none'
+            />
             <path d='M15.54 8.46a5 5 0 0 1 0 7.07' />
             <path d='M19.07 4.93a10 10 0 0 1 0 14.14' />
-            <path d='M12 12h.01' stroke='none' />
+            <path
+                d='M12 12h.01'
+                stroke='none'
+            />
         </svg>
     );
 }
@@ -356,7 +443,9 @@ function TuningDropdown({
     }, [open]);
 
     return (
-        <div className='relative' ref={ref}>
+        <div
+            className='relative'
+            ref={ref}>
             <button
                 onClick={() => setOpen(o => !o)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
@@ -371,7 +460,10 @@ function TuningDropdown({
                     {TUNINGS.map(t => (
                         <button
                             key={t.name}
-                            onClick={() => { onSelect(t); setOpen(false); }}
+                            onClick={() => {
+                                onSelect(t);
+                                setOpen(false);
+                            }}
                             className={`w-full text-left px-4 py-2 text-sm font-semibold transition-colors ${
                                 selectedTuning.name === t.name
                                     ? "bg-ink/10 text-ink"
@@ -430,7 +522,8 @@ export default function Home() {
     const [isRight, setIsRight] = React.useState(true);
     const [octaveUp, setOctaveUp] = React.useState(false);
     const [capo, setCapo] = React.useState(0);
-    const [selectedTuning, setSelectedTuning] = React.useState<Tuning>(STANDARD_TUNING);
+    const [selectedTuning, setSelectedTuning] =
+        React.useState<Tuning>(STANDARD_TUNING);
 
     // notes per second: 1 = slowest (1000ms gap), 8 = fastest (~125ms gap)
     const [playbackSpeed, setPlaybackSpeed] = React.useState(4);
@@ -441,14 +534,16 @@ export default function Home() {
     const [userId, setUserId] = React.useState<string | null>(null);
     const [savedPanelOpen, setSavedPanelOpen] = React.useState(false);
     const [savedRefreshKey, setSavedRefreshKey] = React.useState(0);
-    const [progressionPanelOpen, setProgressionPanelOpen] = React.useState(false);
-    const [progressionPendingChord, setProgressionPendingChord] = React.useState<{
-        label: string;
-        notes: import("@/lib/fretboardMap").NotePosition[];
-        tuningName: string;
-        tuningFreqs?: number[];
-        capo: number;
-    } | null>(null);
+    const [progressionPanelOpen, setProgressionPanelOpen] =
+        React.useState(false);
+    const [progressionPendingChord, setProgressionPendingChord] =
+        React.useState<{
+            label: string;
+            notes: import("@/lib/fretboardMap").NotePosition[];
+            tuningName: string;
+            tuningFreqs?: number[];
+            capo: number;
+        } | null>(null);
     const [authGateOpen, setAuthGateOpen] = React.useState(false);
     const [saveDialog, setSaveDialog] = React.useState<{
         label: string;
@@ -554,8 +649,10 @@ export default function Home() {
         const sorted = [...capoDisplayShape]
             .filter(n => n.fret != null && n.fret >= 0)
             .sort((a, b) => {
-                const pa = (selectedTuning.semitones[a.string] ?? 0) + (a.fret ?? 0);
-                const pb = (selectedTuning.semitones[b.string] ?? 0) + (b.fret ?? 0);
+                const pa =
+                    (selectedTuning.semitones[a.string] ?? 0) + (a.fret ?? 0);
+                const pb =
+                    (selectedTuning.semitones[b.string] ?? 0) + (b.fret ?? 0);
                 return pa - pb;
             });
         setIsPlayingScale(true);
@@ -572,7 +669,10 @@ export default function Home() {
         if (!saveDialog) return;
         setSaving(true);
         try {
-            await saveChord({ ...saveDialog, label: saveLabel.trim() || saveDialog.label });
+            await saveChord({
+                ...saveDialog,
+                label: saveLabel.trim() || saveDialog.label,
+            });
             setSaveDialog(null);
             setSavedRefreshKey(k => k + 1);
         } catch (e) {
@@ -582,37 +682,34 @@ export default function Home() {
         }
     }, [saveDialog, saveLabel]);
 
-    const handleLoadSaved = React.useCallback(
-        (chord: SavedChord) => {
-            const ctx = chord.context;
-            if (ctx.source === "draw") {
-                setIsDrawMode(true);
-                setDrawPreloadNotes(chord.notes);
-                return;
-            }
-            setIsDrawMode(false);
-            setSelectedMode(ctx.mode);
-            setCurrentRootNote(ctx.rootNote);
-            setCapo(ctx.capo);
-            const t = TUNINGS.find(t => t.name === ctx.tuningName);
-            if (t) setSelectedTuning(t);
-            if (ctx.mode === "chords") {
-                setSelectedCategory(ctx.category);
-                setSelectedVoicingType(ctx.voicingType);
-                setSelectedStringSet(ctx.stringSet);
-                setSelectedChordQuality(ctx.chordQuality);
-                setSelectedPosition(ctx.position);
-                setSelectedAltShape(ctx.altShape);
-            } else {
-                setSelectedNoteGroup(ctx.noteGroup);
-                setSelectedScale(ctx.scale);
-                setSelectedScalePosition(ctx.scalePosition);
-                setSelectedScalePattern(ctx.scalePattern);
-                setSelectedScaleVariant(ctx.scaleVariant);
-            }
-        },
-        [],
-    );
+    const handleLoadSaved = React.useCallback((chord: SavedChord) => {
+        const ctx = chord.context;
+        if (ctx.source === "draw") {
+            setIsDrawMode(true);
+            setDrawPreloadNotes(chord.notes);
+            return;
+        }
+        setIsDrawMode(false);
+        setSelectedMode(ctx.mode);
+        setCurrentRootNote(ctx.rootNote);
+        setCapo(ctx.capo);
+        const t = TUNINGS.find(t => t.name === ctx.tuningName);
+        if (t) setSelectedTuning(t);
+        if (ctx.mode === "chords") {
+            setSelectedCategory(ctx.category);
+            setSelectedVoicingType(ctx.voicingType);
+            setSelectedStringSet(ctx.stringSet);
+            setSelectedChordQuality(ctx.chordQuality);
+            setSelectedPosition(ctx.position);
+            setSelectedAltShape(ctx.altShape);
+        } else {
+            setSelectedNoteGroup(ctx.noteGroup);
+            setSelectedScale(ctx.scale);
+            setSelectedScalePosition(ctx.scalePosition);
+            setSelectedScalePattern(ctx.scalePattern);
+            setSelectedScaleVariant(ctx.scaleVariant);
+        }
+    }, []);
 
     const { selectionHierarchy, availableAlts } = useChordLibrary({
         allChordShapes,
@@ -893,7 +990,9 @@ export default function Home() {
         const rootFret =
             (NOTES.findIndex(p => p.includes(currentRootNote)) - 7 + 12) % 12;
         const frets = pos.notes.map(n => {
-            const delta = (selectedTuning.semitones[n.string] ?? STANDARD_MIDI[n.string]) - STANDARD_MIDI[n.string];
+            const delta =
+                (selectedTuning.semitones[n.string] ??
+                    STANDARD_MIDI[n.string]) - STANDARD_MIDI[n.string];
             return n.fretOffset + rootFret - delta;
         });
         const maxFret = Math.max(...frets);
@@ -939,13 +1038,17 @@ export default function Home() {
         const modeRootParentDeg = parentDegrees[selectedScalePosition];
         setDisplayShape(
             position.notes.map(n => {
-                const delta = (selectedTuning.semitones[n.string] ?? STANDARD_MIDI[n.string]) - STANDARD_MIDI[n.string];
+                const delta =
+                    (selectedTuning.semitones[n.string] ??
+                        STANDARD_MIDI[n.string]) - STANDARD_MIDI[n.string];
                 return {
                     string: n.string,
                     fret: n.fretOffset + rootFret - delta + octaveOffset,
                     semitones: (n.semitones - modeInterval + 12) % 12,
                     degree:
-                        ((parentDegrees[n.degree] - modeRootParentDeg + 7) % 7) + 1,
+                        ((parentDegrees[n.degree] - modeRootParentDeg + 7) %
+                            7) +
+                        1,
                     isTonic: n.semitones === 0,
                 };
             }),
@@ -1488,7 +1591,9 @@ export default function Home() {
                                 <div className='flex-1 overflow-x-auto no-scrollbar'>
                                     <div className='flex items-center gap-3 px-4 w-max'>
                                         <button
-                                            onClick={() => setShuffleChecked(s => !s)}
+                                            onClick={() =>
+                                                setShuffleChecked(s => !s)
+                                            }
                                             title='Shuffle'
                                             className={`shrink-0 w-9 h-9 flex items-center justify-center rounded-full border transition-colors ${
                                                 shuffleChecked
@@ -1505,7 +1610,11 @@ export default function Home() {
 
                                         <button
                                             onClick={() => setIsRight(h => !h)}
-                                            title={isRight ? "Right hand" : "Left hand"}
+                                            title={
+                                                isRight
+                                                    ? "Right hand"
+                                                    : "Left hand"
+                                            }
                                             className='shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                             <HandIcon flipped={!isRight} />
                                         </button>
@@ -1530,7 +1639,9 @@ export default function Home() {
 
                                         {/* My Chords panel */}
                                         <button
-                                            onClick={() => setSavedPanelOpen(true)}
+                                            onClick={() =>
+                                                setSavedPanelOpen(true)
+                                            }
                                             title='My Chords'
                                             className='shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                             <ListIcon />
@@ -1538,7 +1649,9 @@ export default function Home() {
 
                                         {/* Progression builder */}
                                         <button
-                                            onClick={() => setProgressionPanelOpen(true)}
+                                            onClick={() =>
+                                                setProgressionPanelOpen(true)
+                                            }
                                             title='Progression Builder'
                                             className='shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                             <ProgressionIcon />
@@ -1558,28 +1671,87 @@ export default function Home() {
                                     {displayShape.length > 0 && (
                                         <>
                                             <button
-                                                onClick={() => openSave(
-                                                    capoDisplayShape,
-                                                    displayLabel,
-                                                    selectedMode === "scales"
-                                                        ? { source: "library", mode: "scales", rootNote: currentRootNote, tuningName: selectedTuning.name, capo, noteGroup: selectedNoteGroup, scale: selectedScale, scalePosition: selectedScalePosition, scalePattern: selectedScalePattern, scaleVariant: selectedScaleVariant }
-                                                        : { source: "library", mode: "chords", rootNote: currentRootNote, tuningName: selectedTuning.name, capo, category: selectedCategory, voicingType: selectedVoicingType, stringSet: selectedStringSet, chordQuality: selectedChordQuality, position: selectedPosition, altShape: selectedAltShape },
-                                                )}
+                                                onClick={() =>
+                                                    openSave(
+                                                        capoDisplayShape,
+                                                        displayLabel,
+                                                        selectedMode ===
+                                                            "scales"
+                                                            ? {
+                                                                  source: "library",
+                                                                  mode: "scales",
+                                                                  rootNote:
+                                                                      currentRootNote,
+                                                                  tuningName:
+                                                                      selectedTuning.name,
+                                                                  capo,
+                                                                  noteGroup:
+                                                                      selectedNoteGroup,
+                                                                  scale: selectedScale,
+                                                                  scalePosition:
+                                                                      selectedScalePosition,
+                                                                  scalePattern:
+                                                                      selectedScalePattern,
+                                                                  scaleVariant:
+                                                                      selectedScaleVariant,
+                                                              }
+                                                            : {
+                                                                  source: "library",
+                                                                  mode: "chords",
+                                                                  rootNote:
+                                                                      currentRootNote,
+                                                                  tuningName:
+                                                                      selectedTuning.name,
+                                                                  capo,
+                                                                  category:
+                                                                      selectedCategory,
+                                                                  voicingType:
+                                                                      selectedVoicingType,
+                                                                  stringSet:
+                                                                      selectedStringSet,
+                                                                  chordQuality:
+                                                                      selectedChordQuality,
+                                                                  position:
+                                                                      selectedPosition,
+                                                                  altShape:
+                                                                      selectedAltShape,
+                                                              },
+                                                    )
+                                                }
                                                 title='Save chord'
                                                 className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                                 <BookmarkIcon />
                                             </button>
                                             <button
                                                 onClick={() => {
-                                                    if (selectedMode === "scales") {
-                                                        if (isPlayingScale) stopScale(); else playScale();
+                                                    if (
+                                                        selectedMode ===
+                                                        "scales"
+                                                    ) {
+                                                        if (isPlayingScale)
+                                                            stopScale();
+                                                        else playScale();
                                                     } else {
-                                                        playChord(capoDisplayShape, selectedTuning.freqs);
+                                                        playChord(
+                                                            capoDisplayShape,
+                                                            selectedTuning.freqs,
+                                                        );
                                                     }
                                                 }}
-                                                title={selectedMode === "scales" ? (isPlayingScale ? "Stop" : "Play scale") : "Play"}
+                                                title={
+                                                    selectedMode === "scales"
+                                                        ? isPlayingScale
+                                                            ? "Stop"
+                                                            : "Play scale"
+                                                        : "Play"
+                                                }
                                                 className={`w-9 h-9 flex items-center justify-center rounded-full border transition-colors ${isPlayingScale ? "bg-ink text-sand-1 border-ink" : "border-ink/40 text-ink hover:border-ink"}`}>
-                                                {selectedMode === "scales" && isPlayingScale ? <StopIcon /> : <StrumIcon />}
+                                                {selectedMode === "scales" &&
+                                                isPlayingScale ? (
+                                                    <StopIcon />
+                                                ) : (
+                                                    <StrumIcon />
+                                                )}
                                             </button>
                                         </>
                                     )}
@@ -1922,9 +2094,12 @@ export default function Home() {
                                                 {TUNINGS.map(t => (
                                                     <button
                                                         key={t.name}
-                                                        onClick={() => setSelectedTuning(t)}
+                                                        onClick={() =>
+                                                            setSelectedTuning(t)
+                                                        }
                                                         className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
-                                                            selectedTuning.name === t.name
+                                                            selectedTuning.name ===
+                                                            t.name
                                                                 ? "bg-ink text-sand-1 border-ink"
                                                                 : "text-ink border-ink/40 hover:border-ink"
                                                         }`}>
@@ -1932,9 +2107,12 @@ export default function Home() {
                                                     </button>
                                                 ))}
                                             </div>
-                                            {selectedTuning.name !== "Standard" && (
+                                            {selectedTuning.name !==
+                                                "Standard" && (
                                                 <p className='mt-1.5 text-[10px] text-ink/40 font-mono'>
-                                                    {[...selectedTuning.notes].reverse().join(" · ")}
+                                                    {[...selectedTuning.notes]
+                                                        .reverse()
+                                                        .join(" · ")}
                                                 </p>
                                             )}
                                         </div>
@@ -2403,13 +2581,53 @@ export default function Home() {
                                     {displayShape.length > 0 && (
                                         <>
                                             <button
-                                                onClick={() => openSave(
-                                                    capoDisplayShape,
-                                                    displayLabel,
-                                                    selectedMode === "scales"
-                                                        ? { source: "library", mode: "scales", rootNote: currentRootNote, tuningName: selectedTuning.name, capo, noteGroup: selectedNoteGroup, scale: selectedScale, scalePosition: selectedScalePosition, scalePattern: selectedScalePattern, scaleVariant: selectedScaleVariant }
-                                                        : { source: "library", mode: "chords", rootNote: currentRootNote, tuningName: selectedTuning.name, capo, category: selectedCategory, voicingType: selectedVoicingType, stringSet: selectedStringSet, chordQuality: selectedChordQuality, position: selectedPosition, altShape: selectedAltShape },
-                                                )}
+                                                onClick={() =>
+                                                    openSave(
+                                                        capoDisplayShape,
+                                                        displayLabel,
+                                                        selectedMode ===
+                                                            "scales"
+                                                            ? {
+                                                                  source: "library",
+                                                                  mode: "scales",
+                                                                  rootNote:
+                                                                      currentRootNote,
+                                                                  tuningName:
+                                                                      selectedTuning.name,
+                                                                  capo,
+                                                                  noteGroup:
+                                                                      selectedNoteGroup,
+                                                                  scale: selectedScale,
+                                                                  scalePosition:
+                                                                      selectedScalePosition,
+                                                                  scalePattern:
+                                                                      selectedScalePattern,
+                                                                  scaleVariant:
+                                                                      selectedScaleVariant,
+                                                              }
+                                                            : {
+                                                                  source: "library",
+                                                                  mode: "chords",
+                                                                  rootNote:
+                                                                      currentRootNote,
+                                                                  tuningName:
+                                                                      selectedTuning.name,
+                                                                  capo,
+                                                                  category:
+                                                                      selectedCategory,
+                                                                  voicingType:
+                                                                      selectedVoicingType,
+                                                                  stringSet:
+                                                                      selectedStringSet,
+                                                                  chordQuality:
+                                                                      selectedChordQuality,
+                                                                  position:
+                                                                      selectedPosition,
+                                                                  altShape:
+                                                                      selectedAltShape,
+                                                              },
+                                                    )
+                                                }
                                                 title='Save chord'
                                                 className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink/40 text-ink text-sm font-semibold hover:border-ink transition-colors'>
                                                 <BookmarkIcon />
@@ -2418,21 +2636,46 @@ export default function Home() {
                                             {selectedMode === "scales" && (
                                                 <PlaybackSpeedButton
                                                     speed={playbackSpeed}
-                                                    onSpeedChange={setPlaybackSpeed}
+                                                    onSpeedChange={
+                                                        setPlaybackSpeed
+                                                    }
                                                 />
                                             )}
                                             <button
                                                 onClick={() => {
-                                                    if (selectedMode === "scales") {
-                                                        if (isPlayingScale) stopScale(); else playScale();
+                                                    if (
+                                                        selectedMode ===
+                                                        "scales"
+                                                    ) {
+                                                        if (isPlayingScale)
+                                                            stopScale();
+                                                        else playScale();
                                                     } else {
-                                                        playChord(capoDisplayShape, selectedTuning.freqs);
+                                                        playChord(
+                                                            capoDisplayShape,
+                                                            selectedTuning.freqs,
+                                                        );
                                                     }
                                                 }}
-                                                title={selectedMode === "scales" ? (isPlayingScale ? "Stop" : "Play scale") : "Play"}
+                                                title={
+                                                    selectedMode === "scales"
+                                                        ? isPlayingScale
+                                                            ? "Stop"
+                                                            : "Play scale"
+                                                        : "Play"
+                                                }
                                                 className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${isPlayingScale ? "bg-ink text-sand-1 border-ink hover:opacity-80" : "border-ink/40 text-ink hover:border-ink"}`}>
-                                                {selectedMode === "scales" && isPlayingScale ? <StopIcon /> : <StrumIcon />}
-                                                {selectedMode === "scales" ? (isPlayingScale ? "Stop" : "Play") : "Strum"}
+                                                {selectedMode === "scales" &&
+                                                isPlayingScale ? (
+                                                    <StopIcon />
+                                                ) : (
+                                                    <StrumIcon />
+                                                )}
+                                                {selectedMode === "scales"
+                                                    ? isPlayingScale
+                                                        ? "Stop"
+                                                        : "Play"
+                                                    : "Strum"}
                                             </button>
                                         </>
                                     )}
@@ -2447,62 +2690,64 @@ export default function Home() {
 
                                 {/* Actions */}
                                 <div className='flex flex-wrap items-center justify-center gap-4'>
-                                        <TuningDropdown
-                                            selectedTuning={selectedTuning}
-                                            onSelect={setSelectedTuning}
-                                        />
-                                        <button
-                                            onClick={() =>
-                                                setShuffleChecked(s => !s)
-                                            }
-                                            className={`whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
-                                                shuffleChecked
-                                                    ? "bg-ink text-sand-1 border-ink"
-                                                    : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
-                                            }`}>
-                                            <ShuffleIcon />
-                                            Shuffle
-                                        </button>
-                                        <NotesIntervalsToggle
-                                            showIntervals={showIntervals}
-                                            onToggle={setShowIntervals}
-                                        />
-                                        <button
-                                            onClick={() => setIsRight(h => !h)}
-                                            className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                            <HandIcon flipped={!isRight} />
-                                            {isRight ? "Right hand" : "Left hand"}
-                                        </button>
-                                        <CapoButton
-                                            capo={capo}
-                                            setCapo={setCapo}
-                                            size='md'
-                                        />
-                                        <button
-                                            onClick={handleToggleDrawMode}
-                                            className='whitespace-nowrap relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                            {!hasPro && (
-                                                <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
-                                                    <StarIcon />
-                                                </span>
-                                            )}
-                                            <PencilIcon />
-                                            Draw Mode
-                                        </button>
-                                        <button
-                                            onClick={() => setSavedPanelOpen(true)}
-                                            title='My Chords'
-                                            className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                            <ListIcon />
-                                            My Chords
-                                        </button>
-                                        <button
-                                            onClick={() => setProgressionPanelOpen(true)}
-                                            title='Progression Builder'
-                                            className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
-                                            <ProgressionIcon />
-                                            Progression
-                                        </button>
+                                    <TuningDropdown
+                                        selectedTuning={selectedTuning}
+                                        onSelect={setSelectedTuning}
+                                    />
+                                    <button
+                                        onClick={() =>
+                                            setShuffleChecked(s => !s)
+                                        }
+                                        className={`whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-colors ${
+                                            shuffleChecked
+                                                ? "bg-ink text-sand-1 border-ink"
+                                                : "bg-sand-1 text-ink border-ink hover:bg-sand-2"
+                                        }`}>
+                                        <ShuffleIcon />
+                                        Shuffle
+                                    </button>
+                                    <NotesIntervalsToggle
+                                        showIntervals={showIntervals}
+                                        onToggle={setShowIntervals}
+                                    />
+                                    <button
+                                        onClick={() => setIsRight(h => !h)}
+                                        className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        <HandIcon flipped={!isRight} />
+                                        {isRight ? "Right hand" : "Left hand"}
+                                    </button>
+                                    <CapoButton
+                                        capo={capo}
+                                        setCapo={setCapo}
+                                        size='md'
+                                    />
+                                    <button
+                                        onClick={handleToggleDrawMode}
+                                        className='whitespace-nowrap relative flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        {!hasPro && (
+                                            <span className='absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-olive border border-olive/60 flex items-center justify-center text-sand-1'>
+                                                <StarIcon />
+                                            </span>
+                                        )}
+                                        <PencilIcon />
+                                        Draw Mode
+                                    </button>
+                                    <button
+                                        onClick={() => setSavedPanelOpen(true)}
+                                        title='My Chords'
+                                        className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        <ListIcon />
+                                        My Chords
+                                    </button>
+                                    <button
+                                        onClick={() =>
+                                            setProgressionPanelOpen(true)
+                                        }
+                                        title='Progression Builder'
+                                        className='whitespace-nowrap flex items-center gap-2 px-4 py-2 rounded-full border border-ink bg-sand-2 text-ink text-sm font-semibold hover:bg-sand-3 transition-colors'>
+                                        <ProgressionIcon />
+                                        Progression
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -2524,7 +2769,10 @@ export default function Home() {
                 onClose={() => setProgressionPanelOpen(false)}
                 currentChord={currentChordForProgression}
                 userId={userId}
-                onAuthRequired={() => { setProgressionPanelOpen(false); setAuthGateOpen(true); }}
+                onAuthRequired={() => {
+                    setProgressionPanelOpen(false);
+                    setAuthGateOpen(true);
+                }}
                 onRequestOpen={() => setProgressionPanelOpen(true)}
                 pendingChord={progressionPendingChord}
                 onPendingConsumed={() => setProgressionPendingChord(null)}

@@ -1535,7 +1535,11 @@ export default function DrawMode({
                                 <HandIcon flipped={!isRight} />
                             </button>
 
-                            <CapoButton capo={capo} setCapo={setCapo} size='sm' />
+                            <CapoButton
+                                capo={capo}
+                                setCapo={setCapo}
+                                size='sm'
+                            />
 
                             {hasOctave && (
                                 <button
@@ -1551,10 +1555,20 @@ export default function DrawMode({
                     <div className='shrink-0 flex items-center gap-2'>
                         {chordShape.length > 0 && onSaveRequest && (
                             <button
-                                onClick={() => onSaveRequest(chordShape, autoChordLabel || chordLabel || root)}
+                                onClick={() =>
+                                    onSaveRequest(
+                                        chordShape,
+                                        autoChordLabel || chordLabel || root,
+                                    )
+                                }
                                 title='Save'
                                 className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
-                                <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2}>
+                                <svg
+                                    className='w-4 h-4'
+                                    viewBox='0 0 24 24'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    strokeWidth={2}>
                                     <path d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z' />
                                 </svg>
                             </button>
@@ -1562,20 +1576,52 @@ export default function DrawMode({
 
                         {chordShape.length > 0 && onProgressionRequest && (
                             <button
-                                onClick={() => onProgressionRequest(chordShape, autoChordLabel || chordLabel || root)}
+                                onClick={() =>
+                                    onProgressionRequest(
+                                        chordShape,
+                                        autoChordLabel || chordLabel || root,
+                                    )
+                                }
                                 title='Add to Progression'
                                 className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
-                                <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
-                                    <rect x='2' y='7' width='4' height='10' rx='1' />
-                                    <rect x='9' y='4' width='4' height='13' rx='1' />
-                                    <rect x='16' y='9' width='4' height='8' rx='1' />
+                                <svg
+                                    className='w-4 h-4'
+                                    viewBox='0 0 24 24'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    strokeWidth={2}
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'>
+                                    <rect
+                                        x='2'
+                                        y='7'
+                                        width='4'
+                                        height='10'
+                                        rx='1'
+                                    />
+                                    <rect
+                                        x='9'
+                                        y='4'
+                                        width='4'
+                                        height='13'
+                                        rx='1'
+                                    />
+                                    <rect
+                                        x='16'
+                                        y='9'
+                                        width='4'
+                                        height='8'
+                                        rx='1'
+                                    />
                                 </svg>
                             </button>
                         )}
 
                         {chordShape.length > 0 && (
                             <button
-                                onClick={() => playChord(chordShape, tuningFreqs)}
+                                onClick={() =>
+                                    playChord(chordShape, tuningFreqs)
+                                }
                                 title='Play'
                                 className='w-9 h-9 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
                                 <StrumIcon />
@@ -1833,7 +1879,11 @@ export default function DrawMode({
                         onToggle={setShowIntervals}
                     />
 
-                    <CapoButton capo={capo} setCapo={setCapo} size='md' />
+                    <CapoButton
+                        capo={capo}
+                        setCapo={setCapo}
+                        size='md'
+                    />
 
                     {hasOctave && (
                         <button
@@ -1845,10 +1895,20 @@ export default function DrawMode({
 
                     {chordShape.length > 0 && onSaveRequest && (
                         <button
-                            onClick={() => onSaveRequest(chordShape, autoChordLabel || chordLabel || root)}
+                            onClick={() =>
+                                onSaveRequest(
+                                    chordShape,
+                                    autoChordLabel || chordLabel || root,
+                                )
+                            }
                             title='Save'
                             className='w-10 h-10 flex items-center justify-center rounded-full border border-ink/40 text-ink hover:border-ink transition-colors'>
-                            <svg className='w-5 h-5' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2}>
+                            <svg
+                                className='w-5 h-5'
+                                viewBox='0 0 24 24'
+                                fill='none'
+                                stroke='currentColor'
+                                strokeWidth={2}>
                                 <path d='M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z' />
                             </svg>
                         </button>
@@ -1856,13 +1916,43 @@ export default function DrawMode({
 
                     {chordShape.length > 0 && onProgressionRequest && (
                         <button
-                            onClick={() => onProgressionRequest(chordShape, autoChordLabel || chordLabel || root)}
+                            onClick={() =>
+                                onProgressionRequest(
+                                    chordShape,
+                                    autoChordLabel || chordLabel || root,
+                                )
+                            }
                             title='Add to Progression'
                             className='flex items-center gap-2 px-4 py-2 rounded-full border border-ink/40 text-ink text-sm font-semibold hover:border-ink transition-colors'>
-                            <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth={2} strokeLinecap='round' strokeLinejoin='round'>
-                                <rect x='2' y='7' width='4' height='10' rx='1' />
-                                <rect x='9' y='4' width='4' height='13' rx='1' />
-                                <rect x='16' y='9' width='4' height='8' rx='1' />
+                            <svg
+                                className='w-4 h-4'
+                                viewBox='0 0 24 24'
+                                fill='none'
+                                stroke='currentColor'
+                                strokeWidth={2}
+                                strokeLinecap='round'
+                                strokeLinejoin='round'>
+                                <rect
+                                    x='2'
+                                    y='7'
+                                    width='4'
+                                    height='10'
+                                    rx='1'
+                                />
+                                <rect
+                                    x='9'
+                                    y='4'
+                                    width='4'
+                                    height='13'
+                                    rx='1'
+                                />
+                                <rect
+                                    x='16'
+                                    y='9'
+                                    width='4'
+                                    height='8'
+                                    rx='1'
+                                />
                             </svg>
                             Progression
                         </button>

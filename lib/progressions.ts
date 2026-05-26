@@ -36,7 +36,9 @@ export async function saveProgression(
     p: Omit<Progression, 'id' | 'created_at'>,
 ): Promise<Progression> {
     const supabase = client();
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
     if (!session) throw new Error('Not signed in');
     const { data, error } = await supabase
         .from('progressions')
@@ -61,9 +63,6 @@ export async function updateProgression(
 
 export async function deleteProgression(id: string): Promise<void> {
     const supabase = client();
-    const { error } = await supabase
-        .from('progressions')
-        .delete()
-        .eq('id', id);
+    const { error } = await supabase.from('progressions').delete().eq('id', id);
     if (error) throw error;
 }
