@@ -1,6 +1,7 @@
 import { spellInterval, spellNote } from "@/lib/MusicTheory";
 import * as React from "react";
 import type { NotePosition } from "@/lib/fretboardMap";
+import { playNote } from "@/lib/guitarAudio";
 
 type Props = {
     chordShape: NotePosition[];
@@ -13,6 +14,10 @@ type Props = {
     handedness?: "left" | "right";
     showConnector?: boolean;
     chordGroups?: NotePosition[][];
+    interactivePositions?: Set<string>;
+    playOnClick?: boolean;
+    capo?: number;
+    tuningFreqs?: number[];
 };
 
 const FretboardVertical = ({
@@ -26,6 +31,10 @@ const FretboardVertical = ({
     handedness = "right",
     showConnector = false,
     chordGroups,
+    interactivePositions,
+    playOnClick = false,
+    capo = 0,
+    tuningFreqs,
 }: Props) => {
     const padX = 30;
     const padY = 40;
@@ -99,6 +108,29 @@ const FretboardVertical = ({
                     />
                 ))}
 
+                {/* Capo shading and bar */}
+                {capo > 0 && (
+                    <>
+                        <rect
+                            x={padX}
+                            y={yForFretLine(0)}
+                            width={diagramWidth - padX * 2}
+                            height={yForFretLine(capo) - yForFretLine(0)}
+                            fill='#1f2d3d'
+                            opacity={0.06}
+                        />
+                        <rect
+                            x={padX - 4}
+                            y={yForFretLine(capo) - 5}
+                            width={diagramWidth - padX * 2 + 8}
+                            height={10}
+                            rx={5}
+                            fill='#1f2d3d'
+                            opacity={0.5}
+                        />
+                    </>
+                )}
+
                 {/* Strings */}
                 {[...Array(numStrings)].map((_, i) => (
                     <line
@@ -170,39 +202,48 @@ const FretboardVertical = ({
                 )}
 
                 {/* Connector line(s) */}
-                {showConnector && (chordGroups && chordGroups.length > 0 ? chordGroups : [chordShape]).map((group, gi) => {
-                    const sorted = group
-                        .filter(p => p.fret != null && p.fret >= 0 && p.fret <= numFrets)
-                        .sort((a, b) => b.string - a.string);
-                    if (sorted.length < 2) return null;
-                    const center = (p: NotePosition) => ({
-                        x: xForString(p.string),
-                        y: p.fret === 0 ? openY : yForFretMark(p.fret!),
-                        r: p.fret === 0 ? 14 : 16,
-                    });
-                    return sorted.slice(0, -1).map((p, i) => {
-                        const a = center(p);
-                        const b = center(sorted[i + 1]);
-                        const dx = b.x - a.x;
-                        const dy = b.y - a.y;
-                        const len = Math.sqrt(dx * dx + dy * dy);
-                        if (len === 0) return null;
-                        const ux = dx / len;
-                        const uy = dy / len;
-                        return (
-                            <line
-                                key={`connector-${gi}-${i}`}
-                                x1={a.x + ux * a.r}
-                                y1={a.y + uy * a.r}
-                                x2={b.x - ux * b.r}
-                                y2={b.y - uy * b.r}
-                                stroke='#1f2d3d'
-                                strokeWidth={2.5}
-                                strokeLinecap='round'
-                            />
-                        );
-                    });
-                })}
+                {showConnector &&
+                    (chordGroups && chordGroups.length > 0
+                        ? chordGroups
+                        : [chordShape]
+                    ).map((group, gi) => {
+                        const sorted = group
+                            .filter(
+                                p =>
+                                    p.fret != null &&
+                                    p.fret >= 0 &&
+                                    p.fret <= numFrets,
+                            )
+                            .sort((a, b) => b.string - a.string);
+                        if (sorted.length < 2) return null;
+                        const center = (p: NotePosition) => ({
+                            x: xForString(p.string),
+                            y: p.fret === 0 ? openY : yForFretMark(p.fret!),
+                            r: p.fret === 0 ? 14 : 16,
+                        });
+                        return sorted.slice(0, -1).map((p, i) => {
+                            const a = center(p);
+                            const b = center(sorted[i + 1]);
+                            const dx = b.x - a.x;
+                            const dy = b.y - a.y;
+                            const len = Math.sqrt(dx * dx + dy * dy);
+                            if (len === 0) return null;
+                            const ux = dx / len;
+                            const uy = dy / len;
+                            return (
+                                <line
+                                    key={`connector-${gi}-${i}`}
+                                    x1={a.x + ux * a.r}
+                                    y1={a.y + uy * a.r}
+                                    x2={b.x - ux * b.r}
+                                    y2={b.y - uy * b.r}
+                                    stroke='#1f2d3d'
+                                    strokeWidth={2.5}
+                                    strokeLinecap='round'
+                                />
+                            );
+                        });
+                    })}
 
                 {/* Notes */}
                 {chordShape.map((pos, index) => {
@@ -224,9 +265,20 @@ const FretboardVertical = ({
                     const fontSize =
                         label.includes("bb") || label.includes("##") ? 13 : 16;
 
+                    const handleNoteClick = playOnClick
+                        ? () => playNote(string, fret, tuningFreqs)
+                        : undefined;
+
                     if (fret === 0) {
                         return (
-                            <g key={`note-${index}`}>
+                            <g
+                                key={`note-${index}`}
+                                onClick={handleNoteClick}
+                                style={
+                                    playOnClick
+                                        ? { cursor: "pointer" }
+                                        : undefined
+                                }>
                                 <circle
                                     cx={x}
                                     cy={openY}
@@ -249,7 +301,12 @@ const FretboardVertical = ({
                         );
                     }
                     return (
-                        <g key={`note-${index}`}>
+                        <g
+                            key={`note-${index}`}
+                            onClick={handleNoteClick}
+                            style={
+                                playOnClick ? { cursor: "pointer" } : undefined
+                            }>
                             <circle
                                 cx={x}
                                 cy={y}
@@ -289,6 +346,11 @@ const FretboardVertical = ({
                     <g aria-label='note-hit-layer'>
                         {[...Array(numStrings)].map((_, s) =>
                             [...Array(numFrets + 1)].map((_, f) => {
+                                if (
+                                    interactivePositions &&
+                                    !interactivePositions.has(`${s}:${f}`)
+                                )
+                                    return null;
                                 const x = xForString(s);
                                 const y = f === 0 ? openY : yForFretMark(f);
                                 return (

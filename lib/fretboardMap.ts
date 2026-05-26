@@ -33,6 +33,14 @@ export const NOTES: string[][] = [
     ['G#', 'Ab'],
 ];
 
+export function shiftTuning(tuning: string[], capo: number): string[] {
+    if (!capo) return tuning;
+    return tuning.map(note => {
+        const idx = NOTES.findIndex(pair => pair.includes(note));
+        return NOTES[(idx + capo) % NOTES.length][0];
+    });
+}
+
 export function generateFretboardMap(
     tuning: string[],
     numFrets: number,
@@ -48,10 +56,14 @@ export function generateFretboardMap(
     });
 }
 
+// Standard EADGBE MIDI numbers, index 0 = high e
+export const STANDARD_MIDI = [64, 59, 55, 50, 45, 40];
+
 export function generateAllVoicingsForShape(
     rootNote: string,
     shapeFormula: ShapeFormula,
     fretboardMap: string[][],
+    tuningMidi?: number[],
 ): NotePosition[][] {
     if (!shapeFormula || !fretboardMap) return [];
 
@@ -68,6 +80,11 @@ export function generateAllVoicingsForShape(
     ) {
         return [];
     }
+
+    // delta[s] = how many semitones string s is tuned away from standard
+    const delta = STANDARD_MIDI.map((std, s) =>
+        tuningMidi ? (tuningMidi[s] ?? std) - std : 0,
+    );
 
     const stringNotes = fretboardMap[rootString];
     const allVoicings: NotePosition[][] = [];
@@ -87,7 +104,13 @@ export function generateAllVoicingsForShape(
                         degree: null,
                     } as unknown as NotePosition;
                 }
-                const finalFret = rootFret + note.fretOffset;
+                // Compensate for per-string tuning differences so the same
+                // musical interval lands on the correct fret regardless of tuning
+                const adjustedOffset =
+                    note.fretOffset +
+                    (delta[rootString] ?? 0) -
+                    (delta[note.string] ?? 0);
+                const finalFret = rootFret + adjustedOffset;
                 if (finalFret < 0 || finalFret >= maxFret) {
                     valid = false;
                     return null;
