@@ -894,9 +894,12 @@ export default function Home() {
             const entry = SCALE_SHAPES[group]?.[scale];
             if (!entry) return;
             const positionCount = entry.positions.length;
-            const position = positionCount
-                ? Math.floor(Math.random() * positionCount)
-                : 0;
+            const position =
+                !scaleRandomize.randomizeRoot
+                    ? 0
+                    : positionCount
+                      ? Math.floor(Math.random() * positionCount)
+                      : 0;
             setSelectedNoteGroup(group);
             setSelectedScale(scale);
             setSelectedScalePosition(position);
