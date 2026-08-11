@@ -2,10 +2,10 @@ import type { ShapeFormula } from '@/lib/fretboardMap';
 
 export type ScaleChordTemplate = ShapeFormula;
 
-// voicing group → base chord quality → inversion → template
+// voicing type → string set → shape → inversion → template
 export type ScaleChordLibrary = Record<
     string,
-    Record<string, Record<string, ScaleChordTemplate>>
+    Record<string, Record<string, Record<string, ScaleChordTemplate>>>
 >;
 
 // Transpose every note in a template to a new diatonic position.
@@ -55,523 +55,2068 @@ export function generateDiatonicVoicings(
 // ─── Template library ─────────────────────────────────────────────────────────
 
 export const SCALE_CHORD_SHAPES: ScaleChordLibrary = {
-    // need base diatonic shapes
-
     'Drop 2': {
-        '(Base) 1 3 5 7': {
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+        'High': {
+            '(Base) 1 3 5 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1, },
+                                { string: 1, fretOffset: 0, semitones: 7, degree: 5, },
+                                { string: 2, fretOffset: -4, semitones: 11, degree: 7, },
+                                { string: 3, fretOffset: -6, semitones: 4, degree: 3, },
+                                // 5th-string not played
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 2, semitones: 7, degree: 5, },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1, },
+                                { string: 2, fretOffset: -4, semitones: 4, degree: 3, },
+                                { string: 3, fretOffset: -4, semitones: 11, degree: 7, },
+                                // 5th-string not played
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-                altShapes: [
-                    {
-                        rootString: 0,
-                        pattern: [
-                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                            { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
-                            { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
-                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
-                            // 5th-string not played
-                            // 6th-string not played
-                        ],
-                    },
-                ],
+            '1 3 4 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1, },
+                                { string: 1, fretOffset: -2, semitones: 5, degree: 4, },
+                                { string: 2, fretOffset: -4, semitones: 11, degree: 7, },
+                                { string: 3, fretOffset: -6, semitones: 4, degree: 3, },
+                                // 5th-string not played
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 5, degree: 4, },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1, },
+                                { string: 2, fretOffset: -4, semitones: 4, degree: 2, },
+                                { string: 3, fretOffset: -4, semitones: 11, degree: 4, },
+                                // 5th-string not played
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 4 5 6': { // Maj9 from 4th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 1, fretOffset: 0, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1, },
+                                { string: 1, fretOffset: 0, semitones: 7, degree: 5, },
+                                { string: 2, fretOffset: -6, semitones: 9, degree: 6, },
+                                { string: 3, fretOffset: -5, semitones: 5, degree: 4, },
+                                // 5th-string not played
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: -1, semitones: 9, degree: 6 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
             },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-                altShapes: [
-                    {
-                        rootString: 1,
-                        pattern: [
-                            { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
-                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                            { string: 2, fretOffset: -4, semitones: 4, degree: 3 },
-                            { string: 3, fretOffset: -4, semitones: 11, degree: 7 },
-                            // 5th-string not played
-                            // 6th-string not played
-                        ],
-                    },
-                ],
+            '1 2 4 5': { // Maj9 from 9th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 3 4 5': { // 1 2 5 7 from 4th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 4 6 7': { // Maj#11 from 4th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 5 6 7': { // Min9 from 6th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 5, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 4, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 2 5 7': { // 1 3 4 5 from 5th
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 3 6 7': { // Min9 from 3rd
+                Root: {
+                    name: 'Root',
+                    rootString: 3,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 1,
+                    pattern: [
+                        { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 0,
+                    pattern: [
+                        { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 5th-string not played
+                        // 6th-string not played
+                    ],
+                },
             },
         },
-        '1 3 4 7': {
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+        'Mid': {
+            '(Base) 1 3 5 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 6, semitones: 4, degree: 3 },
+                                { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-                altShapes: [
-                    {
-                        rootString: 0,
-                        pattern: [
-                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                            { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
-                            { string: 2, fretOffset: -4, semitones: 11, degree: 7 },
-                            { string: 3, fretOffset: -6, semitones: 4, degree: 3 },
-                            // 5th-string not played
-                            // 6th-string not played
-                        ],
-                    },
-                ],
+            '1 3 4 7': { // WAS VERIFYING ALT SHAPES
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 4 5 6': { // Maj9 from 4th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 5, degree: 4 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: -1, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                                { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 4, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
-                    { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-                altShapes: [
-                    {
-                        rootString: 1,
-                        pattern: [
-                            { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
-                            { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                            { string: 2, fretOffset: -4, semitones: 4, degree: 2 },
-                            { string: 3, fretOffset: -4, semitones: 11, degree: 4 },
-                            // 5th-string not played
-                            // 6th-string not played
-                        ],
-                    },
-                ],
+            '1 2 4 5': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 2, degree: 2 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
+                                { string: 4, fretOffset: 4, semitones: 2, degree: 2 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 4, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                                { string: 3, fretOffset: 4, semitones: 2, degree: 2 },
+                                { string: 4, fretOffset: 2, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+            },
+            '1 3 4 5': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                                { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
+                                { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                // 1st-string not played
+                                { string: 4, fretOffset: 2, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+            },
+            '1 4 6 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 5, degree: 4 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 5 6 7': { // Min9 from 6th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                                { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 5, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 5, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
+                                { string: 2, fretOffset: 4, semitones: 7, degree: 5 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+            },
+            '1 2 5 7': { // 1 3 4 5 from 5th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 0, semitones: 2, degree: 2 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 4, semitones: 2, degree: 2 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
+            },
+            '1 3 6 7': { // Xxx9 from 6th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
         },
-        '1 4 5 6': { // Maj9 from 4th
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 3, semitones: 5, degree: 4 },
-                    { string: 1, fretOffset: 0, semitones: 9, degree: 6 },
-                    { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+        'Low': {
+            '(Base) 1 3 5 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 5,
+                    pattern: [
+                        // 1st-string not played
+                        // 2nd-string not played
+                        { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 5, fretOffset: 0, semitones: 0, degree: 1 },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        // 2nd-string not played
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 5, fretOffset: 2, semitones: 4, degree: 3 },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        // 2nd-string not played
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 5, fretOffset: 0, semitones: 7, degree: 5 },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        // 2nd-string not played
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 5, fretOffset: 2, semitones: 11, degree: 7 },
+                    ],
+                },
             },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
-                    { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-                altShapes: [
-                    {
-                        rootString: 0,
-                        pattern: [
-                            { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                            { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
-                            { string: 2, fretOffset: -6, semitones: 9, degree: 6 },
-                            { string: 3, fretOffset: -5, semitones: 5, degree: 4 },
-                            // 5th-string not played
-                            // 6th-string not played
-                        ],
-                    },
-                ],
+            '1 3 4 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
-                    { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 4 5 6': { // Maj9 from 4th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 5, degree: 4 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: -1, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
+                                { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 4, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
-                    { string: 3, fretOffset: -1, semitones: 9, degree: 6 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 2 4 5': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 2, degree: 2 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
+                                { string: 4, fretOffset: 4, semitones: 2, degree: 2 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 4, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
+                                { string: 3, fretOffset: 4, semitones: 2, degree: 2 },
+                                { string: 4, fretOffset: 2, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-        },
-        '1 2 4 5': { // Maj9 from 9th
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 2, degree: 2 },
-                    { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 3 4 5': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -3, semitones: 7, degree: 5 },
+                                { string: 3, fretOffset: 0, semitones: 5, degree: 4 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: -2, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -3, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: -3, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
+                                { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
+                                // 1st-string not played
+                                { string: 4, fretOffset: 2, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 4 6 7': {
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 5, degree: 4 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -2, semitones: 5, degree: 4 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 3, semitones: 5, degree: 4 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 5 6 7': { // Min9 from 6th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                                { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 5, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 5, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
+                                // 3rd-string not played
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 0,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
+                                { string: 2, fretOffset: 4, semitones: 7, degree: 5 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 6, semitones: 11, degree: 7 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
             },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
-                    { string: 2, fretOffset: -1, semitones: 2, degree: 2 },
-                    { string: 3, fretOffset: -3, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 2 5 7': { // 1 3 4 5 from 5th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 2, degree: 2 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 2, semitones: 7, degree: 5 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 0, semitones: 2, degree: 2 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 1,
+                            pattern: [
+                                { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
+                                { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 4, semitones: 2, degree: 2 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -3, semitones: 2, degree: 2 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 0, semitones: 7, degree: 5 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
+                        { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
-        },
-        '1 3 4 5': { // 1 2 5 7 from 4th; 
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
-                    { string: 1, fretOffset: -2, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 5, degree: 4 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: -1, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: -2, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: -2, semitones: 5, degree: 4 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: -2, semitones: 5, degree: 4 },
-                    { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                    { string: 3, fretOffset: -3, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-        },
-        '1 4 6 7': { // Maj#11 from 4th
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 3, semitones: 5, degree: 4 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: 2, semitones: 5, degree: 4 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: 1, semitones: 5, degree: 4 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
-                    { string: 2, fretOffset: 2, semitones: 5, degree: 4 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-        },
-        '1 5 6 7': { // Min9 from 6th
-            'Root': {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 5, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: 4, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: 3, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
-                    { string: 2, fretOffset: 4, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-        },
-        '1 2 5 7': { // 1 3 4 5 from 5th
-            Root: {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 2, degree: 2 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 7, degree: 5 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: -1, semitones: 2, degree: 2 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: -2, semitones: 2, degree: 2 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 0, semitones: 7, degree: 5 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 0, semitones: 7, degree: 5 },
-                    { string: 2, fretOffset: -1, semitones: 2, degree: 2 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-        },
-        '1 3 6 7': { // Min9 from 3rd
-            Root: {
-                name: 'Root',
-                rootString: 3,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 4, degree: 3 },
-                    { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 2, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '1st Inv.': {
-                name: '1st Inv.',
-                rootString: 1,
-                pattern: [
-                    { string: 0, fretOffset: 4, semitones: 9, degree: 6 },
-                    { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 2, fretOffset: 3, semitones: 11, degree: 7 },
-                    { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '2nd Inv.': {
-                name: '2nd Inv.',
-                rootString: 2,
-                pattern: [
-                    { string: 0, fretOffset: 2, semitones: 11, degree: 7 },
-                    { string: 1, fretOffset: 0, semitones: 4, degree: 3 },
-                    { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 3, fretOffset: 2, semitones: 9, degree: 6 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
-            },
-            '3rd Inv.': {
-                name: '3rd Inv.',
-                rootString: 0,
-                pattern: [
-                    { string: 0, fretOffset: 0, semitones: 0, degree: 1 },
-                    { string: 1, fretOffset: 2, semitones: 9, degree: 6 },
-                    { string: 2, fretOffset: 1, semitones: 4, degree: 3 },
-                    { string: 3, fretOffset: 1, semitones: 11, degree: 7 },
-                    // 5th-string not played
-                    // 6th-string not played
-                ],
+            '1 3 6 7': { // Min9 from 6th
+                Root: {
+                    name: 'Root',
+                    rootString: 4,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 4, degree: 3 },
+                        { string: 2, fretOffset: 1, semitones: 11, degree: 7 },
+                        { string: 3, fretOffset: 4, semitones: 9, degree: 6 },
+                        { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 4,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 4, degree: 3 },
+                                { string: 1, fretOffset: -3, semitones: 11, degree: 7 },
+                                { string: 2, fretOffset: -1, semitones: 9, degree: 6 },
+                                // 4th-string not played
+                                { string: 4, fretOffset: 0, semitones: 0, degree: 1 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '1st Inv.': {
+                    name: '1st Inv.',
+                    rootString: 2,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 5, semitones: 9, degree: 6 },
+                        { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                        { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 2,
+                            pattern: [
+                                { string: 0, fretOffset: 0, semitones: 9, degree: 6 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 3, fretOffset: 4, semitones: 11, degree: 7 },
+                                { string: 4, fretOffset: 2, semitones: 4, degree: 3 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '2nd Inv.': {
+                    name: '2nd Inv.',
+                    rootString: 3,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 2, semitones: 11, degree: 7 },
+                        { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                        { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                        // 6th-string not played
+                    ],
+                    altShapes: [
+                        {
+                            rootString: 3,
+                            pattern: [
+                                { string: 0, fretOffset: -3, semitones: 11, degree: 7 },
+                                // 2nd-string not played
+                                { string: 2, fretOffset: -1, semitones: 4, degree: 3 },
+                                { string: 3, fretOffset: 0, semitones: 0, degree: 1 },
+                                { string: 4, fretOffset: 2, semitones: 9, degree: 6 },
+                                // 6th-string not played
+                            ],
+                        },
+                    ],
+                },
+                '3rd Inv.': {
+                    name: '3rd Inv.',
+                    rootString: 1,
+                    pattern: [
+                        // 1st-string not played
+                        { string: 1, fretOffset: 0, semitones: 0, degree: 1 },
+                        { string: 2, fretOffset: 1, semitones: 9, degree: 6 },
+                        { string: 3, fretOffset: 1, semitones: 4, degree: 3 },
+                        { string: 4, fretOffset: 1, semitones: 11, degree: 7 },
+                        // 6th-string not played
+                    ],
+                },
             },
         },
     },
+    // 1 2 3 4
+    // 1 2 3 6
+    // 1 2 3 7
+    // 1 2 4 6
+    // 1 2 4 7
+    // 1 2 5 6
+    // 1 2 6 7
+    // 1 3 4 6
+    // 1 3 5 6
+    // 1 4 5 7
 };

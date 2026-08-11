@@ -50,18 +50,77 @@ const FretboardHorizontal = ({
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
-        const frets = chordShape
-            .map(p => p.fret)
-            .filter((f): f is number => typeof f === "number" && f >= 0);
         const container = containerRef.current;
         if (!container) return;
-        if (frets.length === 0) {
+
+        const fretsOf = (positions: NotePosition[]) =>
+            positions
+                .map(p => p.fret)
+                .filter((f): f is number => typeof f === "number" && f >= 0);
+        // string 0 = high e (1st string) … string 5 = low E (6th string).
+        // Find the group's best root-note occurrence: prefer the lowest
+        // string (highest index, closest to the 6th string), then the
+        // lowest fret on that string.
+        const bestRootOf = (positions: NotePosition[]) => {
+            let best: { string: number; fret: number } | null = null;
+            for (const p of positions) {
+                if (
+                    p.semitones !== 0 ||
+                    typeof p.fret !== "number" ||
+                    p.fret < 0
+                )
+                    continue;
+                if (
+                    !best ||
+                    p.string > best.string ||
+                    (p.string === best.string && p.fret < best.fret)
+                ) {
+                    best = { string: p.string, fret: p.fret };
+                }
+            }
+            return best;
+        };
+
+        // When multiple positions are overlaid ("All"), center on whichever
+        // one roots on the lowest string (6th string first, then 5th, …) —
+        // i.e. the root's first position — rather than the midpoint of the
+        // whole overlaid range.
+        let targetFrets = fretsOf(chordShape);
+        if (chordGroups && chordGroups.length > 0) {
+            let bestFrets: number[] | null = null;
+            let bestRoot: { string: number; fret: number } | null = null;
+            let fallbackFrets: number[] | null = null;
+            let fallbackMin = Infinity;
+            for (const group of chordGroups) {
+                const frets = fretsOf(group);
+                if (frets.length === 0) continue;
+                const min = Math.min(...frets);
+                if (min < fallbackMin) {
+                    fallbackMin = min;
+                    fallbackFrets = frets;
+                }
+                const root = bestRootOf(group);
+                if (
+                    root &&
+                    (!bestRoot ||
+                        root.string > bestRoot.string ||
+                        (root.string === bestRoot.string &&
+                            root.fret < bestRoot.fret))
+                ) {
+                    bestRoot = root;
+                    bestFrets = frets;
+                }
+            }
+            targetFrets = bestFrets ?? fallbackFrets ?? targetFrets;
+        }
+
+        if (targetFrets.length === 0) {
             container.scrollTo({ left: 0, behavior: "smooth" });
             return;
         }
 
-        const minFret = Math.min(...frets);
-        const maxFret = Math.max(...frets);
+        const minFret = Math.min(...targetFrets);
+        const maxFret = Math.max(...targetFrets);
 
         const centerXRight =
             ((minFret + maxFret) / 2 - 1) * fretWidth + padX + fretWidth / 2;
@@ -71,7 +130,7 @@ const FretboardHorizontal = ({
             left: Math.max(0, centerX - container.clientWidth / 2),
             behavior: "smooth",
         });
-    }, [chordShape, fretWidth, padX, handedness, diagramWidth]);
+    }, [chordShape, chordGroups, fretWidth, padX, handedness, diagramWidth]);
 
     const yForString = React.useCallback(
         (s: number) => s * stringSpacing + padY,
