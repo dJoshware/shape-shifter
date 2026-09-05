@@ -41,9 +41,10 @@ function SignInForm() {
                 ? (localStorage.getItem("ss_last_email") ?? "")
                 : "",
     );
-    const [code, setCode] = React.useState("");
+    const [digits, setDigits] = React.useState<string[]>(Array(6).fill(""));
     const [status, setStatus] = React.useState<Status>("idle");
     const [message, setMessage] = React.useState("");
+    const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
 
     const destination = React.useMemo(() => {
         const redirect = searchParams.get("redirect");
@@ -73,11 +74,12 @@ function SignInForm() {
         }
         setStatus("idle");
         setStep("code");
+        setDigits(Array(6).fill(""));
+        setTimeout(() => inputRefs.current[0]?.focus(), 50);
     }
 
-    async function verifyCode(e: FormEvent) {
-        e.preventDefault();
-        if (code.trim().length !== 6) {
+    async function verifyCode(fullCode: string) {
+        if (fullCode.length !== 6) {
             setStatus("error");
             setMessage("Please enter the 6-digit code from your email.");
             return;
@@ -86,12 +88,14 @@ function SignInForm() {
         setMessage("");
         const { error } = await supabase.auth.verifyOtp({
             email: email.trim(),
-            token: code.trim(),
+            token: fullCode,
             type: "email",
         });
         if (error) {
             setStatus("error");
             setMessage("Code is invalid or expired — request a new one.");
+            setDigits(Array(6).fill(""));
+            inputRefs.current[0]?.focus();
             return;
         }
         localStorage.setItem("ss_last_email", email.trim());
@@ -116,6 +120,39 @@ function SignInForm() {
         } else {
             setStatus("idle");
             setMessage("New code sent — check your inbox.");
+            setDigits(Array(6).fill(""));
+            inputRefs.current[0]?.focus();
+        }
+    }
+
+    function handleDigitChange(i: number, value: string) {
+        const v = value.replace(/\D/g, "");
+        if (!v) {
+            const next = [...digits];
+            next[i] = "";
+            setDigits(next);
+            return;
+        }
+        // Paste-to-fill: if more than one digit landed in one box, spread it.
+        if (v.length > 1) {
+            const next = [...digits];
+            for (let j = 0; j < v.length && i + j < 6; j++) next[i + j] = v[j];
+            setDigits(next);
+            const lastIdx = Math.min(i + v.length, 5);
+            inputRefs.current[lastIdx]?.focus();
+            if (next.every(d => d)) verifyCode(next.join(""));
+            return;
+        }
+        const next = [...digits];
+        next[i] = v;
+        setDigits(next);
+        if (i < 5) inputRefs.current[i + 1]?.focus();
+        if (next.every(d => d)) verifyCode(next.join(""));
+    }
+
+    function handleDigitKeyDown(i: number, e: React.KeyboardEvent) {
+        if (e.key === "Backspace" && !digits[i] && i > 0) {
+            inputRefs.current[i - 1]?.focus();
         }
     }
 
@@ -176,46 +213,44 @@ function SignInForm() {
                             </button>
                         </form>
                     ) : (
-                        <form
-                            onSubmit={verifyCode}
-                            className='flex flex-col gap-4'>
-                            <div className='flex flex-col gap-1'>
-                                <label className='text-xs font-semibold text-sand-1/80'>
+                        <div className='flex flex-col gap-4'>
+                            <div className='flex flex-col gap-2'>
+                                <label className='text-xs font-semibold text-sand-1/80 text-center'>
                                     6-digit code
                                 </label>
-                                <input
-                                    type='text'
-                                    inputMode='numeric'
-                                    autoComplete='one-time-code'
-                                    placeholder='XXXXXX'
-                                    maxLength={6}
-                                    value={code}
-                                    onChange={e =>
-                                        setCode(
-                                            e.target.value.replace(/\D/g, ""),
-                                        )
-                                    }
-                                    disabled={status === "sending"}
-                                    className='bg-transparent border-b-2 border-sand-1/40 focus:border-sand-1 outline-none text-sand-1 text-center text-2xl tracking-[0.5em] py-2 transition-colors w-full'
-                                />
+                                <div className='flex justify-center gap-2'>
+                                    {digits.map((d, i) => (
+                                        <input
+                                            key={i}
+                                            ref={el => {
+                                                inputRefs.current[i] = el;
+                                            }}
+                                            value={d}
+                                            onChange={e =>
+                                                handleDigitChange(
+                                                    i,
+                                                    e.target.value,
+                                                )
+                                            }
+                                            onKeyDown={e =>
+                                                handleDigitKeyDown(i, e)
+                                            }
+                                            inputMode='numeric'
+                                            autoComplete='one-time-code'
+                                            maxLength={6}
+                                            disabled={status === "sending"}
+                                            className='w-11 h-12 text-center text-2xl bg-transparent border-b-2 border-sand-1/40 focus:border-sand-1 outline-none text-sand-1 transition-colors'
+                                        />
+                                    ))}
+                                </div>
                             </div>
 
-                            <button
-                                type='submit'
-                                disabled={
-                                    status === "sending" ||
-                                    code.trim().length !== 6
-                                }
-                                className='self-center px-8 py-2 bg-sand-1 text-ink font-bold rounded-full hover:opacity-90 disabled:opacity-50 transition-all'>
-                                {status === "sending" ? (
-                                    <span className='flex items-center gap-2'>
-                                        <span className='w-4 h-4 rounded-full border-2 border-ink border-t-transparent animate-spin' />
-                                        Verifying…
-                                    </span>
-                                ) : (
-                                    "Sign in"
-                                )}
-                            </button>
+                            {status === "sending" && (
+                                <span className='self-center flex items-center gap-2 text-sm text-sand-1/70'>
+                                    <span className='w-4 h-4 rounded-full border-2 border-sand-1/40 border-t-transparent animate-spin' />
+                                    Verifying…
+                                </span>
+                            )}
 
                             <div className='flex items-center justify-between text-sm'>
                                 <button
@@ -223,7 +258,7 @@ function SignInForm() {
                                     className='text-sand-1/70 underline underline-offset-4 hover:text-sand-1 transition-colors'
                                     onClick={() => {
                                         setStep("email");
-                                        setCode("");
+                                        setDigits(Array(6).fill(""));
                                         setStatus("idle");
                                         setMessage("");
                                     }}>
@@ -247,7 +282,7 @@ function SignInForm() {
                                     className='underline underline-offset-2 hover:text-sand-1/80 transition-colors'
                                     onClick={() => {
                                         setStep("email");
-                                        setCode("");
+                                        setDigits(Array(6).fill(""));
                                         setStatus("idle");
                                         setMessage("");
                                     }}>
@@ -255,7 +290,7 @@ function SignInForm() {
                                 </button>
                                 .
                             </p>
-                        </form>
+                        </div>
                     )}
 
                     {message && (
