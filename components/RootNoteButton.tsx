@@ -22,7 +22,7 @@ export default function RootNoteButton({
 }: Props) {
     const [open, setOpen] = React.useState(false);
     const [anchorRect, setAnchorRect] = React.useState<DOMRect | null>(null);
-    const [useFlats, setUseFlats] = React.useState(() => root.includes("b"));
+    const [useFlats, setUseFlats] = React.useState(() => !root.includes("#"));
     const btnRef = React.useRef<HTMLButtonElement>(null);
     const popupRef = React.useRef<HTMLDivElement>(null);
 
