@@ -1,8 +1,16 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 
 export default function EmailConfirmedPage() {
+    const [signInHref, setSignInHref] = React.useState("/signin");
+
+    React.useEffect(() => {
+        const next = new URLSearchParams(window.location.search).get("next");
+        if (next) setSignInHref(`/signin?next=${encodeURIComponent(next)}`);
+    }, []);
+
     return (
         <div className='flex-1 grid place-items-center px-4 py-8'>
             <div className='w-full max-w-sm'>
@@ -21,7 +29,7 @@ export default function EmailConfirmedPage() {
                         On the same device? Sign in below.
                     </p>
                     <Link
-                        href='/signin'
+                        href={signInHref}
                         className='self-center px-8 py-2 bg-sand-1 text-ink font-bold rounded-full hover:opacity-90 transition-all'>
                         Sign in
                     </Link>

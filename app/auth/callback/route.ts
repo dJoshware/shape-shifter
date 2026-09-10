@@ -7,15 +7,25 @@ export const runtime = 'nodejs';
 export async function GET(req: Request) {
     const url = new URL(req.url);
     const code = url.searchParams.get('code');
+    const next = url.searchParams.get('next');
 
     if (code) {
         const supabase = await createServClient();
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         // Cross-device PKCE mismatch is expected — continue regardless
-        if (error) console.error('Code exchange failed:', error.message);
+        if (error) {
+            console.error('Code exchange failed:', error.message);
+        } else if (next) {
+            // Same-device confirmation actually has a session now, so send
+            // them straight to whatever they were doing instead of the
+            // generic "you're confirmed" page.
+            return NextResponse.redirect(new URL(next, url.origin));
+        }
     }
 
-    return NextResponse.redirect(new URL('/auth/confirmed', url.origin));
+    const confirmedUrl = new URL('/auth/confirmed', url.origin);
+    if (next) confirmedUrl.searchParams.set('next', next);
+    return NextResponse.redirect(confirmedUrl);
 }
 
 // POST: session sync called by SupabaseProvider on auth state changes

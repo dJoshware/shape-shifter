@@ -47,6 +47,12 @@ function SignInForm() {
     const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
 
     const destination = React.useMemo(() => {
+        // `next` is a literal resolved path -- used when this page itself
+        // sends someone off to confirm their email and needs them routed
+        // straight back here on return (see /auth/confirmed). `redirect`
+        // is the older, single-purpose param used by in-app links.
+        const next = searchParams.get("next");
+        if (next) return next;
         const redirect = searchParams.get("redirect");
         return redirect === "paywall" ? "/?paywall=1" : "/";
     }, [searchParams]);
@@ -64,7 +70,7 @@ function SignInForm() {
             email: email.trim(),
             options: {
                 shouldCreateUser: true,
-                emailRedirectTo: `${window.location.origin}/auth/callback`,
+                emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(destination)}`,
             },
         });
         if (error) {
@@ -111,7 +117,7 @@ function SignInForm() {
             email: email.trim(),
             options: {
                 shouldCreateUser: true,
-                emailRedirectTo: `${window.location.origin}/auth/callback`,
+                emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(destination)}`,
             },
         });
         if (error) {
