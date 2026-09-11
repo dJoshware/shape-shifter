@@ -751,10 +751,51 @@ export default function Home() {
 
     const [menuOpen, setMenuOpen] = React.useState(false);
 
-    const openPaywall = React.useCallback(() => {
-        setMenuOpen(false);
-        router.replace("?paywall=1", { scroll: false });
-    }, [router]);
+    const openPaywall = React.useCallback(
+        (intent?: string) => {
+            setMenuOpen(false);
+            // Remember what the user was trying to do so we can resume it
+            // after they sign in / their Pro status resolves.
+            if (intent && typeof window !== "undefined") {
+                try {
+                    sessionStorage.setItem(
+                        "ss_pending_intent",
+                        JSON.stringify({ intent, ts: Date.now() }),
+                    );
+                } catch {
+                    // ignore storage failures
+                }
+            }
+            router.replace("?paywall=1", { scroll: false });
+        },
+        [router],
+    );
+
+    // Resume a pending Pro-gated action (e.g. Draw Mode) once the user is
+    // signed in and their Pro status has resolved.
+    React.useEffect(() => {
+        if (!hasPro || typeof window === "undefined") return;
+        let pending: { intent?: string; ts?: number } | null = null;
+        try {
+            pending = JSON.parse(
+                sessionStorage.getItem("ss_pending_intent") ?? "null",
+            );
+        } catch {
+            pending = null;
+        }
+        if (!pending?.intent) return;
+        // Ignore stale intents (older than 15 minutes).
+        if (pending.ts && Date.now() - pending.ts > 15 * 60 * 1000) {
+            sessionStorage.removeItem("ss_pending_intent");
+            return;
+        }
+        sessionStorage.removeItem("ss_pending_intent");
+        if (pending.intent === "drawmode") setIsDrawMode(true);
+        // Strip ?paywall=1 so the modal doesn't linger.
+        if (window.location.search.includes("paywall=1")) {
+            router.replace(window.location.pathname, { scroll: false });
+        }
+    }, [hasPro, router]);
 
     const [showWelcome, setShowWelcome] = React.useState(false);
 
@@ -1012,7 +1053,7 @@ export default function Home() {
     const handleToggleDrawMode = () => {
         if (!isDrawMode) {
             if (!hasPro) {
-                openPaywall();
+                openPaywall("drawmode");
                 return;
             }
             setIsDrawMode(true);

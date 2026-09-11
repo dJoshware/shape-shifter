@@ -68,13 +68,28 @@ export default function Header() {
     // Open paywall when ?paywall=1 appears in the URL (runtime trigger from page.tsx)
     React.useEffect(() => {
         if (searchParams.get("paywall") === "1") {
-            setPaywallOpen(true);
+            if (!hasPro) setPaywallOpen(true);
             const params = new URLSearchParams(searchParams.toString());
             params.delete("paywall");
             const newUrl = pathname + (params.size ? `?${params}` : "");
             router.replace(newUrl, { scroll: false });
         }
-    }, [searchParams, pathname, router]);
+    }, [searchParams, pathname, router, hasPro]);
+
+    // A Pro user should never be looking at the paywall — close it as soon as
+    // their subscription status resolves (e.g. right after signing in).
+    React.useEffect(() => {
+        if (hasPro) setPaywallOpen(false);
+    }, [hasPro]);
+
+    const dismissPaywall = React.useCallback(() => {
+        setPaywallOpen(false);
+        try {
+            sessionStorage.removeItem("ss_pending_intent");
+        } catch {
+            // ignore
+        }
+    }, []);
 
     const [plan, setPlan] = React.useState<"monthly" | "yearly">("monthly");
     const [signoutLoading, setSignoutLoading] = React.useState(false);
@@ -571,7 +586,7 @@ export default function Header() {
                             </button>
 
                             <button
-                                onClick={() => setPaywallOpen(false)}
+                                onClick={dismissPaywall}
                                 className='w-full text-center text-xs text-sand-1/40 hover:text-sand-1/70 transition-colors py-1'>
                                 Maybe later
                             </button>

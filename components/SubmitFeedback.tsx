@@ -89,7 +89,7 @@ export default function SubmitFeedback({ className }: { className?: string }) {
                     setOpen(true);
                 }}
                 className={`relative text-sm font-semibold underline-offset-4 hover:underline transition-all ${className ?? "text-ink"}`}>
-                Submit Feedback
+                Support 🛠️
             </button>
 
             {open &&
@@ -99,7 +99,7 @@ export default function SubmitFeedback({ className }: { className?: string }) {
                             {/* Header */}
                             <div className='border-b border-ink/30 px-6 py-4 shrink-0'>
                                 <h2 className='text-xl font-bold text-sand-1 text-center'>
-                                    Submit feedback
+                                    Support
                                 </h2>
                             </div>
 
