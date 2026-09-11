@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* Tailwind's dark: variant defaults to a prefers-color-scheme media query;
+   we drive theme via next-themes toggling a `.dark` class on <html> instead
+   (so "system" vs. an explicit user choice both resolve through one place). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ── Brand colours ─────────────────────────────────────────── */
+/* Slate + Amber palette. Every pairing in this app is one light + one dark
+   tone from this set, so dark mode is a full inversion of the ramp — light
+   tones become dark and vice versa — rather than a separate palette. This
+   keeps every existing className working with zero component changes. */
 @theme {
-    /* Slate + Amber palette */
     --color-sand-1: #f7f7f5;
     --color-sand-2: #eeeeec;
     --color-sand-3: #d1d1cc;
@@ -11,7 +19,7 @@
     /* Primary text / icons */
     --color-ink: #1f2d3d;
 
-    /* Accent colours */
+    /* Accent colours — unchanged between themes */
     --color-root-red: #dc2626;
     --color-olive: #d97706;
     --color-green: #b45309;
@@ -24,6 +32,17 @@
 
     /* Font */
     --font-montserrat: "Montserrat", sans-serif;
+}
+
+/* Dark theme — same ramp, inverted. sand-1 (lightest) becomes the darkest
+   page tone, sand-4/ink (darkest) becomes the lightest. */
+:root.dark {
+    --color-sand-1: #10161d;
+    --color-sand-2: #1a2530;
+    --color-sand-3: #2d3d4d;
+    --color-sand-4: #f5f3ef;
+    --color-ink: #f5f3ef;
+    color-scheme: dark;
 }
 
 /* ── Base ───────────────────────────────────────────────────── */

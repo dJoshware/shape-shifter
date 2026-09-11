@@ -8,6 +8,7 @@ import { usePreferences } from "@/lib/contexts/PreferencesContext";
 import { TUNINGS } from "@/lib/tunings";
 import FormFields from "@/components/FormFields";
 import SubmitFeedback from "@/components/SubmitFeedback";
+import ThemeToggle from "@/components/ThemeToggle";
 import { deleteAccount, updateEmail, emailRegex } from "@/lib/API";
 
 export default function Header() {
@@ -205,7 +206,7 @@ export default function Header() {
     };
 
     const alertClass = (ok: boolean) =>
-        `rounded-lg px-3 py-2 text-xs font-semibold ${ok ? "bg-green-100 text-green-800 border border-green-300" : "bg-red-100 text-red-700 border border-red-300"}`;
+        `rounded-lg px-3 py-2 text-xs font-semibold ${ok ? "bg-green-100 text-green-800 border border-green-300 dark:bg-green-950/60 dark:text-green-200 dark:border-green-800/60" : "bg-red-100 text-red-700 border border-red-300 dark:bg-red-950/60 dark:text-red-200 dark:border-red-800/60"}`;
 
     if (authIsLoading && !user) {
         return (
@@ -303,6 +304,14 @@ export default function Header() {
                                 <h3 className='text-xs font-bold text-sand-1/70 uppercase tracking-wider'>
                                     Preferences
                                 </h3>
+
+                                {/* Theme */}
+                                <div className='flex flex-col gap-1.5'>
+                                    <p className='text-[10px] font-bold text-sand-1/50 uppercase tracking-widest'>
+                                        Theme
+                                    </p>
+                                    <ThemeToggle />
+                                </div>
 
                                 {/* Handedness */}
                                 <div className='flex flex-col gap-1.5'>
@@ -558,7 +567,7 @@ export default function Header() {
                             </div>
 
                             {paywallAlert && (
-                                <p className='rounded-lg px-3 py-2 text-xs font-semibold bg-red-900/40 text-red-300 border border-red-600/30'>
+                                <p className='rounded-lg px-3 py-2 text-xs font-semibold bg-red-900/40 text-red-300 border border-red-600/30 dark:bg-red-100 dark:text-red-700 dark:border-red-300'>
                                     {paywallAlert}
                                 </p>
                             )}

@@ -196,7 +196,7 @@ export default function SubmitFeedback({ className }: { className?: string }) {
 
                                 {alert && (
                                     <div
-                                        className={`rounded-lg px-3 py-2 text-sm font-semibold ${alert.ok ? "bg-green/20 text-green border border-green/40" : "bg-red-100 text-red-700 border border-red-300"}`}>
+                                        className={`rounded-lg px-3 py-2 text-sm font-semibold ${alert.ok ? "bg-green/20 text-green border border-green/40" : "bg-red-100 text-red-700 border border-red-300 dark:bg-red-900/40 dark:text-red-200 dark:border-red-700/50"}`}>
                                         {alert.msg}
                                     </div>
                                 )}

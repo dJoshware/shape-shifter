@@ -535,28 +535,23 @@ export default function Home() {
     const preferences = usePreferences();
 
     // ── state ──────────────────────────────────────────────────────────────────
+    // NOTE: these initializers intentionally use plain defaults (matching what
+    // the server renders) rather than reading `persistedSession` directly —
+    // doing that here would make the client's first render disagree with the
+    // server-rendered HTML and trigger a hydration error. Persisted values are
+    // applied in a layout effect below, right after mount, before paint.
     const [isDrawMode, setIsDrawMode] = React.useState(false);
-    const [selectedCategory, setSelectedCategory] = React.useState(
-        persistedSession.selectedCategory ?? "",
-    );
-    const [selectedVoicingType, setSelectedVoicingType] = React.useState(
-        persistedSession.selectedVoicingType ?? "Drop 2",
-    );
+    const [selectedCategory, setSelectedCategory] = React.useState("");
+    const [selectedVoicingType, setSelectedVoicingType] =
+        React.useState("Drop 2");
     const [selectedStringSet, setSelectedStringSet] = React.useState(
-        persistedSession.selectedStringSet ?? "High String Set",
+        "High String Set",
     );
-    const [selectedChordQuality, setSelectedChordQuality] = React.useState(
-        persistedSession.selectedChordQuality ?? "Maj7",
-    );
-    const [selectedPosition, setSelectedPosition] = React.useState(
-        persistedSession.selectedPosition ?? "All",
-    );
-    const [selectedAltShape, setSelectedAltShape] = React.useState(
-        persistedSession.selectedAltShape ?? 0,
-    );
-    const [currentRootNote, setCurrentRootNote] = React.useState(
-        persistedSession.currentRootNote ?? "C",
-    );
+    const [selectedChordQuality, setSelectedChordQuality] =
+        React.useState("Maj7");
+    const [selectedPosition, setSelectedPosition] = React.useState("All");
+    const [selectedAltShape, setSelectedAltShape] = React.useState(0);
+    const [currentRootNote, setCurrentRootNote] = React.useState("C");
     const [displayShape, setDisplayShape] = React.useState<NotePosition[]>([]);
     const [displayGroups, setDisplayGroups] = React.useState<NotePosition[][]>(
         [],
@@ -617,16 +612,14 @@ export default function Home() {
             inversions: [],
             randomizeRoot: true,
         });
-    const [showIntervals, setShowIntervals] = React.useState(
-        persistedSession.showIntervals ?? false,
-    );
+    const [showIntervals, setShowIntervals] = React.useState(false);
     const isRight = preferences.handedness === "right";
     const setIsRight = React.useCallback(
         (v: boolean) => preferences.setHandedness(v ? "right" : "left"),
         [preferences],
     );
     const [octaveUp, setOctaveUp] = React.useState(false);
-    const [capo, setCapo] = React.useState(persistedSession.capo ?? 0);
+    const [capo, setCapo] = React.useState(0);
     const [selectedTuning, setSelectedTuningRaw] = React.useState<Tuning>(
         () =>
             TUNINGS.find(t => t.name === preferences.tuningName) ??
@@ -814,62 +807,96 @@ export default function Home() {
 
     const [selectedMode, setSelectedMode] = React.useState<
         "chords" | "scales" | "scaleChords"
-    >(persistedSession.selectedMode ?? "chords");
-    const [selectedNoteGroup, setSelectedNoteGroup] = React.useState(
-        persistedSession.selectedNoteGroup ?? "7-note",
-    );
-    const [selectedScale, setSelectedScale] = React.useState(
-        persistedSession.selectedScale ?? "Major",
-    );
-    const [selectedScalePosition, setSelectedScalePosition] = React.useState(
-        persistedSession.selectedScalePosition ?? 0,
-    );
+    >("chords");
+    const [selectedNoteGroup, setSelectedNoteGroup] =
+        React.useState("7-note");
+    const [selectedScale, setSelectedScale] = React.useState("Major");
+    const [selectedScalePosition, setSelectedScalePosition] =
+        React.useState(0);
     const [selectedScalePattern, setSelectedScalePattern] = React.useState(
-        () =>
-            persistedSession.selectedScalePattern ??
-            SCALE_SHAPES["7-note"]["Major"].defaultPattern,
+        () => SCALE_SHAPES["7-note"]["Major"].defaultPattern,
     );
-    const [selectedScaleVariant, setSelectedScaleVariant] = React.useState(
-        persistedSession.selectedScaleVariant ?? 0,
-    );
-    const [showAllScalePositions, setShowAllScalePositions] = React.useState(
-        persistedSession.showAllScalePositions ?? true,
-    );
+    const [selectedScaleVariant, setSelectedScaleVariant] = React.useState(0);
+    const [showAllScalePositions, setShowAllScalePositions] =
+        React.useState(true);
     const [selectedScaleChordGroup, setSelectedScaleChordGroup] =
-        React.useState(
-            () =>
-                persistedSession.selectedScaleChordGroup ??
-                Object.keys(SCALE_CHORD_SHAPES)[0] ??
-                "",
-        );
+        React.useState(() => Object.keys(SCALE_CHORD_SHAPES)[0] ?? "");
     const [selectedScaleChordStringSet, setSelectedScaleChordStringSet] =
         React.useState(
             () =>
-                persistedSession.selectedScaleChordStringSet ??
                 Object.keys(Object.values(SCALE_CHORD_SHAPES)[0] ?? {})[0] ??
                 "",
         );
     const [selectedScaleChordQuality, setSelectedScaleChordQuality] =
         React.useState(
             () =>
-                persistedSession.selectedScaleChordQuality ??
                 Object.keys(
                     Object.values(Object.values(SCALE_CHORD_SHAPES)[0] ?? {})[0] ??
                         {},
-                )[0] ??
-                "",
+                )[0] ?? "",
         );
     const [selectedScaleChordInversion, setSelectedScaleChordInversion] =
-        React.useState(persistedSession.selectedScaleChordInversion ?? "Root");
+        React.useState("Root");
     const [selectedScaleChordAltShapeIdx, setSelectedScaleChordAltShapeIdx] =
-        React.useState(persistedSession.selectedScaleChordAltShapeIdx ?? -1);
+        React.useState(-1);
     const [selectedScaleChordMode, setSelectedScaleChordMode] =
-        React.useState(persistedSession.selectedScaleChordMode ?? 0);
+        React.useState(0);
     const [selectedScaleChordDegree, setSelectedScaleChordDegree] =
-        React.useState(persistedSession.selectedScaleChordDegree ?? 0);
-    const [showAllScaleChords, setShowAllScaleChords] = React.useState(
-        persistedSession.showAllScaleChords ?? true,
-    );
+        React.useState(0);
+    const [showAllScaleChords, setShowAllScaleChords] = React.useState(true);
+
+    // Apply any persisted session values right after mount, before the
+    // browser paints — this deliberately happens in a layout effect (not in
+    // the initializers above) so the client's first render matches the
+    // server-rendered HTML and doesn't trigger a hydration mismatch.
+    React.useLayoutEffect(() => {
+        const p = persistedSession;
+        if (Object.keys(p).length === 0) return;
+        if (p.selectedCategory !== undefined)
+            setSelectedCategory(p.selectedCategory);
+        if (p.selectedVoicingType !== undefined)
+            setSelectedVoicingType(p.selectedVoicingType);
+        if (p.selectedStringSet !== undefined)
+            setSelectedStringSet(p.selectedStringSet);
+        if (p.selectedChordQuality !== undefined)
+            setSelectedChordQuality(p.selectedChordQuality);
+        if (p.selectedPosition !== undefined)
+            setSelectedPosition(p.selectedPosition);
+        if (p.selectedAltShape !== undefined)
+            setSelectedAltShape(p.selectedAltShape);
+        if (p.currentRootNote !== undefined)
+            setCurrentRootNote(p.currentRootNote);
+        if (p.showIntervals !== undefined) setShowIntervals(p.showIntervals);
+        if (p.capo !== undefined) setCapo(p.capo);
+        if (p.selectedMode !== undefined) setSelectedMode(p.selectedMode);
+        if (p.selectedNoteGroup !== undefined)
+            setSelectedNoteGroup(p.selectedNoteGroup);
+        if (p.selectedScale !== undefined) setSelectedScale(p.selectedScale);
+        if (p.selectedScalePosition !== undefined)
+            setSelectedScalePosition(p.selectedScalePosition);
+        if (p.selectedScalePattern !== undefined)
+            setSelectedScalePattern(p.selectedScalePattern);
+        if (p.selectedScaleVariant !== undefined)
+            setSelectedScaleVariant(p.selectedScaleVariant);
+        if (p.showAllScalePositions !== undefined)
+            setShowAllScalePositions(p.showAllScalePositions);
+        if (p.selectedScaleChordGroup !== undefined)
+            setSelectedScaleChordGroup(p.selectedScaleChordGroup);
+        if (p.selectedScaleChordStringSet !== undefined)
+            setSelectedScaleChordStringSet(p.selectedScaleChordStringSet);
+        if (p.selectedScaleChordQuality !== undefined)
+            setSelectedScaleChordQuality(p.selectedScaleChordQuality);
+        if (p.selectedScaleChordInversion !== undefined)
+            setSelectedScaleChordInversion(p.selectedScaleChordInversion);
+        if (p.selectedScaleChordAltShapeIdx !== undefined)
+            setSelectedScaleChordAltShapeIdx(p.selectedScaleChordAltShapeIdx);
+        if (p.selectedScaleChordMode !== undefined)
+            setSelectedScaleChordMode(p.selectedScaleChordMode);
+        if (p.selectedScaleChordDegree !== undefined)
+            setSelectedScaleChordDegree(p.selectedScaleChordDegree);
+        if (p.showAllScaleChords !== undefined)
+            setShowAllScaleChords(p.showAllScaleChords);
+    }, []);
 
     const fretboardMap = React.useMemo(
         () => generateFretboardMap(selectedTuning.notes, NUM_FRETS),

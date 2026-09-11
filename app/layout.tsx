@@ -79,7 +79,8 @@ export default function RootLayout({
     return (
         <html
             lang='en'
-            className={montserrat.variable}>
+            className={montserrat.variable}
+            suppressHydrationWarning>
             <body className='h-dvh overflow-hidden sm:h-auto sm:min-h-dvh sm:overflow-visible flex flex-col bg-sand-1 text-ink'>
                 <script
                     type='application/ld+json'

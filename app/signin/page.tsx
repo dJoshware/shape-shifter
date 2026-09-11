@@ -164,7 +164,7 @@ function SignInForm() {
 
     const alertClass =
         status === "error"
-            ? "bg-red-100 text-red-700 border border-red-300"
+            ? "bg-red-100 text-red-700 border border-red-300 dark:bg-red-950/60 dark:text-red-200 dark:border-red-800/60"
             : status === "success"
               ? "bg-green/20 text-green border border-green/40"
               : "bg-sand-3 text-sand-1 border border-sand-1/20";
